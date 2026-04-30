@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, MonitorPlay, Smartphone } from 'lucide-react';
-import BardBoysShowcase from '@/components/BardBoysShowcase';
-import FloraShowcase from '@/components/FloraShowcase';
-import SunflowerShowcase from '@/components/SunflowerShowcase';
+import dynamic from 'next/dynamic';
+
+const BardBoysShowcase = dynamic(() => import('@/components/BardBoysShowcase'), { ssr: false });
+const FloraShowcase = dynamic(() => import('@/components/FloraShowcase'), { ssr: false });
+const SunflowerShowcase = dynamic(() => import('@/components/SunflowerShowcase'), { ssr: false });
 
 export default function MotionLabPage() {
   const [isPortraitMobile, setIsPortraitMobile] = useState(false);

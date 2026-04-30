@@ -244,7 +244,7 @@ export default function BardBoysShowcase() {
             <span className="text-[#c9a84c] font-bold tracking-[0.4em] uppercase text-xs mb-4 block drop-shadow-md">Case Study A</span>
             <h2 className="text-6xl md:text-9xl font-bebas text-white leading-none drop-shadow-lg">BARD BOYS</h2>
             <p className="text-white/80 font-outfit max-w-xl mx-auto mt-4 text-sm md:text-lg leading-relaxed drop-shadow-md hidden md:block">
-              Architected Ventura County's premier genetics boutique with proprietary age-verification gates and real-time inventory synchronization. 
+              Architecting cinematic scroll sequences requires hundreds of hours of 3D rendering, frame-by-frame compiling, and WebGL optimization. We don't use templates—we build bespoke, high-end visual systems that command authority and justify premium pricing.
             </p>
           </motion.div>
         </div>
@@ -277,7 +277,7 @@ export default function BardBoysShowcase() {
       {isMobile && (
         <div className="px-6 mt-8 max-w-sm mx-auto">
           <p className="text-white/60 text-sm leading-relaxed mb-6 text-center">
-            Architected Ventura County's premier genetics boutique with proprietary age-verification gates. A collision of high-end technical architecture and cinematic retail.
+            Custom cinematic scroll sequences require extensive 3D rendering and WebGL optimization. These bespoke visual systems command authority and justify a premium price point.
           </p>
           <div className="space-y-4">
             <FeatureCard 
