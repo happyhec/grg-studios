@@ -5,11 +5,13 @@ import { useRef, useState, useEffect } from 'react';
 import { m, useScroll, useTransform } from 'framer-motion';
 
 /**
- * AGENCY HERO v12 — Performance Optimized
- * - LCP Fixed: Logo image uses priority instead of lazy loading
- * - TBT Fixed: animate-pulse replaced with CSS-only animation
- * - Static grid backdrop extracted outside component
- * - Mobile resize listener cleaned up
+ * AGENCY HERO v13 — Instant First Paint
+ * - Outer wrapper changed from m.section to section so content renders
+ *   immediately before framer-motion async features finish loading.
+ *   (LazyMotion strict mode blocks ALL m.* rendering until features load)
+ * - Inner m.div elements retain all cinematic animations
+ * - LCP: logo uses priority, h1 visible on first paint
+ * - TBT: CSS-only pulse, static GRID_BG constant
  */
 
 const GRID_BG = `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M120 0H0v120h120V0zM1 119V1h118v118H1z' fill='%23c9a84c' fill-opacity='0.1'/%3E%3C/svg%3E")`;
@@ -54,7 +56,9 @@ export default function AgencyHero() {
   };
 
   return (
-    <m.section
+    // Plain section — NOT m.section — so content renders immediately
+    // before LazyMotion async features finish loading
+    <section
       id="hero"
       ref={containerRef}
       style={containerStyle}
@@ -116,7 +120,7 @@ export default function AgencyHero() {
           </button>
         </m.div>
 
-        {/* SLIDE 1: INTRO (LCP Optimized - Native CSS Transforms) */}
+        {/* SLIDE 1: INTRO — plain div, renders immediately on first paint */}
         <div
           style={{
             opacity: "var(--slide1-opacity, 1)",
@@ -174,6 +178,6 @@ export default function AgencyHero() {
         </div>
 
       </div>
-    </m.section>
+    </section>
   );
 }
