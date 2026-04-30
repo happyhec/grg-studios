@@ -31,7 +31,7 @@ export default function MotionLabPage() {
   }, []);
 
   return (
-    <main className="bg-black min-h-screen text-[#f5f0e8] overflow-x-hidden relative selection:bg-[#c9a84c] selection:text-black">
+    <main className="bg-black min-h-screen text-[#f5f0e8] relative selection:bg-[#c9a84c] selection:text-black">
       
       {/* Navigation Header */}
       <header className="fixed top-0 left-0 w-full z-[100] px-6 py-6 md:px-12 flex items-center justify-between pointer-events-none">

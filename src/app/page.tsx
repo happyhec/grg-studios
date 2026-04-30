@@ -1,6 +1,5 @@
 import AgencyHero from "@/components/AgencyHero";
 import ElevatorNav from "@/components/ElevatorNav";
-import QuickCTA from "@/components/QuickCTA";
 import FloatingCTA from "@/components/FloatingCTA";
 import Marquee from "@/components/Marquee";
 import ServicesGrid from "@/components/ServicesGrid";
@@ -20,7 +19,6 @@ export default function Home() {
   return (
     <main className="bg-black font-inter overflow-x-hidden relative">
       <ElevatorNav />
-      <QuickCTA />
       <FloatingCTA />
 
       <div id="hero" className="relative h-screen md:h-[200vh]">

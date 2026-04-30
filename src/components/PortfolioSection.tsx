@@ -544,7 +544,7 @@ const portfolioStyles = `
 .faceLabel, .hintIdle {
   position:absolute; left:50%; bottom:.75rem; transform:translateX(-50%); z-index:5; display:inline-flex; align-items:center; gap:.45rem;
   padding:.25rem .75rem; border-radius:999px; white-space:nowrap; font-size:.65rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
-  color:var(--p-gold-light); background:rgba(0,0,0,.5); border:1px solid rgba(201,168,76,.34);
+  color:var(--p-gold-light); background:#080808; border:1px solid rgba(201,168,76,.34);
 }
 .faceLabel span, .cat span { width:6px; height:6px; border-radius:999px; background:currentColor; box-shadow:0 0 8px currentColor; }
 .hintIdle { color:rgba(245,240,232,.55); border-color:rgba(245,240,232,.1); text-transform:none; letter-spacing:.04em; transition:opacity .18s; }
