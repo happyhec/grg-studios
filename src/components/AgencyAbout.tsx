@@ -69,7 +69,7 @@ export default function AgencyAbout() {
               Rooted in craft.<br /><em className="italic text-[#c9a84c] not-italic">Driven by results.</em>
             </h2>
             
-            <div className="space-y-6 text-[#888880] text-sm md:text-base leading-[1.8]">
+            <div className="space-y-6 text-[#a3a39c] text-sm md:text-base leading-[1.8]">
               <p>
                 I started GRG Studios because I saw local businesses being sold "visual shells" — websites that looked okay but were architecturally brittle and insecure. I don't build shells. I build <strong className="text-[#f5f0e8] font-medium">hardened systems</strong>.
               </p>

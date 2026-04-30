@@ -48,7 +48,7 @@ export default function AgencyProcess() {
           <h2 className="font-rajdhani text-5xl md:text-7xl font-light text-[#f5f0e8] mb-4">
             Built for <em className="italic text-[#c9a84c] not-italic">precision</em> & performance.
           </h2>
-          <p className="text-[#888880] text-sm md:text-base max-w-2xl mx-auto font-outfit">
+          <p className="text-[#a3a39c] text-sm md:text-base max-w-2xl mx-auto font-outfit">
             Our 4-stage architectural framework ensures every pixel serves a purpose and every line of code drives revenue.
           </p>
         </div>
@@ -71,7 +71,7 @@ export default function AgencyProcess() {
               </div>
               <div className="text-[#c9a84c] font-mono text-[10px] tracking-widest mb-3">{step.num}</div>
               <h3 className="text-xl font-rajdhani font-semibold text-[#f5f0e8] mb-4 uppercase tracking-wider">{step.title}</h3>
-              <p className="text-sm text-[#888880] leading-relaxed max-w-[280px] font-outfit">
+              <p className="text-sm text-[#a3a39c] leading-relaxed max-w-[280px] font-outfit">
                 {step.desc}
               </p>
             </motion.div>

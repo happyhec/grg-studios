@@ -2,6 +2,7 @@ import AgencyHero from "@/components/AgencyHero";
 import ElevatorNav from "@/components/ElevatorNav";
 import QuickCTA from "@/components/QuickCTA";
 import PortfolioSection from "@/components/PortfolioSection";
+import MotionLabBanner from "@/components/MotionLabBanner";
 
 // Shared Section Components
 import AgencyProcess from "@/components/AgencyProcess";
@@ -46,6 +47,7 @@ export default function Home() {
       </div>
 
       <PortfolioSection />
+      <MotionLabBanner />
 
       <div id="process">
         <AgencyProcess />

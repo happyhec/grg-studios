@@ -78,7 +78,7 @@ export default function AgencyTestimonials() {
                 <div>
                   <div className="text-[10px] tracking-[0.2em] font-black uppercase text-[#c9a84c] mb-1">{t.result}</div>
                   <div className="text-sm font-medium text-[#f5f0e8]">{t.name}</div>
-                  <div className="text-xs text-[#888880] uppercase tracking-widest">{t.company}</div>
+                  <div className="text-xs text-[#a3a39c] uppercase tracking-widest">{t.company}</div>
                 </div>
               </div>
             </div>

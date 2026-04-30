@@ -67,7 +67,7 @@ export default function MayraShowcase() {
               Mayra's Helping Hands: <br /> <em className="italic text-[#c9a84c] not-italic">The Ops Engine.</em>
             </h2>
             
-            <p className="text-[#888880] font-outfit font-light leading-relaxed max-w-lg mb-12 text-lg">
+            <p className="text-[#a3a39c] font-outfit font-light leading-relaxed max-w-lg mb-12 text-lg">
               Beyond the surface, we built a full-scale operational dashboard. 
               From automated lead triage to real-time staff scheduling, we transformed a local service into a digitally-autonomous enterprise.
             </p>
@@ -111,7 +111,7 @@ function FeatureItem({ icon, title, desc }: { icon: React.ReactNode; title: stri
       </div>
       <div>
         <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-2">{title}</h4>
-        <p className="text-[#888880] text-xs leading-relaxed">{desc}</p>
+        <p className="text-[#a3a39c] text-xs leading-relaxed">{desc}</p>
       </div>
     </div>
   );

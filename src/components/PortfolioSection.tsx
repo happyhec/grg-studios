@@ -407,7 +407,7 @@ function ProjectCard({ project, delay = '' }: { project: Project; delay?: string
               <span key={metric}><i className={index % 2 ? 'gold' : 'sage'} />{metric}</span>
             ))}
           </div>
-          <a href={project.href} target="_blank" rel="noopener noreferrer" className="viewLink">
+          <a href={project.href} target="_blank" rel="noopener noreferrer" className="viewLink" aria-label={`View ${project.title}`}>
             View
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </a>
@@ -483,7 +483,7 @@ const portfolioStyles = `
 .portfolioSection {
   --p-bg:#080808; --p-surface:#111111; --p-surface-2:#151515; --p-surface-3:#1a1a1a;
   --p-border:rgba(201,168,76,.14); --p-border-2:rgba(201,168,76,.28);
-  --p-text:#f5f0e8; --p-muted:#888880; --p-faint:#5f5a50;
+  --p-text:#f5f0e8; --p-muted:#a3a39c; --p-faint:#5f5a50;
   --p-gold:#c9a84c; --p-gold-light:#e8d5a3; --p-gold-dark:#8a6e2e; --p-sage:#818f77;
   position:relative; overflow:hidden; background:var(--p-bg); color:var(--p-text);
   padding:clamp(6rem,10vw,9rem) 0; font-family:var(--font-outfit), Inter, sans-serif;

@@ -22,7 +22,7 @@ export default function MBAVenturaShowcase() {
               MBA Ventura: <br /> <em className="italic text-[#c9a84c] not-italic">Secure Systems.</em>
             </h2>
             
-            <p className="text-[#888880] font-outfit font-light leading-relaxed max-w-lg mb-12 text-lg">
+            <p className="text-[#a3a39c] font-outfit font-light leading-relaxed max-w-lg mb-12 text-lg">
               We rebuilt MBA Ventura from the ground up, focusing on a high-fidelity aesthetic paired with a robust administrative backbone. 
               Secure dashboards meet cinematic branding to position the store as Ventura's premier mattress authority.
             </p>
@@ -97,7 +97,7 @@ function FeatureItem({ icon, title, desc }: { icon: React.ReactNode; title: stri
       </div>
       <div>
         <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-2">{title}</h4>
-        <p className="text-[#888880] text-xs leading-relaxed">{desc}</p>
+        <p className="text-[#a3a39c] text-xs leading-relaxed">{desc}</p>
       </div>
     </div>
   );

@@ -54,7 +54,7 @@ export default function EngineeringContextMenu() {
           style={{ top: position.y, left: position.x }}
         >
           {/* Header */}
-          <div className="px-3 py-2 text-[9px] uppercase tracking-widest text-[#888880] border-b border-white/5 mb-2">
+          <div className="px-3 py-2 text-[9px] uppercase tracking-widest text-[#a3a39c] border-b border-white/5 mb-2">
             GRG_SYS_ACCESS
           </div>
           

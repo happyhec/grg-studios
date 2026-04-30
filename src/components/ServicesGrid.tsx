@@ -100,7 +100,7 @@ function ServiceCard({ service, index }: { service: typeof services[0], index: n
         <h3 className="text-xl font-medium mb-4 text-[#f5f0e8] group-hover:text-[#c9a84c] transition-colors">
           {service.title}
         </h3>
-        <p className="text-sm text-[#888880] leading-relaxed mb-6">
+        <p className="text-sm text-[#a3a39c] leading-relaxed mb-6">
           {service.desc}
         </p>
 
@@ -138,7 +138,7 @@ export default function ServicesGrid() {
               Building the <em className="italic text-[#c9a84c] not-italic">systems</em> that drive your growth.
             </h2>
           </div>
-          <p className="max-w-sm text-sm text-[#888880] leading-relaxed text-left md:text-right">
+          <p className="max-w-sm text-sm text-[#a3a39c] leading-relaxed text-left md:text-right">
             We don't just design pages; we build cohesive digital systems. From brand identity to automated workflows, we handle the technical architecture so you can lead your industry.
           </p>
         </div>

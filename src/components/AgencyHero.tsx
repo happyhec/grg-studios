@@ -95,6 +95,7 @@ export default function AgencyHero() {
               height={200}
               className="filter invert contrast-125 brightness-150 drop-shadow-[0_0_50px_rgba(201,168,76,0.3)] w-[200px] md:w-[400px]"
               priority
+              fetchPriority="high"
             />
             <div className="absolute inset-0 bg-[#c9a84c]/20 blur-[80px] md:blur-[100px] rounded-full scale-110 -z-10 animate-pulse" />
           </div>
@@ -157,7 +158,7 @@ export default function AgencyHero() {
                   transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
                />
              </div>
-             <span className="text-[10px] tracking-[0.2em] uppercase text-[#888880] font-medium">
+             <span className="text-[10px] tracking-[0.2em] uppercase text-[#a3a39c] font-medium">
                Scroll to explore
              </span>
            </div>

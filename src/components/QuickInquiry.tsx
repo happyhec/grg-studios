@@ -17,7 +17,7 @@ export default function QuickInquiry() {
           <h2 className="text-3xl md:text-5xl font-rajdhani font-light text-white leading-tight mb-6">
             Ready to <em className="text-[#c9a84c] not-italic">digitize</em> your operations?
           </h2>
-          <p className="text-[#888880] text-sm md:text-base leading-relaxed max-w-lg mb-0 font-outfit">
+          <p className="text-[#a3a39c] text-sm md:text-base leading-relaxed max-w-lg mb-0 font-outfit">
             Skip the scrolling. Let's discuss your custom infrastructure or business system audit today.
           </p>
         </div>

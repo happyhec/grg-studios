@@ -37,7 +37,7 @@ function InsightCard({ insight, index }: { insight: InsightMeta; index: number }
       </h2>
 
       {/* Subtitle */}
-      <p className="text-[#888880] text-sm md:text-base leading-relaxed mb-8">
+      <p className="text-[#a3a39c] text-sm md:text-base leading-relaxed mb-8">
         {insight.subtitle}
       </p>
 
@@ -72,7 +72,7 @@ export default function InsightsPage() {
           <h1 className="font-rajdhani text-5xl md:text-7xl font-light leading-tight text-[#f5f0e8] mb-6">
             Technical Briefs.
           </h1>
-          <p className="text-[#888880] text-base md:text-lg max-w-2xl leading-relaxed">
+          <p className="text-[#a3a39c] text-base md:text-lg max-w-2xl leading-relaxed">
             Deep dives into web security, performance architecture, and the architectural decisions behind high-converting digital systems. Written from the intersection of cybersecurity and design.
           </p>
         </div>
@@ -86,7 +86,7 @@ export default function InsightsPage() {
 
         {/* Bottom CTA */}
         <div className="mt-20 pt-12 border-t border-white/5 text-center">
-          <p className="text-[#888880] text-sm mb-6">
+          <p className="text-[#a3a39c] text-sm mb-6">
             Want a free audit of your current website? I&apos;ll show you exactly what&apos;s costing you customers.
           </p>
           <Link

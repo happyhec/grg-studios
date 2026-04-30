@@ -52,6 +52,7 @@ export default function ElevatorNav() {
           onMouseEnter={() => setHoveredSection(section.id)}
           onMouseLeave={() => setHoveredSection(null)}
           className="group relative flex items-center justify-end"
+          aria-label={`Scroll to ${section.label}`}
         >
           {/* Label Hover */}
           <AnimatePresence>

@@ -20,7 +20,7 @@ export default function Marquee({ items, speed = 25, isPill = false }: { items: 
         {duplicatedItems.map((item, i) => (
           <div 
             key={i} 
-            className={`flex items-center gap-4 px-8 text-[11px] tracking-[0.25em] uppercase text-[#888880] font-md whitespace-nowrap shrink-0 ${isPill ? 'text-[#c9a84c] border border-[rgba(201,168,76,0.2)] rounded-full px-5 py-2 mx-2' : ''}`}
+            className={`flex items-center gap-4 px-8 text-[11px] tracking-[0.25em] uppercase text-[#a3a39c] font-md whitespace-nowrap shrink-0 ${isPill ? 'text-[#c9a84c] border border-[rgba(201,168,76,0.2)] rounded-full px-5 py-2 mx-2' : ''}`}
           >
             {!isPill && <div className="w-1.5 h-1.5 bg-[#c9a84c] rounded-full shrink-0" />}
             {item}

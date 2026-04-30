@@ -129,10 +129,10 @@ function PricingCard({ tier, index }: { tier: typeof tiers[0], index: number }) 
         <div className="font-rajdhani text-4xl font-light mb-6 text-white">
           {tier.price.includes('$') && <span className="text-xl mr-1">$</span>}
           {tier.price.replace('$', '').replace('Starting at ', '')}
-          {tier.price.includes('Starting at') && <div className="text-xs uppercase tracking-widest text-[#888880] mt-1">Starting at</div>}
+          {tier.price.includes('Starting at') && <div className="text-xs uppercase tracking-widest text-[#a3a39c] mt-1">Starting at</div>}
         </div>
 
-        <p className="text-sm text-[#888880] leading-relaxed mb-8">
+        <p className="text-sm text-[#a3a39c] leading-relaxed mb-8">
           {tier.tagline}
         </p>
 
@@ -153,7 +153,7 @@ function PricingCard({ tier, index }: { tier: typeof tiers[0], index: number }) 
 
         <div className="mb-8">
           <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#c9a84c] mb-2">Best for</p>
-          <p className="text-xs text-[#888880] leading-relaxed italic">{tier.bestFor}</p>
+          <p className="text-xs text-[#a3a39c] leading-relaxed italic">{tier.bestFor}</p>
         </div>
 
         <a 
@@ -183,7 +183,7 @@ export default function AgencyPricing() {
           <h2 className="font-rajdhani text-5xl md:text-7xl font-light leading-tight text-[#f5f0e8] mb-6">
             Transparent pricing. <em className="italic text-[#c9a84c] not-italic">Clear scope.</em>
           </h2>
-          <p className="max-w-xl mx-auto text-sm text-[#888880] leading-relaxed mb-4">
+          <p className="max-w-xl mx-auto text-sm text-[#a3a39c] leading-relaxed mb-4">
             Choose the level that fits where your business is now. Every project starts with a discovery call and is built around your goals, not a template.
           </p>
         </div>
@@ -197,7 +197,7 @@ export default function AgencyPricing() {
         <div className="bg-white/[0.02] p-10 md:p-16 border border-white/5 rounded-2xl backdrop-blur-xl relative overflow-hidden">
           <div className="relative z-10">
             <h3 className="font-rajdhani text-3xl text-[#c9a84c] uppercase tracking-widest mb-2">Add-ons</h3>
-            <p className="text-[#888880] text-sm mb-12">Need more than a website? These can be added to any project or scoped separately.</p>
+            <p className="text-[#a3a39c] text-sm mb-12">Need more than a website? These can be added to any project or scoped separately.</p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-10">
               {addons.map(a => (
@@ -206,7 +206,7 @@ export default function AgencyPricing() {
                   <span className="text-[#c9a84c] text-xs font-medium uppercase tracking-widest">{a.price}</span>
                   
                   {/* Technical Detail HUD (Hover on Desktop, Always on Mobile) */}
-                  <div className="mt-4 text-[10px] leading-relaxed text-[#888880] font-outfit opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:translate-y-2 transition-all duration-300">
+                  <div className="mt-4 text-[10px] leading-relaxed text-[#a3a39c] font-outfit opacity-100 lg:opacity-0 lg:group-hover:opacity-100 lg:group-hover:translate-y-0 lg:translate-y-2 transition-all duration-300">
                     {a.detail}
                   </div>
                 </div>
@@ -218,7 +218,7 @@ export default function AgencyPricing() {
         </div>
 
         <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-6">
-          <p className="text-xs text-[#888880]">Not sure which option fits? <a href="#contact" className="text-[#c9a84c] hover:underline underline-offset-4">Reach out</a> and we'll scope it together.</p>
+          <p className="text-xs text-[#a3a39c]">Not sure which option fits? <a href="#contact" className="text-[#c9a84c] hover:underline underline-offset-4">Reach out</a> and we'll scope it together.</p>
           <div className="hidden md:block w-1.5 h-1.5 bg-[#c9a84c] rounded-full" />
           <div className="bg-[#c9a84c] text-black text-[10px] font-black uppercase px-5 py-2 rounded-full tracking-widest">
             Need custom automation or 3D? Deeper technical scopes quoted separately.

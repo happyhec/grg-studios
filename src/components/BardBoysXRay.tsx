@@ -19,7 +19,7 @@ export default function BardBoysXRay() {
           <span className="text-[10px] tracking-[0.4em] uppercase text-red-500/80 font-bold">Beyond the Visual</span>
         </div>
         <h2 className="font-rajdhani text-4xl md:text-6xl font-light text-[#f5f0e8] uppercase tracking-widest">Security <em className="text-red-500 not-italic">Infrastructure</em></h2>
-        <p className="mt-4 text-[#888880] max-w-lg mx-auto text-sm leading-relaxed">
+        <p className="mt-4 text-[#a3a39c] max-w-lg mx-auto text-sm leading-relaxed">
            Deconstructing the high-end encryption gates and remote killswitches protecting Ventura's premium genetics.
         </p>
       </div>

@@ -73,7 +73,7 @@ export default function ProjectSpotlight() {
             <h2 className="font-bebas text-5xl md:text-8xl font-light text-white mb-6 leading-[0.85] uppercase tracking-tighter">
               Eggs 'N' Things: <br /> <em className="italic text-[#c9a84c] not-italic">Refactored.</em>
             </h2>
-            <p className="text-[#888880] font-outfit font-light leading-relaxed max-w-lg">
+            <p className="text-[#a3a39c] font-outfit font-light leading-relaxed max-w-lg">
               Witness the total operational transformation. We took a legacy restaurant presence and re-architected it into a high-performance digital ecosystem centered on automated staff controls.
             </p>
           </div>

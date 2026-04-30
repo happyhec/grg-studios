@@ -49,7 +49,7 @@ export default function AgencyNavbar() {
             <li key={link.name}>
               <Link 
                 href={link.href}
-                className="text-[10px] tracking-[0.18em] uppercase font-medium text-[#888880] hover:text-[#c9a84c] transition-colors relative group"
+                className="text-[10px] tracking-[0.18em] uppercase font-medium text-[#a3a39c] hover:text-[#c9a84c] transition-colors relative group"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-[#c9a84c] transition-all duration-300 group-hover:w-full" />
@@ -118,13 +118,13 @@ export default function AgencyNavbar() {
               </Link>
 
               <div className="mt-12 pt-8 border-t border-[rgba(201,168,76,0.18)] flex flex-col gap-6">
-                <a href="tel:8059106096" className="flex items-center gap-4 py-2 text-[14px] text-[#888880] active:text-[#c9a84c] transition-colors">
+                <a href="tel:8059106096" className="flex items-center gap-4 py-2 text-[14px] text-[#a3a39c] active:text-[#c9a84c] transition-colors">
                   <span className="text-[#c9a84c] text-lg">✆</span> (805) 910-6096
                 </a>
-                <a href="mailto:admin@grginnovations.com" className="flex items-center gap-4 py-2 text-[14px] text-[#888880] active:text-[#c9a84c] transition-colors">
+                <a href="mailto:admin@grginnovations.com" className="flex items-center gap-4 py-2 text-[14px] text-[#a3a39c] active:text-[#c9a84c] transition-colors">
                   <span className="text-[#c9a84c] text-lg">✉</span> admin@grginnovations.com
                 </a>
-                <a href="https://instagram.com/grg_studios" target="_blank" rel="noopener" className="flex items-center gap-4 py-2 text-[14px] text-[#888880] active:text-[#c9a84c] transition-colors">
+                <a href="https://instagram.com/grg_studios" target="_blank" rel="noopener" className="flex items-center gap-4 py-2 text-[14px] text-[#a3a39c] active:text-[#c9a84c] transition-colors">
                   <span className="text-[#c9a84c] text-lg">◈</span> @grg_studios
                 </a>
               </div>

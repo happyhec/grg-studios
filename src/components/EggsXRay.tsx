@@ -21,7 +21,7 @@ export default function EggsXRay() {
         <h2 className="font-bebas text-5xl md:text-7xl font-light text-[#f5f0e8] uppercase tracking-widest leading-none">
           Operational <em className="text-[#a18a4d] not-italic">Middleware</em>
         </h2>
-        <p className="mt-6 max-w-lg mx-auto text-[#888880] text-sm leading-relaxed font-light">
+        <p className="mt-6 max-w-lg mx-auto text-[#a3a39c] text-sm leading-relaxed font-light">
            Peeling back the UI layer to reveal the automated engine driving real-time waitlists, catering lead-gen, and digital inventory synchronization.
         </p>
       </div>

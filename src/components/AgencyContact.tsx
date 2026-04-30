@@ -65,7 +65,7 @@ export default function AgencyContact() {
           <h2 className="font-rajdhani text-5xl md:text-7xl font-light text-[#f5f0e8] leading-[0.95] mb-6">
             Ready to build<br />something <em className="italic text-[#c9a84c] not-italic">remarkable</em>?
           </h2>
-          <p className="text-[#888880] text-sm md:text-base leading-relaxed">
+          <p className="text-[#a3a39c] text-sm md:text-base leading-relaxed">
             Tell us a bit about your project. No pressure, no jargon — just a straightforward conversation about what you need and how we can help.
           </p>
           
@@ -176,7 +176,7 @@ export default function AgencyContact() {
 
         {/* Contact Info Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-[#888880] text-sm">
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-[#a3a39c] text-sm">
             <a href="mailto:hector.garcia@grginnovations.com" className="flex items-center gap-3 hover:text-[#c9a84c] transition-colors">
               <span className="text-[#c9a84c]">✉</span> hector.garcia@grginnovations.com
             </a>

@@ -51,7 +51,7 @@ export default async function InsightArticle({ params }: PageProps) {
         {/* Back Link */}
         <Link
           href="/insights"
-          className="inline-flex items-center gap-2 text-[#888880] hover:text-[#c9a84c] transition-colors text-sm mb-12 group"
+          className="inline-flex items-center gap-2 text-[#a3a39c] hover:text-[#c9a84c] transition-colors text-sm mb-12 group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           All Insights
@@ -75,7 +75,7 @@ export default async function InsightArticle({ params }: PageProps) {
             {insight.title}
           </h1>
 
-          <p className="text-[#888880] text-lg md:text-xl leading-relaxed mb-8">
+          <p className="text-[#a3a39c] text-lg md:text-xl leading-relaxed mb-8">
             {insight.subtitle}
           </p>
 
@@ -119,7 +119,7 @@ export default async function InsightArticle({ params }: PageProps) {
             <h3 className="font-rajdhani text-2xl md:text-3xl text-[#f5f0e8] font-bold mb-4">
               Want a free security & performance audit?
             </h3>
-            <p className="text-[#888880] text-sm md:text-base mb-8 max-w-lg mx-auto">
+            <p className="text-[#a3a39c] text-sm md:text-base mb-8 max-w-lg mx-auto">
               I&apos;ll review your current site and send you a detailed report with specific, actionable fixes — whether you hire me or not.
             </p>
             <Link

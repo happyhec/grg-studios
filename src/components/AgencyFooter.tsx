@@ -15,7 +15,7 @@ export default function AgencyFooter() {
           />
         </Link>
 
-        <div className="text-center md:text-left text-[11px] leading-relaxed text-[#888880] tracking-wide">
+        <div className="text-center md:text-left text-[11px] leading-relaxed text-[#a3a39c] tracking-wide">
           <strong className="text-[#c9a84c] font-bold">GRG STUDIOS</strong> is a specialized creative unit of GRG Innovations LLC &nbsp;·&nbsp; Est. 2021<br />
           Camarillo • Ventura County • California &nbsp;·&nbsp; hector.garcia@grginnovations.com
         </div>
@@ -30,7 +30,7 @@ export default function AgencyFooter() {
             <li key={link.name}>
               <Link 
                 href={link.href}
-                className="text-[10px] tracking-widest uppercase font-medium text-[#888880] hover:text-[#f5f0e8] transition-colors"
+                className="text-[10px] tracking-widest uppercase font-medium text-[#a3a39c] hover:text-[#f5f0e8] transition-colors"
               >
                 {link.name}
               </Link>
