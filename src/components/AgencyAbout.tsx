@@ -87,7 +87,7 @@ export default function AgencyAbout() {
             {/* Credibility Anchors */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
               {[
-                { value: "2021", label: "Founded" },
+                { value: "2025", label: "Founded" },
                 { value: "12+", label: "Projects" },
                 { value: "100%", label: "Custom" },
                 { value: "24hr", label: "Response" },
