@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function Marquee({ items, speed = 25, isPill = false }: { items: string[], speed?: number, isPill?: boolean }) {
   // We duplicate the items a few times to ensure infinite seamless scrolling
-  const duplicatedItems = [...items, ...items, ...items, ...items, ...items, ...items];
+  const duplicatedItems = [...items, ...items, ...items];
 
   return (
     <div className="w-full border-y border-[rgba(255,255,255,0.05)] bg-[#111111] overflow-hidden py-4 flex items-center">

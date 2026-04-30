@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import LazySection from './LazySection';
 
 const ServicesGrid = dynamic(() => import('@/components/ServicesGrid'), { ssr: false });
 const PortfolioSection = dynamic(() => import('@/components/PortfolioSection'), { ssr: false });
@@ -15,33 +16,54 @@ const AgencyContact = dynamic(() => import('@/components/AgencyContact'), { ssr:
 export default function HomeClientSections() {
   return (
     <>
-      <ServicesGrid />
-      <PortfolioSection />
-      <MotionLabBanner />
+      <LazySection height="600px">
+        <ServicesGrid />
+      </LazySection>
 
-      <div id="process">
-        <AgencyProcess />
-      </div>
+      <LazySection height="800px">
+        <PortfolioSection />
+      </LazySection>
 
-      <div id="testimonials" className="bg-black py-20 border-y border-white/5">
-        <AgencyTestimonials />
-      </div>
+      <LazySection height="400px">
+        <MotionLabBanner />
+      </LazySection>
 
-      <div id="pricing">
-        <AgencyPricing />
-      </div>
+      <LazySection height="600px">
+        <div id="process">
+          <AgencyProcess />
+        </div>
+      </LazySection>
 
-      <div id="about">
-        <AgencyAbout />
-      </div>
+      <LazySection height="400px">
+        <div id="testimonials" className="bg-black py-20 border-y border-white/5">
+          <AgencyTestimonials />
+        </div>
+      </LazySection>
 
-      <div id="faq">
-        <FAQ />
-      </div>
+      <LazySection height="600px">
+        <div id="pricing">
+          <AgencyPricing />
+        </div>
+      </LazySection>
 
-      <div id="contact">
-        <AgencyContact />
-      </div>
+      <LazySection height="600px">
+        <div id="about">
+          <AgencyAbout />
+        </div>
+      </LazySection>
+
+      <LazySection height="400px">
+        <div id="faq">
+          <FAQ />
+        </div>
+      </LazySection>
+
+      <LazySection height="600px">
+        <div id="contact">
+          <AgencyContact />
+        </div>
+      </LazySection>
     </>
   );
 }
+
