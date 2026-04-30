@@ -39,7 +39,7 @@ export default function MotionLabPage() {
     <main className="bg-black min-h-screen text-[#f5f0e8] relative selection:bg-[#c9a84c] selection:text-black">
       
       {/* Navigation Header */}
-      <header className="fixed top-0 left-0 w-full z-[100] px-6 py-6 md:px-12 flex items-center justify-between pointer-events-none">
+      <header className="fixed top-0 left-0 w-full z-[100] px-6 py-6 md:px-12 hidden md:flex items-center justify-between pointer-events-none">
         <Link 
           href="/"
           className="pointer-events-auto flex items-center gap-3 text-[10px] tracking-widest uppercase font-mono text-[#a3a39c] hover:text-[#c9a84c] transition-colors bg-black/40 backdrop-blur-md border border-white/5 px-4 py-2 rounded-full"

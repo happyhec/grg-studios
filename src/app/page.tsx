@@ -17,7 +17,7 @@ const AgencyContact = dynamic(() => import('@/components/AgencyContact'));
 
 export default function Home() {
   return (
-    <main className="bg-black font-inter overflow-x-hidden relative">
+    <main className="bg-black font-inter relative">
       <ElevatorNav />
       <FloatingCTA />
 
@@ -28,11 +28,11 @@ export default function Home() {
       <div className="bg-black border-y border-white/5 py-12">
         <Marquee
           items={[
-            "40% More Leads - ASR Entertainment",
+            "Cinematic Commerce - Bard Boys",
+            "Interactive Experiences - Flora Syndicate",
             "Live Waitlist System - Eggs 'N' Things",
-            "5 Locations Digitized",
-            "Cinematic Commerce - Bard Boys Genetics",
-            "Camarillo - Ventura County - CA",
+            "Full-Stack Development - Ventura County",
+            "Custom Framer Motion & WebGL",
           ]}
           speed={35}
           isPill={false}
