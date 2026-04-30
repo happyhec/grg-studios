@@ -15,7 +15,12 @@ export default function BardBoysShowcase() {
   
   const [images, setImages] = useState<HTMLImageElement[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
   
   // Mobile Click-to-Play State
   const [showMobileFallback, setShowMobileFallback] = useState(true);
