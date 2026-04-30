@@ -21,9 +21,7 @@ export default function Home() {
       <ElevatorNav />
       <FloatingCTA />
 
-      <div id="hero" className="relative h-screen md:h-[200vh]">
-        <AgencyHero />
-      </div>
+      <AgencyHero />
 
       <div className="bg-black border-y border-white/5 py-12">
         <Marquee

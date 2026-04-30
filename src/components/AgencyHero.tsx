@@ -38,7 +38,7 @@ export default function AgencyHero() {
   const slide1Scale = useTransform(scrollYProgress, [0, 0.4], [1, 1.3]); 
   
   // SLIDE 2 (The Social Proof)
-  const slide2Opacity = useTransform(scrollYProgress, [0.1, 0.4, 0.85, 1], [0, 1, 1, 0]);
+  const slide2Opacity = useTransform(scrollYProgress, [0.1, 0.4, 0.95], [0, 1, 1]);
   const slide2Z = useTransform(scrollYProgress, [0, 1], [-400, 1200]); 
   const slide2Scale = useTransform(scrollYProgress, [0.4, 0.7, 1], [0.95, 1, 1.1]);
 
@@ -54,9 +54,9 @@ export default function AgencyHero() {
 
   return (
     <section 
-      id="home" 
+      id="hero" 
       ref={containerRef}
-      className="relative h-full bg-black text-[#f5f0e8] z-0"
+      className="relative h-screen md:h-[400vh] bg-black text-[#f5f0e8] z-0"
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center z-10 overflow-hidden bg-black">
         
