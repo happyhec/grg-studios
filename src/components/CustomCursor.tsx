@@ -7,9 +7,16 @@ export default function CustomCursor() {
   const ringRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Detect touch devices / mobile
+    if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768) {
+      setIsMobile(true);
+      return;
+    }
+
     let mouseX = 0;
     let mouseY = 0;
     let ringX = 0;
@@ -81,6 +88,8 @@ export default function CustomCursor() {
       observer.disconnect();
     };
   }, []);
+
+  if (isMobile) return null;
 
   return (
     <>

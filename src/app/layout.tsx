@@ -56,9 +56,9 @@ export default function RootLayout({
       <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ES13J87FVE"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -68,7 +68,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={`${inter.variable} ${outfit.variable} font-inter antialiased cursor-none`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${outfit.variable} font-inter antialiased md:cursor-none`} suppressHydrationWarning>
         <CustomCursor />
         <AgencyNavbar />
         <main className="relative z-10 flex min-h-screen flex-col">
