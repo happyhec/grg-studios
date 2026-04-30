@@ -72,7 +72,7 @@ export default function AgencyHero() {
             rotateX: 82,
             translateZ: floorZ
           } as any}
-          className="absolute bottom-0 left-[-100%] w-[300%] h-[150%] pointer-events-none opacity-20 origin-bottom will-change-transform"
+          className="absolute bottom-0 left-[-100%] w-[300%] h-[150%] pointer-events-none opacity-20 origin-bottom will-change-transform translate-z-0"
         />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80" />
@@ -94,8 +94,7 @@ export default function AgencyHero() {
               width={500} 
               height={200}
               className="filter invert contrast-125 brightness-150 drop-shadow-[0_0_50px_rgba(201,168,76,0.3)] w-[200px] md:w-[400px]"
-              priority
-              fetchPriority="high"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-[#c9a84c]/20 blur-[80px] md:blur-[100px] rounded-full scale-110 -z-10 animate-pulse" />
           </div>

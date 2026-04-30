@@ -2,18 +2,18 @@ import AgencyHero from "@/components/AgencyHero";
 import ElevatorNav from "@/components/ElevatorNav";
 import FloatingCTA from "@/components/FloatingCTA";
 import Marquee from "@/components/Marquee";
-import ServicesGrid from "@/components/ServicesGrid";
 import QuickInquiry from "@/components/QuickInquiry";
 import dynamic from 'next/dynamic';
 
-const PortfolioSection = dynamic(() => import('@/components/PortfolioSection'));
-const MotionLabBanner = dynamic(() => import('@/components/MotionLabBanner'));
-const AgencyProcess = dynamic(() => import('@/components/AgencyProcess'));
-const AgencyTestimonials = dynamic(() => import('@/components/AgencyTestimonials'));
-const AgencyPricing = dynamic(() => import('@/components/AgencyPricing'));
-const AgencyAbout = dynamic(() => import('@/components/AgencyAbout'));
-const FAQ = dynamic(() => import('@/components/FAQ'));
-const AgencyContact = dynamic(() => import('@/components/AgencyContact'));
+const ServicesGrid = dynamic(() => import('@/components/ServicesGrid'), { ssr: false });
+const PortfolioSection = dynamic(() => import('@/components/PortfolioSection'), { ssr: false });
+const MotionLabBanner = dynamic(() => import('@/components/MotionLabBanner'), { ssr: false });
+const AgencyProcess = dynamic(() => import('@/components/AgencyProcess'), { ssr: false });
+const AgencyTestimonials = dynamic(() => import('@/components/AgencyTestimonials'), { ssr: false });
+const AgencyPricing = dynamic(() => import('@/components/AgencyPricing'), { ssr: false });
+const AgencyAbout = dynamic(() => import('@/components/AgencyAbout'), { ssr: false });
+const FAQ = dynamic(() => import('@/components/FAQ'), { ssr: false });
+const AgencyContact = dynamic(() => import('@/components/AgencyContact'), { ssr: false });
 
 export default function Home() {
   return (
