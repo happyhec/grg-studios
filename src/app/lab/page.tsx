@@ -11,18 +11,15 @@ const FloraShowcase = dynamic(() => import('@/components/FloraShowcase'), { ssr:
 const SunflowerShowcase = dynamic(() => import('@/components/SunflowerShowcase'), { ssr: false });
 
 export default function MotionLabPage() {
-  const [isPortraitMobile, setIsPortraitMobile] = useState(false);
-  const [hasDismissedOverlay, setHasDismissedOverlay] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const checkOrientation = () => {
-      const mobile = window.innerWidth < 768;
+      // Lock any device with touch capabilities or tablet-width into the Mobile View
+      const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+      const mobile = window.innerWidth < 1024 || isTouch;
       setIsMobile(mobile);
-      // Check if it's a mobile device in portrait mode
-      const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-      setIsPortraitMobile(mobile && isPortrait);
     };
 
     checkOrientation();
@@ -101,31 +98,7 @@ export default function MotionLabPage() {
         </Link>
       </footer>
 
-      {/* Mobile Portrait Rotation Overlay */}
-      <AnimatePresence>
-        {isPortraitMobile && !hasDismissedOverlay && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[999] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center"
-          >
-            <Smartphone className="w-16 h-16 text-[#c9a84c] mb-6 animate-[spin_3s_ease-in-out_infinite]" />
-            <h2 className="font-rajdhani text-3xl font-bold text-white mb-4 uppercase">
-              Rotate Device
-            </h2>
-            <p className="text-[#a3a39c] font-outfit max-w-xs mb-8">
-              Please rotate your device horizontally for the best cinematic experience, or view on a desktop computer.
-            </p>
-            <button
-              onClick={() => setHasDismissedOverlay(true)}
-              className="px-6 py-2 border border-white/20 text-white/50 text-[10px] uppercase tracking-widest rounded-full hover:bg-white/5 transition-colors"
-            >
-              Continue Anyway
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
 
     </main>
   );
