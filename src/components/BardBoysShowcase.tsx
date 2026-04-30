@@ -179,51 +179,13 @@ export default function BardBoysShowcase() {
     >
       <div className={`w-full flex flex-col overflow-hidden ${isMobile ? 'relative h-[80vh] rounded-3xl border border-white/10 mx-auto w-[90vw]' : 'sticky top-0 h-screen'}`}>
         
-        {/* Visual Layer */}
-        {!isMobile ? (
-          // DESKTOP: Canvas Scrub
-          <canvas 
-            ref={canvasRef} 
-            className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale brightness-75 transition-opacity duration-1000"
-            style={{ opacity: isLoading ? 0 : 0.6 }}
-          />
-        ) : (
-          // MOBILE: Facade or Playback
-          <>
-            <canvas 
-              ref={canvasRef} 
-              className={`absolute inset-0 w-full h-full object-cover opacity-60 transition-opacity duration-500 ${showMobileFallback ? 'hidden' : 'block'}`}
-            />
-            
-            {showMobileFallback && (
-              <div className="absolute inset-0 w-full h-full">
-                <Image 
-                  src="/assets/projects/bard-boys/hero-sequence/ezgif-frame-061.jpg" 
-                  alt="Bard Boys Mobile" 
-                  fill 
-                  className="object-cover opacity-50 grayscale"
-                />
-                <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
-                  <button 
-                    onClick={handlePlay}
-                    className="flex items-center gap-3 bg-[#c9a84c] text-black px-6 py-3 rounded-full font-bold text-[10px] tracking-widest uppercase hover:scale-105 transition-transform"
-                  >
-                    <Play className="w-4 h-4 fill-black" /> Play Sequence
-                  </button>
-                  <span className="mt-4 text-[9px] text-white/50 tracking-widest uppercase">120-Frame WebGL Render</span>
-                </div>
-              </div>
-            )}
-            
-            {/* Mobile Loading Overlay */}
-            {isLoading && isMobile && (
-              <div className="absolute inset-0 bg-black/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center">
-                <div className="w-8 h-8 border-2 border-[#c9a84c] border-t-transparent rounded-full animate-spin mb-4" />
-                <span className="text-[#c9a84c] text-[10px] tracking-widest uppercase animate-pulse">Fetching Assets...</span>
-              </div>
-            )}
-          </>
-        )}
+        {/* Visual Layer - Desktop Canvas Scrub */}
+        <canvas 
+          ref={canvasRef} 
+          className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale brightness-75 transition-opacity duration-1000"
+          style={{ opacity: isLoading ? 0 : 0.6 }}
+        />
+
 
         {/* Content Overlay */}
         <div className={`relative z-10 flex flex-col items-center justify-center h-full px-6 pointer-events-none ${isMobile && !showMobileFallback ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}>

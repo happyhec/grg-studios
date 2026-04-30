@@ -201,51 +201,13 @@ export default function SunflowerShowcase() {
           </div>
         )}
 
-        {/* Visual Layer */}
-        {!isMobile ? (
-          // DESKTOP: Canvas Scrub
-          <canvas 
-            ref={canvasRef} 
-            className="w-full h-full object-contain grayscale brightness-50 contrast-125 transition-opacity duration-1000"
-            style={{ opacity: isLoading ? 0 : 0.6 }}
-          />
-        ) : (
-          // MOBILE: Facade or Playback
-          <>
-            <canvas 
-              ref={canvasRef} 
-              className={`absolute inset-0 w-full h-full object-cover grayscale brightness-50 contrast-125 transition-opacity duration-500 ${showMobileFallback ? 'hidden' : 'block'}`}
-            />
-            
-            {showMobileFallback && (
-              <div className="absolute inset-0 w-full h-full">
-                <Image 
-                  src="/assets/projects/flora/sunflower/ezgif-frame-072.jpg" 
-                  alt="Sunflower Mobile" 
-                  fill 
-                  className="object-cover opacity-50 grayscale brightness-75"
-                />
-                <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
-                  <button 
-                    onClick={handlePlay}
-                    className="flex items-center gap-3 bg-[#c9a84c] text-black px-6 py-3 rounded-full font-bold text-[10px] tracking-widest uppercase hover:scale-105 transition-transform"
-                  >
-                    <Play className="w-4 h-4 fill-black" /> Play Prototype
-                  </button>
-                  <span className="mt-4 text-[9px] text-white/50 tracking-widest uppercase">144-Frame Expansion Sequence</span>
-                </div>
-              </div>
-            )}
-            
-            {/* Mobile Loading Overlay */}
-            {isLoading && isMobile && (
-              <div className="absolute inset-0 bg-black/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center">
-                <div className="w-8 h-8 border-2 border-[#c9a84c] border-t-transparent rounded-full animate-spin mb-4" />
-                <span className="text-[#c9a84c] text-[10px] tracking-widest uppercase animate-pulse">Fetching Frames...</span>
-              </div>
-            )}
-          </>
-        )}
+        {/* Visual Layer - Desktop Canvas Scrub */}
+        <canvas 
+          ref={canvasRef} 
+          className="w-full h-full object-contain grayscale brightness-50 contrast-125 transition-opacity duration-1000"
+          style={{ opacity: isLoading ? 0 : 0.6 }}
+        />
+
 
         {/* Loading Bar (Desktop Only) */}
         <AnimatePresence>

@@ -13,16 +13,20 @@ const SunflowerShowcase = dynamic(() => import('@/components/SunflowerShowcase')
 export default function MotionLabPage() {
   const [isPortraitMobile, setIsPortraitMobile] = useState(false);
   const [hasDismissedOverlay, setHasDismissedOverlay] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const checkOrientation = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
       // Check if it's a mobile device in portrait mode
-      const isMobile = window.matchMedia("(max-width: 768px)").matches;
       const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-      setIsPortraitMobile(isMobile && isPortrait);
+      setIsPortraitMobile(mobile && isPortrait);
     };
 
     checkOrientation();
+    setMounted(true);
     window.addEventListener('resize', checkOrientation);
     window.addEventListener('orientationchange', checkOrientation);
 
@@ -31,6 +35,8 @@ export default function MotionLabPage() {
       window.removeEventListener('orientationchange', checkOrientation);
     };
   }, []);
+
+  if (!mounted) return <main className="bg-black min-h-screen" />; // Prevent hydration mismatch flash
 
   return (
     <main className="bg-black min-h-screen text-[#f5f0e8] relative selection:bg-[#c9a84c] selection:text-black">
@@ -73,9 +79,15 @@ export default function MotionLabPage() {
 
       {/* Showcases */}
       <div className="relative">
-        <BardBoysShowcase />
-        <FloraShowcase />
-        <SunflowerShowcase />
+        {isMobile ? (
+          <MobileLabView />
+        ) : (
+          <>
+            <BardBoysShowcase />
+            <FloraShowcase />
+            <SunflowerShowcase />
+          </>
+        )}
       </div>
 
       {/* Footer */}
@@ -116,5 +128,54 @@ export default function MotionLabPage() {
       </AnimatePresence>
 
     </main>
+  );
+}
+
+function MobileLabView() {
+  return (
+    <div className="px-6 py-12 space-y-24 max-w-lg mx-auto">
+      <MobileLabCard 
+        title="BARD BOYS"
+        subtitle="Case Study A"
+        desc="Architecting cinematic scroll sequences requires hundreds of hours of 3D rendering, frame-by-frame compiling, and WebGL optimization. We don't use templates—we build bespoke, high-end visual systems that command authority and justify premium pricing."
+        image="/assets/projects/bard-boys/hero-sequence/ezgif-frame-061.jpg"
+        link="https://instagram.com/grg_studios"
+      />
+      <MobileLabCard 
+        title="FLORA"
+        subtitle="Case Study B"
+        desc="A 120-frame WebGL interactive sequence built to transform a static product into a tactile, cinematic experience. Engineered for ultra-smooth scrub interactions."
+        image="/assets/projects/flora/rose-bloom/ezgif-frame-061.jpg"
+        link="https://instagram.com/grg_studios"
+      />
+      <MobileLabCard 
+        title="SUNFLOWER"
+        subtitle="Case Study C"
+        desc="High-fidelity 3D rendering integrated directly into the scroll timeline. Optimized to run at 60fps within a headless React architecture."
+        image="/assets/projects/flora/sunflower/ezgif-frame-070.jpg"
+        link="https://instagram.com/grg_studios"
+      />
+    </div>
+  );
+}
+
+import Image from 'next/image';
+
+function MobileLabCard({ title, subtitle, desc, image, link }: { title: string, subtitle: string, desc: string, image: string, link: string }) {
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden border border-white/10">
+        <Image src={image} alt={title} fill className="object-cover opacity-80 grayscale" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+        <div className="absolute bottom-6 left-6 right-6">
+          <span className="text-[#c9a84c] font-bold tracking-[0.4em] uppercase text-[10px] mb-2 block drop-shadow-md">{subtitle}</span>
+          <h2 className="text-5xl font-bebas text-white leading-none mb-6 drop-shadow-lg">{title}</h2>
+          <a href={link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-3 rounded-full text-[10px] tracking-widest uppercase hover:bg-white/20 hover:scale-105 transition-all">
+            View on Instagram <ArrowLeft className="w-3 h-3 rotate-[135deg]" />
+          </a>
+        </div>
+      </div>
+      <p className="text-white/70 text-sm leading-relaxed">{desc}</p>
+    </div>
   );
 }
