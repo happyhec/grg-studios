@@ -46,6 +46,7 @@ export const metadata: Metadata = {
 import AgencyNavbar from "@/components/AgencyNavbar";
 import AgencyFooter from "@/components/AgencyFooter";
 import CustomCursor from "@/components/CustomCursor";
+import { LazyMotion, domMax } from "framer-motion";
 import Script from "next/script";
 
 export default function RootLayout({
@@ -71,12 +72,14 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`${inter.variable} ${outfit.variable} font-inter antialiased md:cursor-none`} suppressHydrationWarning>
-        <CustomCursor />
-        <AgencyNavbar />
-        <main className="relative z-10 flex min-h-screen flex-col">
-          {children}
-        </main>
-        <AgencyFooter />
+        <LazyMotion features={domMax}>
+          <CustomCursor />
+          <AgencyNavbar />
+          <main className="relative z-10 flex min-h-screen flex-col">
+            {children}
+          </main>
+          <AgencyFooter />
+        </LazyMotion>
       </body>
     </html>
   );

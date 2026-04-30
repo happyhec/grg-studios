@@ -63,10 +63,7 @@ export default function AgencyHero() {
         {/* Cinematic Grid Backdrop */}
         <motion.div 
           style={{ 
-            backgroundImage: `
-              linear-gradient(rgba(201,168,76,0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(201,168,76,0.1) 1px, transparent 1px)
-            `,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M120 0H0v120h120V0zM1 119V1h118v118H1z' fill='%23c9a84c' fill-opacity='0.1'/%3E%3C/svg%3E")`,
             backgroundSize: '120px 120px',
             transformPerspective: 1200,
             rotateX: 82,

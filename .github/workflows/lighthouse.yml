@@ -13,7 +13,7 @@ jobs:
 
       - name: Fetch PageSpeed Insights scores
         run: |
-          curl "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://grginnovations.com&strategy=mobile&key=${{ secrets.PSI_API_KEY }}" \
+          curl "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://grginnovations.com&strategy=desktop&key=${{ secrets.PSI_API_KEY }}" \
           | node -e "
             const fs = require('fs');
             try {
