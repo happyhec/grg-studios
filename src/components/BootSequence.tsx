@@ -37,7 +37,7 @@ export default function BootSequence() {
             )}
             {step >= 2 && (
               <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.1 }}>
-                &gt; COMPILING_SYSTEMS... [ENGINEERED_FOR_SCALE]
+                &gt; COMPILING_SYSTEMS... [BUILT_FOR_SCALE]
               </motion.p>
             )}
             {step >= 3 && (

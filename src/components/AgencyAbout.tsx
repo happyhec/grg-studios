@@ -74,10 +74,10 @@ export default function AgencyAbout() {
                 I started GRG Studios because I saw local businesses being sold "visual shells" — websites that looked okay but were architecturally brittle and insecure. I don't build shells. I build <strong className="text-[#f5f0e8] font-medium">hardened systems</strong>.
               </p>
               <p>
-                My background is built on the intersection of <strong className="text-[#f5f0e8] font-medium">Cybersecurity, Networking, and High-End Design</strong>. This means every pixel I place is backed by a secure, high-performance network architecture. I'm not just a designer; I'm an engineer who ensures your digital assets are as resilient as they are beautiful.
+                My background is built on the intersection of <strong className="text-[#f5f0e8] font-medium">Cybersecurity, Networking, and High-End Design</strong>. This means every pixel I place is backed by a secure, high-performance network architecture. I'm not just a designer; I'm a systems specialist who ensures your digital assets are as resilient as they are beautiful.
               </p>
               <p>
-                Based in <strong className="text-[#f5f0e8] font-medium">Camarillo, Ventura County</strong>, I work exclusively with businesses who are ready to graduate from templates to professional infrastructure. Whether it's custom CRM integrations, secure staff portals, or AI-automated workflows, you're getting a system engineered for growth and built to withstand the modern web.
+                Based in <strong className="text-[#f5f0e8] font-medium">Camarillo, Ventura County</strong>, I work exclusively with businesses who are ready to graduate from templates to professional infrastructure. Whether it's custom CRM integrations, secure staff portals, or AI-automated workflows, you're getting a system architected for growth and built to withstand the modern web.
               </p>
             </div>
 

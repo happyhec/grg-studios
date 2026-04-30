@@ -68,7 +68,7 @@ export default function MayraShowcase() {
             </h2>
             
             <p className="text-[#888880] font-outfit font-light leading-relaxed max-w-lg mb-12 text-lg">
-              Beyond the surface, we engineered a full-scale operational dashboard. 
+              Beyond the surface, we built a full-scale operational dashboard. 
               From automated lead triage to real-time staff scheduling, we transformed a local service into a digitally-autonomous enterprise.
             </p>
 

@@ -66,14 +66,14 @@ export default function InsightsPage() {
           <div className="flex items-center gap-3 mb-6">
             <div className="w-8 h-[0.5px] bg-[#c9a84c]" />
             <span className="text-[10px] tracking-[0.3em] uppercase text-[#c9a84c] font-semibold">
-              Engineering Insights
+              Technical Insights
             </span>
           </div>
           <h1 className="font-rajdhani text-5xl md:text-7xl font-light leading-tight text-[#f5f0e8] mb-6">
             Technical Briefs.
           </h1>
           <p className="text-[#888880] text-base md:text-lg max-w-2xl leading-relaxed">
-            Deep dives into web security, performance architecture, and the engineering decisions behind high-converting digital systems. Written from the intersection of cybersecurity and design.
+            Deep dives into web security, performance architecture, and the architectural decisions behind high-converting digital systems. Written from the intersection of cybersecurity and design.
           </p>
         </div>
 

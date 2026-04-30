@@ -22,7 +22,7 @@ export default function Home() {
       <QuickCTA />
       <FloatingCTA />
 
-      <div id="hero" className="relative h-screen md:h-[280vh]">
+      <div id="hero" className="relative h-screen md:h-[200vh]">
         <AgencyHero />
       </div>
 

@@ -139,7 +139,7 @@ export default function ServicesGrid() {
             </h2>
           </div>
           <p className="max-w-sm text-sm text-[#888880] leading-relaxed text-left md:text-right">
-            We don't just design pages; we build cohesive digital systems. From brand identity to automated workflows, we handle the engineering so you can lead your industry.
+            We don't just design pages; we build cohesive digital systems. From brand identity to automated workflows, we handle the technical architecture so you can lead your industry.
           </p>
         </div>
 

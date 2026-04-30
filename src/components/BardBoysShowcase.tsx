@@ -186,8 +186,8 @@ export default function BardBoysShowcase() {
             <span className="text-[#c9a84c] font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Case Study A // Authority Integration</span>
             <h2 className="text-7xl md:text-9xl font-bebas text-white leading-none">BARD BOYS</h2>
             <p className="text-white/40 font-outfit max-w-xl mx-auto mt-6 text-lg leading-relaxed">
-              Engineered Ventura County's premier genetics boutique with proprietary age-verification gates and real-time inventory synchronization. 
-              A collision of architectural engineering and cinematic boutique retail.
+              Architected Ventura County's premier genetics boutique with proprietary age-verification gates and real-time inventory synchronization. 
+              A collision of high-end technical architecture and cinematic boutique retail.
             </p>
           </motion.div>
 

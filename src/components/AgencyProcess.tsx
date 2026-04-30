@@ -19,7 +19,7 @@ const steps = [
   },
   {
     num: "03",
-    title: "System Engineering",
+    title: "System Architecture",
     icon: <Cpu className="w-8 h-8 text-[#c9a84c]" strokeWidth={1} />,
     desc: "High-integrity development phase. We build, stress-test, and refine your custom digital asset using clean-code architecture and agentic workflows."
   },
@@ -49,7 +49,7 @@ export default function AgencyProcess() {
             Built for <em className="italic text-[#c9a84c] not-italic">precision</em> & performance.
           </h2>
           <p className="text-[#888880] text-sm md:text-base max-w-2xl mx-auto font-outfit">
-            Our 4-stage engineering framework ensures every pixel serves a purpose and every line of code drives revenue.
+            Our 4-stage architectural framework ensures every pixel serves a purpose and every line of code drives revenue.
           </p>
         </div>
 
