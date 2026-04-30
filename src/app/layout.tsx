@@ -43,12 +43,13 @@ export const metadata: Metadata = {
   },
 };
 
-import AgencyNavbar from "@/components/AgencyNavbar";
 import AgencyFooter from "@/components/AgencyFooter";
 import CustomCursor from "@/components/CustomCursor";
 import { LazyMotion } from "framer-motion";
+import dynamic from 'next/dynamic';
 import Script from "next/script";
 
+const AgencyNavbar = dynamic(() => import('@/components/AgencyNavbar'), { ssr: false });
 const loadFeatures = () => import("framer-motion").then(res => res.domAnimation);
 
 export default function RootLayout({
@@ -59,6 +60,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth selection:bg-[#c9a84c]/30 selection:text-white">
       <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ES13J87FVE"
           strategy="lazyOnload"

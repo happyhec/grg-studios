@@ -1,9 +1,11 @@
 import AgencyHero from "@/components/AgencyHero";
-import ElevatorNav from "@/components/ElevatorNav";
-import FloatingCTA from "@/components/FloatingCTA";
-import Marquee from "@/components/Marquee";
-import QuickInquiry from "@/components/QuickInquiry";
-import HomeClientSections from "@/components/HomeClientSections";
+import dynamic from 'next/dynamic';
+
+const ElevatorNav = dynamic(() => import('@/components/ElevatorNav'), { ssr: false });
+const FloatingCTA = dynamic(() => import('@/components/FloatingCTA'), { ssr: false });
+const Marquee = dynamic(() => import('@/components/Marquee'), { ssr: false });
+const QuickInquiry = dynamic(() => import('@/components/QuickInquiry'), { ssr: false });
+const HomeClientSections = dynamic(() => import('@/components/HomeClientSections'), { ssr: false });
 
 export default function Home() {
   return (
@@ -32,4 +34,5 @@ export default function Home() {
     </main>
   );
 }
+
 

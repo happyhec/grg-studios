@@ -93,7 +93,7 @@ export default function AgencyHero() {
               className="filter invert contrast-125 brightness-150 drop-shadow-[0_0_50px_rgba(201,168,76,0.3)] w-[200px] md:w-[400px]"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-[#c9a84c]/20 blur-[80px] md:blur-[100px] rounded-full scale-110 -z-10 animate-pulse" />
+            <div className="absolute inset-0 bg-[#c9a84c]/20 blur-[80px] md:blur-[100px] rounded-full scale-110 -z-10 animate-pulse will-change-transform" />
           </div>
           <p className="mt-4 md:mt-6 font-rajdhani text-lg md:text-xl font-light text-white/30 tracking-[0.5em] uppercase px-4 text-center">
             GRG <span className="text-[#c9a84c] font-bold">STUDIOS</span>
