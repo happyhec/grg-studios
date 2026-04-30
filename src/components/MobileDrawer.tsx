@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
 interface MobileDrawerProps {
@@ -12,14 +12,14 @@ interface MobileDrawerProps {
 export default function MobileDrawer({ isOpen, setIsOpen, navLinks }: MobileDrawerProps) {
   return (
     <AnimatePresence>
-      <motion.div 
+      <m.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={() => setIsOpen(false)}
         className="fixed inset-0 z-[99] bg-[#080808]/60 backdrop-blur-sm"
       />
-      <motion.div 
+      <m.div 
         initial={{ x: '100%' }}
         animate={{ x: 0 }}
         exit={{ x: '100%' }}
@@ -58,7 +58,7 @@ export default function MobileDrawer({ isOpen, setIsOpen, navLinks }: MobileDraw
             <span className="text-[#c9a84c] text-lg">◈</span> @grg_studios
           </a>
         </div>
-      </motion.div>
+      </m.div>
     </AnimatePresence>
   );
 }
