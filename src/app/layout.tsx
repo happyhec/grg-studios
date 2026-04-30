@@ -46,8 +46,10 @@ export const metadata: Metadata = {
 import AgencyNavbar from "@/components/AgencyNavbar";
 import AgencyFooter from "@/components/AgencyFooter";
 import CustomCursor from "@/components/CustomCursor";
-import { LazyMotion, domMax } from "framer-motion";
+import { LazyMotion } from "framer-motion";
 import Script from "next/script";
+
+const loadFeatures = () => import("framer-motion").then(res => res.domAnimation);
 
 export default function RootLayout({
   children,
@@ -55,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="scroll-smooth selection:bg-[#c9a84c]/30 selection:text-white">
       <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ES13J87FVE"
@@ -66,13 +68,12 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
             gtag('config', 'G-ES13J87FVE');
           `}
         </Script>
       </head>
       <body className={`${inter.variable} ${outfit.variable} font-inter antialiased md:cursor-none`} suppressHydrationWarning>
-        <LazyMotion features={domMax}>
+        <LazyMotion features={loadFeatures} strict>
           <CustomCursor />
           <AgencyNavbar />
           <main className="relative z-10 flex min-h-screen flex-col">

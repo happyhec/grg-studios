@@ -114,11 +114,11 @@ export default function AgencyHero() {
         <motion.div 
           style={{ 
             opacity: slide1Opacity,
-            scale: isMobile ? slide1Scale : 1,
+            scale: isMobile ? 1 : slide1Scale,
             translateZ: isMobile ? 0 : slide1Z,
             transformPerspective: 1200
           } as any}
-          className="absolute flex flex-col items-center justify-center text-center p-8 md:p-16 rounded-[2.5rem] border border-white/5 bg-black/40 backdrop-blur-md w-[90vw] max-w-[1000px] z-[30] will-change-transform"
+          className={`absolute flex flex-col items-center justify-center text-center p-6 md:p-16 rounded-[2.5rem] border border-white/5 bg-black/40 ${isMobile ? '' : 'backdrop-blur-md'} w-[90vw] max-w-[1000px] z-[30] will-change-transform`}
         >
           <p className="tracking-[0.4em] text-[10px] md:text-[11px] text-[#c9a84c] mb-6 md:mb-8 uppercase font-bold">
             Ventura County's Digital Studio
