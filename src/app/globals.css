@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #c9a84c;
+  --color-gold-light: #e8d5a3;
+  --color-gold-dark: #8a6e2e;
+
+  --color-moss: #3a4734;
+  --color-moss-light: #4f5f48;
+  --color-sage: #818f77;
+  
+  --color-cream: #f5f0e8;
+  --color-ivory: #fcfbf9;
+
+  --font-inter: 'Inter', sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: #080808;
+    --foreground: #fcfbf9;
+    --surface-1: #111111;
+    --surface-2: #1a1a1a;
+    --border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)] font-inter antialiased selection:bg-white/20 selection:text-white;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    /* Optimized smaller noise pattern to reduce paint cost */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .scroll-snap-container {
+    scroll-behavior: smooth;
+    will-change: transform;
+  }
+  .scroll-snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+}
+
+html {
+  /* No global snapping - prevents hero drift */
+  scroll-behavior: smooth;
+}
+
+.snap-container {
+  scroll-snap-type: y proximity;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+}

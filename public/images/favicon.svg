@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Dark background -->
+  <rect width="100" height="100" fill="#080808" rx="20"/>
+  
+  <!-- Outer Gold Frame (Tech Aesthetic) -->
+  <path d="M 15 15 L 30 15 M 85 15 L 70 15 M 15 85 L 30 85 M 85 85 L 70 85 M 15 15 L 15 30 M 85 15 L 85 30 M 15 85 L 15 70 M 85 85 L 85 70" fill="none" stroke="#C9A84C" stroke-width="3" opacity="0.5"/>
+  
+  <!-- Center Monogram "G" (Geometric) -->
+  <path d="M 65,30 L 35,30 L 35,70 L 65,70 L 65,50 L 45,50" fill="none" stroke="#F5F0E8" stroke-width="12" stroke-linecap="square" stroke-linejoin="miter" />
+</svg>

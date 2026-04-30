@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GRG Innovations — Portfolio</title>
+  <meta name="description" content="Selected digital systems built by GRG Innovations — brand, performance, security." />
+
+  <!--
+  ╔════════════════════════════════════════════════════════════════╗
+  ║  GRG INNOVATIONS — PORTFOLIO v4  (Flip Reveal Edition)       ║
+  ║                                                                ║
+  ║  SCREENSHOTS NEEDED (8 files):                                ║
+  ║                                                                ║
+  ║  screenshots/audrey-home.webp       Audrey homepage           ║
+  ║  screenshots/audrey-dashboard.webp  Audrey Auth0 dashboard    ║
+  ║                                                                ║
+  ║  screenshots/mba-home.webp          MBA Ventura homepage      ║
+  ║  screenshots/mba-details.webp       MBA product/pricing page  ║
+  ║                                                                ║
+  ║  screenshots/shamrock-home.webp     Shamrock homepage         ║
+  ║  screenshots/shamrock-dashboard.webp Shamrock admin portal     ║
+  ║                                                                ║
+  ║  screenshots/mayra-home.webp        Mayra mobile screenshot   ║
+  ║  screenshots/mayra-dashboard.webp   Mayra dashboard           ║
+  ║                                                                ║
+  ║  HOW TO CAPTURE:                                               ║
+  ║  Chrome → Cmd+Shift+P → "Capture full size screenshot"        ║
+  ║  Mobile: Chrome DevTools → iPhone frame → same command        ║
+  ║  Compress to WebP at ~80KB via squoosh.app                    ║
+  ║                                                                ║
+  ║  SELF-HOSTING FONTS (for max Lighthouse score):               ║
+  ║  Download Cabinet Grotesk + Satoshi from fontshare.com        ║
+  ║  Place in /fonts/ and replace the <link> below with           ║
+  ║  @font-face declarations pointing to your local files.        ║
+  ╚════════════════════════════════════════════════════════════════╝
+  -->
+
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ══ TOKENS ══════════════════════════════════════════════════ */
+    :root {
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+      --text-3xl:  clamp(2.5rem,   1rem    + 4vw,    4.5rem);
+
+      --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem; --sp-5:1.25rem;
+      --sp-6:1.5rem; --sp-8:2rem; --sp-10:2.5rem; --sp-11:2.75rem;
+      --sp-12:3rem; --sp-16:4rem; --sp-20:5rem;
+
+      --r-sm:.375rem; --r-md:.5rem; --r-lg:.75rem;
+      --r-xl:1rem; --r-2xl:1.5rem; --r-full:9999px;
+
+      --ease: cubic-bezier(0.16,1,0.3,1);
+      --t:    180ms var(--ease);
+      --t-md: 420ms var(--ease);
+      --t-lg: 620ms var(--ease);
+      --flip-dur: 680ms cubic-bezier(0.4,0,0.2,1);
+
+      --bg:        #080808;
+      --surface:   #111111;
+      --surface-2: #151515;
+      --surface-3: #1a1a1a;
+      --surface-4: #24221b;
+      --border:    rgba(201,168,76,0.14);
+      --border-2:  rgba(201,168,76,0.26);
+      --text-c:    #f5f0e8;
+      --text-m:    #888880;
+      --text-f:    #5f5a50;
+      --accent:    #c9a84c;
+      --accent-d:  rgba(201,168,76,0.11);
+      --accent-g:  rgba(201,168,76,0.28);
+      --amber:     #e8d5a3;
+      --amber-d:   rgba(232,213,163,0.11);
+      --moss:      #818f77;
+      --moss-d:    rgba(129,143,119,0.14);
+      --sh-md:     0 4px 20px rgba(0,0,0,.5);
+      --sh-lg:     0 16px 48px rgba(0,0,0,.7);
+      --font-d: 'Cabinet Grotesk','Helvetica Neue',sans-serif;
+      --font-b: 'Satoshi','Inter',sans-serif;
+      --content: 1160px;
+    }
+
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { -webkit-font-smoothing:antialiased; scroll-behavior:smooth; }
+    body { font-family:var(--font-b); font-size:var(--text-base);
+           color:var(--text-c); background:var(--bg); line-height:1.6; overflow-x:hidden; }
+    img  { display:block; max-width:100%; height:auto; }
+    a    { color:inherit; text-decoration:none; }
+    button { cursor:pointer; border:none; background:none; font:inherit; color:inherit; }
+    ul   { list-style:none; }
+    ::selection { background:var(--accent-d); color:var(--text-c); }
+    :focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:var(--r-sm); }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; }
+    }
+
+    /* ══ LAYOUT ══════════════════════════════════════════════════ */
+    .ps {
+      padding: clamp(var(--sp-16),10vw,var(--sp-20)) 0;
+      background: var(--bg); position:relative; overflow:hidden;
+    }
+    .ps::before {
+      content:''; position:absolute; top:-280px; left:50%; transform:translateX(-50%);
+      width:1100px; height:680px;
+      background:radial-gradient(ellipse,rgba(201,168,76,.05) 0%,transparent 68%);
+      pointer-events:none; z-index:0;
+    }
+    .wrap {
+      max-width:var(--content); margin-inline:auto;
+      padding-inline:clamp(var(--sp-4),5vw,var(--sp-10));
+      position:relative; z-index:1;
+    }
+
+    /* ══ SECTION HEADER ══════════════════════════════════════════ */
+    .sh { margin-bottom:clamp(var(--sp-10),5vw,var(--sp-16)); }
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:var(--sp-2);
+      font-size:var(--text-xs); font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--accent); margin-bottom:var(--sp-4);
+    }
+    .eyebrow::before { content:''; width:20px; height:2px; background:var(--accent); border-radius:var(--r-full); }
+    .sh-title {
+      font-family:var(--font-d); font-size:var(--text-3xl); font-weight:800;
+      line-height:1.05; letter-spacing:-.025em; max-width:14ch;
+    }
+    .sh-title em { font-style:normal; color:var(--accent); }
+    .sh-sub {
+      font-size:var(--text-base); color:var(--text-m); max-width:56ch;
+      margin-top:var(--sp-4); line-height:1.65;
+    }
+
+    /* ══ FILTERS ════════════════════════════════════════════════ */
+    .filters { display:flex; flex-wrap:wrap; gap:var(--sp-2); margin-bottom:clamp(var(--sp-8),4vw,var(--sp-12)); }
+    .fp {
+      padding:var(--sp-2) var(--sp-4); border-radius:var(--r-full);
+      border:1px solid var(--border-2); background:var(--surface-2);
+      color:var(--text-m); font-size:var(--text-sm); font-weight:500;
+      transition:background var(--t), color var(--t), border-color var(--t), transform var(--t);
+      -webkit-tap-highlight-color:transparent;
+    }
+    .fp:hover { color:var(--text-c); background:var(--surface-3); }
+    .fp[aria-pressed="true"] { background:var(--accent-d); border-color:rgba(201,168,76,.5); color:var(--accent); }
+    .fp:active { transform:scale(0.96); }
+
+    /* ══ SCROLL REVEAL ═══════════════════════════════════════════ */
+    .rv { opacity:0; clip-path:inset(18px 0 0 0);
+          transition: opacity .6s var(--ease), clip-path .6s var(--ease); }
+    .rv.in { opacity:1; clip-path:inset(0 0 0 0); }
+    .d1{transition-delay:.07s} .d2{transition-delay:.14s} .d3{transition-delay:.21s}
+
+    /* ══ CARD BASE ═══════════════════════════════════════════════ */
+    .card {
+      border-radius:var(--r-xl); border:1px solid var(--border);
+      background:var(--surface); overflow:hidden; box-shadow:var(--sh-md);
+      display:flex; flex-direction:column;
+      transition:transform var(--t-lg), box-shadow var(--t-lg), border-color var(--t-lg);
+    }
+    .card:hover { transform:translateY(-4px); box-shadow:var(--sh-lg); border-color:var(--border-2); }
+
+    /* ══ SCENE (artwork container) ═══════════════════════════════ */
+    .scene {
+      position:relative; overflow:hidden;
+      height:260px; flex-shrink:0;
+    }
+    .scene.tall { height:340px; }
+
+    /* ══ CSS BRAND ART (always the floor) ════════════════════════ */
+    .scene-art {
+      position:absolute; inset:0;
+      transition:opacity var(--t-md);
+    }
+
+    /* ══ FLIP SYSTEM ═════════════════════════════════════════════
+       Structure:
+         .flip-wrapper  — slides up from bottom on hover/tap
+           .flip-card   — rotates on Y axis (front ↔ back)
+             .flip-f    — front face (homepage screenshot)
+             .flip-b    — back face  (dashboard screenshot)
+    ═══════════════════════════════════════════════════════════════ */
+    .flip-wrapper {
+      position:absolute; inset:0;
+      transform:translateY(100%);
+      transition:transform var(--t-md);
+      z-index:3;
+      /* Perspective lives here — children inherit it for 3D depth */
+      perspective: 1400px;
+    }
+
+    .flip-card {
+      position:absolute; inset:0;
+      transform-style:preserve-3d;
+      -webkit-transform-style:preserve-3d;
+      transition:transform var(--flip-dur);
+      will-change:transform;
+    }
+    .flip-card.flipped { transform:rotateY(180deg); }
+
+    .flip-f, .flip-b {
+      position:absolute; inset:0;
+      backface-visibility:hidden;
+      -webkit-backface-visibility:hidden;
+      background:var(--surface-2);
+      overflow:hidden;
+    }
+    .flip-b { transform:rotateY(180deg); }
+
+    .flip-f img, .flip-b img {
+      width:100%; height:100%; object-fit:cover; object-position:top center;
+      opacity:0; transition:opacity .35s ease;
+    }
+    .flip-f img.loaded, .flip-b img.loaded { opacity:1; }
+
+    /* Bottom fade on screenshot faces */
+    .flip-f::after, .flip-b::after {
+      content:''; position:absolute; left:0; right:0; bottom:0; height:64px;
+      background:linear-gradient(to bottom,transparent,var(--surface));
+      z-index:2; pointer-events:none;
+    }
+
+    /* Face label (small chip on each face) */
+    .face-label {
+      position:absolute; bottom:var(--sp-3); left:50%; transform:translateX(-50%);
+      z-index:3; pointer-events:none;
+      display:inline-flex; align-items:center; gap:5px;
+      font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+      padding:3px 12px; border-radius:var(--r-full); white-space:nowrap;
+      transition:opacity var(--t);
+    }
+    .face-label .fl-dot { width:6px; height:6px; border-radius:50%; }
+    /* Homepage face — neutral */
+    .flip-f .face-label {
+      color:rgba(255,255,255,.5); background:rgba(0,0,0,.42);
+      border:1px solid rgba(255,255,255,.1);
+    }
+    .flip-f .face-label .fl-dot { background:rgba(255,255,255,.4); }
+    /* Dashboard face — accent teal */
+    .flip-b .face-label {
+      color:var(--accent); background:rgba(0,0,0,.5);
+      border:1px solid rgba(201,168,76,.34);
+    }
+    .flip-b .face-label .fl-dot { background:var(--accent); box-shadow:0 0 6px var(--accent-g); }
+
+    /* ── Trigger states ─────────────────────────────────────────── */
+    /* Desktop hover slides up the flip wrapper */
+    @media (hover:hover) {
+      .has-flip:hover .flip-wrapper { transform:translateY(0); }
+      .has-flip:hover .scene-art    { opacity:0; }
+      .has-flip:hover .hint-idle    { opacity:0; }
+    }
+    /* Touch tap (peeking class added by JS) */
+    .has-flip.peeking .flip-wrapper { transform:translateY(0); }
+    .has-flip.peeking .scene-art    { opacity:0; }
+    .has-flip.peeking .hint-idle    { opacity:0; }
+
+    /* ── Idle hint chip (visible before hover) ──────────────────── */
+    .hint-idle {
+      position:absolute; bottom:var(--sp-3); left:50%; transform:translateX(-50%);
+      z-index:6; pointer-events:none;
+      display:inline-flex; align-items:center; gap:var(--sp-2);
+      font-size:10px; font-weight:600; letter-spacing:.04em;
+      color:rgba(255,255,255,.45); background:rgba(0,0,0,.42);
+      padding:4px 12px; border-radius:var(--r-full);
+      border:1px solid rgba(255,255,255,.09); white-space:nowrap;
+      transition:opacity var(--t);
+    }
+    /* Show "Hover" on mouse devices, "Tap" on touch */
+    .hi-mouse { display:none; }
+    .hi-touch { display:none; }
+    @media (hover:hover) { .hi-mouse { display:inline; } }
+    @media (hover:none)  { .hi-touch { display:inline; } }
+
+    /* ══ CSS BRAND SCENES ════════════════════════════════════════ */
+
+    /* — AUDREY — dark gold luxury — */
+    .s-audrey {
+      background:linear-gradient(145deg,#080808 0%,#111111 58%,#0b0a08 100%);
+    }
+    .s-audrey::before {
+      content:''; position:absolute; top:-80px; right:-80px;
+      width:400px; height:400px; border-radius:50%;
+      background:radial-gradient(circle,rgba(201,168,76,.16) 0%,transparent 65%);
+    }
+    .s-audrey::after {
+      content:''; position:absolute; bottom:-60px; left:-60px;
+      width:300px; height:300px; border-radius:50%;
+      background:radial-gradient(circle,rgba(129,143,119,.1) 0%,transparent 65%);
+    }
+    .ao-ring {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-54%);
+      width:200px; height:200px; border-radius:50%;
+      border:1px solid rgba(201,168,76,.24);
+      box-shadow:0 0 60px rgba(201,168,76,.08),inset 0 0 50px rgba(201,168,76,.04);
+    }
+    .ao-ring2 {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-54%);
+      width:138px; height:138px; border-radius:50%;
+      border:1px solid rgba(201,168,76,.15);
+    }
+    .ao-mono {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-59%);
+      font-family:var(--font-d); font-size:3.4rem; font-weight:800;
+      letter-spacing:-.04em; line-height:1;
+      background:linear-gradient(135deg,#c9a84c 0%,#e8d5a3 45%,#8a6e2e 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    }
+    .ao-tag {
+      position:absolute; bottom:var(--sp-8); left:50%; transform:translateX(-50%);
+      font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase;
+      color:rgba(201,168,76,.58); white-space:nowrap;
+    }
+    .ao-chips {
+      position:absolute; bottom:var(--sp-16); right:var(--sp-5);
+      display:flex; flex-direction:column; gap:var(--sp-2); align-items:flex-end;
+    }
+    .ao-chip {
+      background:rgba(201,168,76,.08); border:1px solid rgba(201,168,76,.2);
+      border-radius:var(--r-md); padding:3px 8px;
+      font-size:9px; font-weight:600; color:rgba(232,213,163,.72);
+    }
+    .ao-scores { position:absolute; bottom:var(--sp-4); left:var(--sp-5); display:flex; gap:var(--sp-2); }
+    .ao-sc {
+      display:flex; flex-direction:column; align-items:center;
+      background:rgba(245,240,232,.04); border:1px solid rgba(201,168,76,.12);
+      border-radius:var(--r-md); padding:4px 8px; min-width:36px;
+    }
+    .ao-sc .n { font-family:var(--font-d); font-size:.68rem; font-weight:800; color:#a3b18a; line-height:1; }
+    .ao-sc .l { font-size:8px; letter-spacing:.05em; color:rgba(245,240,232,.34); text-transform:uppercase; margin-top:1px; }
+
+    /* — MBA VENTURA — dark purple/teal — */
+    .s-mba { background:linear-gradient(150deg,#070707 0%,#10110d 58%,#080808 100%); }
+    .mba-glow {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:320px; height:180px;
+      background:radial-gradient(ellipse,rgba(201,168,76,.12) 0%,transparent 70%);
+    }
+    .mba-bed {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-62%);
+      width:156px; height:88px;
+      background:linear-gradient(180deg,rgba(201,168,76,.13) 0%,rgba(129,143,119,.09) 100%);
+      border:1px solid rgba(201,168,76,.28); border-radius:var(--r-lg);
+      box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 40px rgba(201,168,76,.09);
+    }
+    .mba-bed::before {
+      content:''; position:absolute; top:7px; left:7px; right:7px; bottom:7px;
+      border:1px solid rgba(201,168,76,.18); border-radius:var(--r-md);
+    }
+    .mba-bed::after {
+      content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:90px; height:2px;
+      background:linear-gradient(90deg,transparent,rgba(232,213,163,.34),transparent);
+    }
+    .mba-headline {
+      position:absolute; top:var(--sp-5); left:50%; transform:translateX(-50%);
+      font-family:var(--font-d); font-size:1.45rem; font-weight:800; letter-spacing:-.03em;
+      background:linear-gradient(135deg,#c9a84c 0%,#e8d5a3 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; white-space:nowrap;
+    }
+    .mba-off {
+      position:absolute; top:var(--sp-4); right:var(--sp-4);
+      background:rgba(201,168,76,.13); border:1px solid rgba(201,168,76,.3);
+      border-radius:var(--r-full); padding:3px 10px;
+      font-size:var(--text-xs); font-weight:700; color:#e8d5a3;
+    }
+    .mba-pulses {
+      position:absolute; bottom:var(--sp-5); left:50%; transform:translateX(-50%);
+      display:flex; gap:var(--sp-4); align-items:center; white-space:nowrap;
+    }
+    .mba-p { display:flex; align-items:center; gap:5px; font-size:10px; font-weight:600; color:rgba(232,213,163,.7); }
+    .mba-dot {
+      width:7px; height:7px; border-radius:50%; background:#c9a84c;
+      box-shadow:0 0 8px rgba(201,168,76,.6);
+      animation:pdot 2s ease-in-out infinite;
+    }
+    @keyframes pdot { 0%,100%{box-shadow:0 0 6px rgba(201,168,76,.6)} 50%{box-shadow:0 0 14px rgba(232,213,163,.9)} }
+    .mba-sub {
+      position:absolute; bottom:var(--sp-11); left:50%; transform:translateX(-50%);
+      font-size:10px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+      color:rgba(201,168,76,.55); white-space:nowrap;
+    }
+
+    /* — SHAMROCK — navy/gold community — */
+    .s-shamrock { background:linear-gradient(140deg,#070807 0%,#10140e 55%,#080808 100%); }
+    .sh-radial {
+      position:absolute; top:-50px; right:-50px; width:340px; height:340px;
+      background:radial-gradient(circle,rgba(201,168,76,.11) 0%,transparent 65%);
+    }
+    .sh-clover { position:absolute; top:42%; left:50%; transform:translate(-50%,-50%); width:90px; height:90px; }
+    .sh-leaf {
+      position:absolute; width:38px; height:38px;
+      border-radius:50% 50% 0 50%;
+      background:linear-gradient(135deg,rgba(129,143,119,.48),rgba(58,71,52,.32));
+      border:1px solid rgba(129,143,119,.34);
+    }
+    .sh-leaf:nth-child(1){top:0;left:50%;transform:translateX(-50%) rotate(0deg)}
+    .sh-leaf:nth-child(2){top:50%;left:0;transform:translateY(-50%) rotate(270deg)}
+    .sh-leaf:nth-child(3){top:50%;right:0;transform:translateY(-50%) rotate(90deg)}
+    .sh-leaf:nth-child(4){bottom:0;left:50%;transform:translateX(-50%) rotate(180deg)}
+    .sh-stem { position:absolute; bottom:-14px; left:50%; transform:translateX(-50%); width:3px; height:16px; background:linear-gradient(to bottom,rgba(129,143,119,.5),transparent); border-radius:var(--r-full); }
+    .sh-stats { position:absolute; top:var(--sp-4); left:var(--sp-5); }
+    .sh-stat-n { font-family:var(--font-d); font-size:1.25rem; font-weight:800; color:rgba(232,213,163,.88); }
+    .sh-stat-l { font-size:9px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:rgba(201,168,76,.42); margin-top:1px; }
+    .sh-rbac {
+      position:absolute; top:var(--sp-4); right:var(--sp-4);
+      background:rgba(201,168,76,.1); border:1px solid rgba(201,168,76,.24);
+      border-radius:var(--r-full); padding:3px 8px;
+      font-size:9px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:rgba(232,213,163,.7);
+    }
+    .sh-bar-wrap { position:absolute; bottom:var(--sp-5); left:var(--sp-5); right:var(--sp-5); }
+    .sh-bar-top { display:flex; justify-content:space-between; font-size:10px; font-weight:600; color:rgba(232,213,163,.68); margin-bottom:5px; }
+    .sh-bar-track { height:5px; background:rgba(245,240,232,.06); border-radius:var(--r-full); overflow:hidden; }
+    .sh-bar-fill { height:100%; width:68%; border-radius:var(--r-full); background:linear-gradient(90deg,rgba(201,168,76,.55),rgba(232,213,163,.85)); box-shadow:0 0 8px rgba(201,168,76,.28); }
+
+    /* — MAYRA — rose/purple brand — */
+    .s-mayra { background:linear-gradient(145deg,#080808 0%,#12110d 55%,#0a0a08 100%); }
+    .my-g1 { position:absolute; top:-90px; right:-90px; width:380px; height:380px; background:radial-gradient(circle,rgba(201,168,76,.11) 0%,transparent 65%); }
+    .my-g2 { position:absolute; bottom:-70px; left:-70px; width:300px; height:300px; background:radial-gradient(circle,rgba(129,143,119,.08) 0%,transparent 65%); }
+    .my-or { position:absolute; top:50%; left:50%; transform:translate(-50%,-56%); width:175px; height:175px; border-radius:50%; border:1px solid rgba(201,168,76,.13); }
+    .my-ir { position:absolute; top:50%; left:50%; transform:translate(-50%,-56%); width:120px; height:120px; border-radius:50%; border:1px solid rgba(201,168,76,.09); }
+    .my-lt {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-60%);
+      font-family:var(--font-d); font-size:4.8rem; font-weight:800; letter-spacing:-.05em; line-height:1;
+      background:linear-gradient(135deg,#c9a84c 0%,#f5f0e8 50%,#8a6e2e 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; opacity:.82;
+    }
+    .my-dv { position:absolute; top:62%; left:50%; transform:translate(-50%,-50%); width:120px; height:1px; background:linear-gradient(90deg,transparent,rgba(201,168,76,.38),transparent); }
+    .my-pills { position:absolute; bottom:var(--sp-5); left:50%; transform:translateX(-50%); display:flex; gap:var(--sp-2); white-space:nowrap; }
+    .my-pill { background:rgba(201,168,76,.08); border:1px solid rgba(201,168,76,.2); border-radius:var(--r-full); padding:3px 10px; font-size:10px; font-weight:600; color:rgba(232,213,163,.7); }
+
+    /* — EGGS N THINGS — warm amber/orange — */
+    .s-eggs { background:linear-gradient(145deg,#0b0905 0%,#17130a 55%,#0b0905 100%); }
+    .eg-glow { position:absolute; top:-70px; left:50%; transform:translateX(-50%); width:420px; height:320px; background:radial-gradient(ellipse,rgba(201,168,76,.13) 0%,transparent 65%); }
+    .eg-icons { position:absolute; top:var(--sp-4); left:var(--sp-5); right:var(--sp-5); display:flex; justify-content:space-between; }
+    .eg-ico { font-size:18px; opacity:.28; }
+    .eg-egg { position:absolute; top:50%; left:50%; transform:translate(-50%,-60%); width:68px; height:84px; background:linear-gradient(160deg,rgba(232,213,163,.2) 0%,rgba(201,168,76,.13) 100%); border:1px solid rgba(201,168,76,.3); border-radius:50% 50% 50% 50% / 60% 60% 40% 40%; box-shadow:0 0 40px rgba(201,168,76,.12),inset 0 0 18px rgba(201,168,76,.06); }
+    .eg-yolk { position:absolute; top:50%; left:50%; transform:translate(-50%,-58%); width:30px; height:30px; border-radius:50%; background:radial-gradient(circle,rgba(232,213,163,.42) 0%,rgba(201,168,76,.14) 70%); border:1px solid rgba(201,168,76,.24); }
+    .eg-nm { position:absolute; bottom:var(--sp-10); left:50%; transform:translateX(-50%); font-family:var(--font-d); font-size:1.05rem; font-weight:800; background:linear-gradient(90deg,#c9a84c,#e8d5a3); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; white-space:nowrap; }
+    .eg-sb { position:absolute; bottom:var(--sp-5); left:50%; transform:translateX(-50%); font-size:10px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:rgba(201,168,76,.46); white-space:nowrap; }
+
+    /* ══ CARD CONTENT ════════════════════════════════════════════ */
+    .cc { padding:var(--sp-6); display:flex; flex-direction:column; flex:1; }
+    .cat { display:inline-flex; align-items:center; gap:var(--sp-2); font-size:var(--text-xs); font-weight:600; letter-spacing:.06em; text-transform:uppercase; margin-bottom:var(--sp-3); }
+    .cdot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+    .cg .cdot{background:var(--accent)} .cg{color:rgba(232,213,163,.84)}
+    .cp .cdot{background:var(--moss)} .cp{color:#a3b18a}
+    .ct-a .cdot{background:var(--accent)} .ct-a{color:var(--accent)}
+    .co .cdot{background:#e8d5a3} .co{color:#e8d5a3}
+    .cr .cdot{background:#f5f0e8} .cr{color:#f5f0e8}
+
+    .sec-badge {
+      display:inline-flex; align-items:center; gap:5px;
+      font-size:var(--text-xs); font-weight:600; color:var(--amber);
+      background:var(--amber-d); border:1px solid rgba(232,213,163,.24);
+      padding:3px 8px; border-radius:var(--r-sm); margin-bottom:var(--sp-3); width:fit-content;
+    }
+    .card-title { font-family:var(--font-d); font-size:var(--text-lg); font-weight:800; line-height:1.1; letter-spacing:-.02em; margin-bottom:var(--sp-2); }
+    .card-desc  { font-size:var(--text-sm); color:var(--text-m); line-height:1.6; margin-bottom:var(--sp-4); max-width:52ch; }
+    .feats { display:flex; flex-direction:column; gap:6px; margin-bottom:var(--sp-4); }
+    .feat {
+      display:flex; align-items:flex-start; gap:var(--sp-2);
+      font-size:var(--text-sm); color:var(--text-m); line-height:1.4;
+    }
+    .feat::before { content:''; width:5px; height:5px; background:var(--accent); border-radius:50%; flex-shrink:0; margin-top:6px; }
+    .tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:var(--sp-5); }
+    .tag { padding:2px 10px; border-radius:var(--r-full); background:var(--surface-3); border:1px solid var(--border); font-size:var(--text-xs); color:var(--text-m); font-weight:500; }
+    .cf { margin-top:auto; padding-top:var(--sp-4); border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:var(--sp-3); }
+    .mets { display:flex; gap:var(--sp-3); flex-wrap:wrap; align-items:center; }
+    .met { display:flex; align-items:center; gap:5px; font-size:var(--text-xs); color:var(--text-m); }
+    .md  { width:7px; height:7px; border-radius:50%; }
+    .mg  { background:#a3b18a; box-shadow:0 0 6px rgba(163,177,138,.48); }
+    .mt  { background:var(--accent); box-shadow:0 0 6px var(--accent-g); }
+    .ma  { background:var(--amber); box-shadow:0 0 6px rgba(232,213,163,.38); }
+    .vl {
+      display:inline-flex; align-items:center; gap:var(--sp-2);
+      font-size:var(--text-sm); font-weight:600; color:var(--accent);
+      padding:var(--sp-2) var(--sp-4); border-radius:var(--r-full);
+      border:1px solid rgba(201,168,76,.38); background:var(--accent-d);
+      white-space:nowrap; flex-shrink:0;
+      transition:background var(--t), transform var(--t), box-shadow var(--t);
+    }
+    .vl:hover { background:rgba(201,168,76,.18); box-shadow:0 0 20px rgba(201,168,76,.18); transform:translateX(2px); }
+    .vl:active { transform:scale(0.97); }
+    .vl svg { transition:transform var(--t); }
+    .vl:hover svg { transform:translateX(3px); }
+    .arr { width:13px; height:13px; }
+
+    /* Lighthouse score chips */
+    .lh-row { display:flex; gap:var(--sp-2); margin-bottom:var(--sp-4); }
+    .lhc { display:flex; flex-direction:column; align-items:center; padding:4px 8px; border-radius:var(--r-md); min-width:44px; background:var(--surface-3); border:1px solid var(--border); }
+    .lhc .n { font-family:var(--font-d); font-size:.68rem; font-weight:800; line-height:1; }
+    .lhc .l { font-size:8px; letter-spacing:.05em; color:var(--text-f); text-transform:uppercase; margin-top:1px; }
+    .lhc.g .n{color:#a3b18a} .lhc.t .n{color:var(--accent)} .lhc.a .n{color:var(--amber)}
+
+    /* ══ GRIDS ═══════════════════════════════════════════════════ */
+    .g2 {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:clamp(var(--sp-4),2vw,var(--sp-6));
+      margin-bottom:clamp(var(--sp-4),2vw,var(--sp-6));
+      content-visibility:auto; contain-intrinsic-size:0 500px;
+    }
+    .g3 {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:clamp(var(--sp-4),2vw,var(--sp-6));
+      content-visibility:auto; contain-intrinsic-size:0 500px;
+    }
+
+    /* ══ NEXT BUILD CARD ═════════════════════════════════════════ */
+    .next-card {
+      border-radius:var(--r-xl); border:1px solid rgba(201,168,76,.16);
+      background:linear-gradient(135deg,var(--surface) 0%,rgba(201,168,76,.05) 100%);
+      padding:var(--sp-8); display:flex; flex-direction:column; justify-content:center;
+      box-shadow:var(--sh-md);
+      transition:transform var(--t-lg), box-shadow var(--t-lg);
+    }
+    .next-card:hover { transform:translateY(-4px); box-shadow:var(--sh-lg); }
+    .nc-title { font-family:var(--font-d); font-size:var(--text-xl); font-weight:800; letter-spacing:-.02em; margin-bottom:var(--sp-4); line-height:1.1; }
+    .nc-desc  { font-size:var(--text-sm); color:var(--text-m); margin-bottom:var(--sp-8); max-width:32ch; }
+    .nc-btn {
+      display:inline-flex; align-items:center; gap:var(--sp-2);
+      font-size:var(--text-sm); font-weight:600; color:var(--accent);
+      padding:var(--sp-3) var(--sp-4); border-radius:var(--r-full);
+      border:1px solid rgba(201,168,76,.38); background:var(--accent-d);
+      transition:background var(--t), box-shadow var(--t), transform var(--t);
+    }
+    .nc-btn:hover { background:rgba(201,168,76,.18); box-shadow:0 0 20px rgba(201,168,76,.18); transform:translateY(-1px); }
+
+    /* ══ CTA STRIP ═══════════════════════════════════════════════ */
+    .cta { margin-top:clamp(var(--sp-12),6vw,var(--sp-20)); text-align:center; display:flex; flex-direction:column; align-items:center; gap:var(--sp-6); }
+    .cta-h { font-family:var(--font-d); font-size:var(--text-xl); font-weight:800; letter-spacing:-.02em; }
+    .cta-s { font-size:var(--text-base); color:var(--text-m); max-width:44ch; }
+    .cta-btn {
+      display:inline-flex; align-items:center; gap:var(--sp-3);
+      background:var(--accent); color:#080808; font-size:var(--text-sm); font-weight:700;
+      padding:var(--sp-4) var(--sp-8); border-radius:var(--r-full);
+      box-shadow:0 0 28px rgba(201,168,76,.28);
+      transition:background var(--t), box-shadow var(--t), transform var(--t);
+    }
+    .cta-btn:hover { background:#e8d5a3; box-shadow:0 0 50px rgba(201,168,76,.42); transform:translateY(-2px); }
+    .cta-btn:active { transform:scale(0.98); }
+
+    /* ══ RESPONSIVE ══════════════════════════════════════════════ */
+    @media (max-width:900px) { .g3 { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:600px) {
+      .g2,.g3 { grid-template-columns:1fr; }
+      .cf      { flex-direction:column; align-items:flex-start; }
+      .vl      { align-self:stretch; justify-content:center; }
+    }
+  </style>
+</head>
+<body>
+
+<section class="ps" id="portfolio">
+<div class="wrap">
+
+  <!-- ── HEADER ────────────────────────────────────────────── -->
+  <div class="sh rv">
+    <p class="eyebrow">Selected Work</p>
+    <h2 class="sh-title">Systems that <em>earn</em><br>their place</h2>
+    <p class="sh-sub">Hover any of the first four cards — the site loads, then flips to reveal the dashboard or detail view behind it.</p>
+  </div>
+
+  <!-- ── FILTERS ───────────────────────────────────────────── -->
+  <div class="filters rv d1" role="group" aria-label="Filter projects by category">
+    <button class="fp" data-f="all"        aria-pressed="true">All Projects</button>
+    <button class="fp" data-f="realestate" aria-pressed="false">Real Estate</button>
+    <button class="fp" data-f="commerce"   aria-pressed="false">Community</button>
+    <button class="fp" data-f="retail"     aria-pressed="false">Local Retail</button>
+    <button class="fp" data-f="restaurant" aria-pressed="false">Restaurant</button>
+    <button class="fp" data-f="brand"      aria-pressed="false">Brand</button>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       FEATURED — AUDREY  (flip: homepage ↔ dashboard)
+  ═══════════════════════════════════════════════════════════ -->
+  <article class="card has-flip rv" data-cat="realestate"
+           style="margin-bottom:clamp(var(--sp-4),2vw,var(--sp-6));">
+    <div class="scene tall">
+      <!-- CSS ART — shows at rest -->
+      <div class="scene-art s-audrey">
+        <div class="ao-ring"></div><div class="ao-ring2"></div>
+        <div class="ao-mono">A·O</div>
+        <div class="ao-tag">Luxury Real Estate · Ventura County</div>
+        <div class="ao-chips">
+          <div class="ao-chip">Auth0 Protected</div>
+          <div class="ao-chip">Cloudflare Edge</div>
+          <div class="ao-chip">Encrypted Leads</div>
+        </div>
+        <div class="ao-scores">
+          <div class="ao-sc"><span class="n">100</span><span class="l">SEO</span></div>
+          <div class="ao-sc"><span class="n">95</span><span class="l">A11y</span></div>
+          <div class="ao-sc"><span class="n">92</span><span class="l">BP</span></div>
+        </div>
+      </div>
+      <!-- FLIP CARD — appears on hover -->
+      <div class="flip-wrapper">
+        <div class="flip-card">
+          <div class="flip-f">
+            <!-- screenshots/audrey-home.webp — full site homepage, ~80KB WebP -->
+            <img src="./screenshots/audrey-home.webp"
+                 alt="Audrey Overton luxury real estate — homepage"
+                 width="1400" height="800" loading="lazy" decoding="async"
+                 onerror="this.closest('.flip-f').style.background='var(--surface-3)'"
+                 onload="this.classList.add('loaded')" />
+            <div class="face-label"><span class="fl-dot"></span>Homepage</div>
+          </div>
+          <div class="flip-b">
+            <!-- screenshots/audrey-dashboard.webp — Auth0 dashboard view, ~80KB WebP -->
+            <img src="./screenshots/audrey-dashboard.webp"
+                 alt="Audrey Overton — Auth0 protected dashboard"
+                 width="1400" height="800" loading="lazy" decoding="async"
+                 onerror="this.closest('.flip-b').style.background='var(--surface-3)'"
+                 onload="this.classList.add('loaded')" />
+            <div class="face-label"><span class="fl-dot"></span>Dashboard</div>
+          </div>
+        </div>
+      </div>
+      <div class="hint-idle" aria-hidden="true">
+        <span class="hi-mouse">Hover to explore</span>
+        <span class="hi-touch">Tap to explore</span>
+      </div>
+    </div>
+    <div class="cc">
+      <span class="cat cg"><span class="cdot"></span>Luxury Real Estate Platform</span>
+      <div class="sec-badge">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Auth0 Dashboard · 12 Operational Modules
+      </div>
+      <h3 class="card-title" style="font-size:var(--text-xl)">Audrey Overton</h3>
+      <p class="card-desc">Premium luxury real estate platform for a high-touch advisor in Ventura County. Editorial public brand paired with a private command center — encrypted leads, secure intake, and CRM-ready architecture.</p>
+      <ul class="feats">
+        <li class="feat">Auth0-protected dashboard — 12 modules: leads, valuations, tasks, property manager, schedule</li>
+        <li class="feat">AES-256-GCM field-level encryption on all lead data stored in NeonPostgres</li>
+        <li class="feat">Server-confirmed intake for contact forms and home valuation requests</li>
+        <li class="feat">Cloudflare Workers edge deployment via OpenNext — fast global delivery</li>
+      </ul>
+      <div class="lh-row">
+        <div class="lhc g"><span class="n">100</span><span class="l">SEO</span></div>
+        <div class="lhc g"><span class="n">95</span><span class="l">A11y</span></div>
+        <div class="lhc g"><span class="n">92</span><span class="l">BP</span></div>
+      </div>
+      <div class="tags">
+        <span class="tag">Next.js</span><span class="tag">React 19</span><span class="tag">TypeScript</span>
+        <span class="tag">Tailwind v4</span><span class="tag">Framer Motion</span>
+        <span class="tag">Auth0</span><span class="tag">NeonDB</span><span class="tag">Cloudflare Workers</span>
+      </div>
+      <div class="cf">
+        <div class="mets">
+          <span class="met"><span class="md mg"></span>Live</span>
+          <span class="met"><span class="md mt"></span>Dashboard Active</span>
+        </div>
+        <a href="https://audrey.grginnovations.com/" target="_blank" rel="noopener noreferrer" class="vl">
+          View Project
+          <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ════════════════════════════════════════════════════════
+       2-COL: MBA VENTURA + SHAMROCK
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="g2">
+
+    <!-- MBA VENTURA (flip: homepage ↔ product detail) -->
+    <article class="card has-flip rv d1" data-cat="retail">
+      <div class="scene">
+        <div class="scene-art s-mba">
+          <div class="mba-glow"></div><div class="mba-bed"></div>
+          <div class="mba-headline">50–80% Off Retail</div>
+          <div class="mba-off">Private Showroom</div>
+          <div class="mba-sub">Mattress by Appointment</div>
+          <div class="mba-pulses">
+            <span class="mba-p"><span class="mba-dot"></span>Queen In Stock</span>
+            <span class="mba-p"><span class="mba-dot"></span>King In Stock</span>
+          </div>
+        </div>
+        <div class="flip-wrapper">
+          <div class="flip-card">
+            <div class="flip-f">
+              <!-- screenshots/mba-home.webp — homepage, ~70KB WebP -->
+              <img src="./screenshots/mba-home.webp"
+                   alt="MBA Ventura — homepage" width="900" height="600"
+                   loading="lazy" decoding="async"
+                   onerror="this.closest('.flip-f').style.background='var(--surface-3)'"
+                   onload="this.classList.add('loaded')" />
+              <div class="face-label"><span class="fl-dot"></span>Homepage</div>
+            </div>
+            <div class="flip-b">
+              <!-- screenshots/mba-details.webp — pricing/product detail page, ~70KB WebP -->
+              <img src="./screenshots/mba-details.webp"
+                   alt="MBA Ventura — product detail" width="900" height="600"
+                   loading="lazy" decoding="async"
+                   onerror="this.closest('.flip-b').style.background='var(--surface-3)'"
+                   onload="this.classList.add('loaded')" />
+              <div class="face-label"><span class="fl-dot"></span>Product Detail</div>
+            </div>
+          </div>
+        </div>
+        <div class="hint-idle" aria-hidden="true">
+          <span class="hi-mouse">Hover to explore</span>
+          <span class="hi-touch">Tap to explore</span>
+        </div>
+      </div>
+      <div class="cc">
+        <span class="cat cp"><span class="cdot"></span>Local Retail</span>
+        <h3 class="card-title">MBA Ventura</h3>
+        <p class="card-desc">Appointment-first mattress showroom conversion engine. Dark-premium aesthetic built to book high-intent shoppers and out-trust national chains on any device.</p>
+        <ul class="feats">
+          <li class="feat">Persistent mobile sticky CTA — always one tap to Text or Call</li>
+          <li class="feat">Dynamic pricing grid with live In-Stock pulse indicators</li>
+          <li class="feat">Trust mesh: 400+ reviews, owner photos, USA-made badges, financing suite</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Next.js 15</span><span class="tag">Tailwind CSS</span>
+          <span class="tag">Framer Motion</span><span class="tag">Cloudflare Pages</span>
+        </div>
+        <div class="cf">
+          <div class="mets">
+            <span class="met"><span class="md mg"></span>Live</span>
+            <span class="met"><span class="md ma"></span>Mobile-First</span>
+          </div>
+          <a href="https://mba-ventura.grginnovations.com/" target="_blank" rel="noopener noreferrer" class="vl">
+            View
+            <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- SHAMROCK (flip: homepage ↔ admin portal) -->
+    <article class="card has-flip rv d2" data-cat="commerce">
+      <div class="scene">
+        <div class="scene-art s-shamrock">
+          <div class="sh-radial"></div>
+          <div class="sh-stats"><div class="sh-stat-n">$24,800</div><div class="sh-stat-l">Active Campaigns</div></div>
+          <div class="sh-rbac">RBAC Portal</div>
+          <div class="sh-clover">
+            <div class="sh-leaf"></div><div class="sh-leaf"></div>
+            <div class="sh-leaf"></div><div class="sh-leaf"></div>
+            <div class="sh-stem"></div>
+          </div>
+          <div class="sh-bar-wrap">
+            <div class="sh-bar-top"><span>Campaign Goal</span><span>68%</span></div>
+            <div class="sh-bar-track"><div class="sh-bar-fill"></div></div>
+          </div>
+        </div>
+        <div class="flip-wrapper">
+          <div class="flip-card">
+            <div class="flip-f">
+              <!-- screenshots/shamrock-home.webp — homepage, ~70KB WebP -->
+              <img src="./screenshots/shamrock-home.webp"
+                   alt="Shamrock Club — homepage" width="900" height="600"
+                   loading="lazy" decoding="async"
+                   onerror="this.closest('.flip-f').style.background='var(--surface-3)'"
+                   onload="this.classList.add('loaded')" />
+              <div class="face-label"><span class="fl-dot"></span>Homepage</div>
+            </div>
+            <div class="flip-b">
+              <!-- screenshots/shamrock-dashboard.webp — admin/partner portal view, ~70KB WebP -->
+              <img src="./screenshots/shamrock-dashboard.webp"
+                   alt="Shamrock Club — admin portal" width="900" height="600"
+                   loading="lazy" decoding="async"
+                   onerror="this.closest('.flip-b').style.background='var(--surface-3)'"
+                   onload="this.classList.add('loaded')" />
+              <div class="face-label"><span class="fl-dot"></span>Admin Portal</div>
+            </div>
+          </div>
+        </div>
+        <div class="hint-idle" aria-hidden="true">
+          <span class="hi-mouse">Hover to explore</span>
+          <span class="hi-touch">Tap to explore</span>
+        </div>
+      </div>
+      <div class="cc">
+        <span class="cat ct-a"><span class="cdot"></span>Community Commerce</span>
+        <div class="sec-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Partner Portal + Admin Dashboard
+        </div>
+        <h3 class="card-title">Shamrock Club</h3>
+        <p class="card-desc">Two-sided marketplace connecting schools and nonprofits with business sponsors. RBAC portals, KPI dashboard, and automated receipt verification replace manual spreadsheets.</p>
+        <ul class="feats">
+          <li class="feat">Role-based access: Admin vs. Business Sponsor with custom AuthContext</li>
+          <li class="feat">Digital receipt verification — cuts admin labor by ~80%</li>
+          <li class="feat">Real-time goal tracking with social proof activity feed</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">Vite</span>
+          <span class="tag">TypeScript</span><span class="tag">Framer Motion</span><span class="tag">Tailwind</span>
+        </div>
+        <div class="cf">
+          <div class="mets">
+            <span class="met"><span class="md mg"></span>Live</span>
+            <span class="met"><span class="md mt"></span>RBAC Active</span>
+          </div>
+          <a href="https://shamrock.grginnovations.com/" target="_blank" rel="noopener noreferrer" class="vl">
+            View
+            <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════
+       3-COL: MAYRA (flip) + EGGS (CSS only) + NEXT BUILD
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="g3">
+
+    <!-- MAYRA (flip: mobile homepage ↔ dashboard) -->
+    <article class="card has-flip rv d1" data-cat="brand">
+      <div class="scene" style="height:220px;">
+        <div class="scene-art s-mayra">
+          <div class="my-g1"></div><div class="my-g2"></div>
+          <div class="my-or"></div><div class="my-ir"></div>
+          <div class="my-lt">M</div><div class="my-dv"></div>
+          <div class="my-pills">
+            <span class="my-pill">Personal Brand</span>
+            <span class="my-pill">Dashboard</span>
+          </div>
+        </div>
+        <div class="flip-wrapper">
+          <div class="flip-card">
+            <div class="flip-f">
+              <!-- screenshots/mayra-home.webp — mobile screenshot (~375px wide), ~50KB WebP -->
+              <!-- Tip: capture in Chrome DevTools iPhone frame for the authentic mobile view -->
+              <img src="./screenshots/mayra-home.webp"
+                   alt="Mayra — mobile homepage" width="375" height="812"
+                   loading="lazy" decoding="async"
+                   style="object-position:center top;"
+                   onerror="this.closest('.flip-f').style.background='var(--surface-3)'"
+                   onload="this.classList.add('loaded')" />
+              <div class="face-label"><span class="fl-dot"></span>Mobile View</div>
+            </div>
+            <div class="flip-b">
+              <!-- screenshots/mayra-dashboard.webp — dashboard view, ~60KB WebP -->
+              <img src="./screenshots/mayra-dashboard.webp"
+                   alt="Mayra — dashboard" width="900" height="600"
+                   loading="lazy" decoding="async"
+                   onerror="this.closest('.flip-b').style.background='var(--surface-3)'"
+                   onload="this.classList.add('loaded')" />
+              <div class="face-label"><span class="fl-dot"></span>Dashboard</div>
+            </div>
+          </div>
+        </div>
+        <div class="hint-idle" aria-hidden="true">
+          <span class="hi-mouse">Hover to explore</span>
+          <span class="hi-touch">Tap to explore</span>
+        </div>
+      </div>
+      <div class="cc">
+        <span class="cat cr"><span class="cdot"></span>Personal Brand</span>
+        <h3 class="card-title">Mayra</h3>
+        <p class="card-desc">Refined personal brand platform for high-trust service conversion — elegant, fast, and built to make a lasting first impression on any device.</p>
+        <ul class="feats">
+          <li class="feat">Brand-forward editorial layout with strong visual identity</li>
+          <li class="feat">Mobile-optimized service flow + private dashboard access</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Next.js</span><span class="tag">Tailwind CSS</span><span class="tag">Cloudflare</span>
+        </div>
+        <div class="cf">
+          <span class="met"><span class="md mg"></span>Live</span>
+          <a href="https://mayra.grginnovations.com/" target="_blank" rel="noopener noreferrer" class="vl">
+            View
+            <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- EGGS N THINGS — CSS scene only -->
+    <article class="card rv d2" data-cat="restaurant">
+      <div class="scene" style="height:220px;">
+        <div class="scene-art s-eggs">
+          <div class="eg-glow"></div>
+          <div class="eg-icons"><span class="eg-ico">🍳</span><span class="eg-ico">☕</span><span class="eg-ico">🥞</span></div>
+          <div class="eg-egg"></div><div class="eg-yolk"></div>
+          <div class="eg-nm">Eggs N Things</div>
+          <div class="eg-sb">Restaurant · Local Discovery</div>
+        </div>
+      </div>
+      <div class="cc">
+        <span class="cat co"><span class="cdot"></span>Restaurant</span>
+        <h3 class="card-title">Eggs N Things</h3>
+        <p class="card-desc">Appetite-first restaurant brand experience — warm, fast, and built for local discovery with an immediate sense of food and atmosphere.</p>
+        <ul class="feats">
+          <li class="feat">Menu-forward layout designed around food photography</li>
+          <li class="feat">Location, hours, contact — instantly findable on mobile</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Next.js</span><span class="tag">Tailwind CSS</span><span class="tag">Cloudflare</span>
+        </div>
+        <div class="cf">
+          <span class="met"><span class="md mg"></span>Live</span>
+          <a href="https://eggsnthings.grginnovations.com/" target="_blank" rel="noopener noreferrer" class="vl">
+            View
+            <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- NEXT BUILD CTA -->
+    <div class="next-card rv d3">
+      <span class="cat ct-a" style="margin-bottom:var(--sp-6);"><span class="cdot"></span>Next Build</span>
+      <h3 class="nc-title">Your project<br/>lives here.</h3>
+      <p class="nc-desc">GRG builds branded systems — not templates. Fast, secure, and architected to grow with your business.</p>
+      <a href="mailto:hello@grginnovations.com" class="nc-btn">
+        Start a Project
+        <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- ── CTA ───────────────────────────────────────────────── -->
+  <div class="cta rv">
+    <h3 class="cta-h">Ready to build something that works?</h3>
+    <p class="cta-s">Every project ships with real operational depth — brand, security, performance, and a clear path to grow.</p>
+    <a href="mailto:hello@grginnovations.com" class="cta-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Get in Touch
+    </a>
+  </div>
+
+</div>
+</section>
+
+<script>
+(function(){
+  'use strict';
+
+  // ── 1. Scroll Reveal ──────────────────────────────────────
+  var rvItems = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    },{ threshold:0.06, rootMargin:'0px 0px -28px 0px' });
+    rvItems.forEach(function(el){ io.observe(el); });
+  } else {
+    rvItems.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // ── 2. Filter Pills ───────────────────────────────────────
+  var pills = document.querySelectorAll('.fp');
+  var cards = document.querySelectorAll('[data-cat]');
+
+  // Activate "All" on load
+  pills[0].setAttribute('aria-pressed','true');
+  pills[0].classList.add('on');
+
+  pills.forEach(function(p){
+    p.addEventListener('click', function(){
+      var f = p.dataset.f;
+      pills.forEach(function(x){ x.classList.remove('on'); x.setAttribute('aria-pressed','false'); });
+      p.classList.add('on'); p.setAttribute('aria-pressed','true');
+      cards.forEach(function(c){
+        var show = f === 'all' || c.dataset.cat === f;
+        c.style.transition = 'opacity .28s ease, transform .28s ease';
+        if (show){
+          c.hidden = false;
+          requestAnimationFrame(function(){
+            c.style.opacity = '1'; c.style.transform = ''; c.style.pointerEvents = '';
+          });
+        } else {
+          c.style.opacity = '0'; c.style.transform = 'scale(0.97)'; c.style.pointerEvents = 'none';
+          setTimeout(function(){ if (c.style.opacity === '0') c.hidden = true; }, 300);
+        }
+      });
+    });
+  });
+
+  // ── 3. Flip Card System ───────────────────────────────────
+  //
+  // Sequence per card (hover/tap):
+  //   0ms    → flip-wrapper slides up, front face shows
+  //   800ms  → grace period ends, flip cycle begins
+  //   800ms  → flip to BACK (dashboard)
+  //   3300ms → flip to FRONT (homepage)
+  //   5800ms → flip to BACK again
+  //   ... loops until hover/tap ends
+  //
+  var GRACE    = 800;   // ms before first flip
+  var INTERVAL = 2500;  // ms per face
+  var isTouch  = window.matchMedia('(hover:none)').matches;
+
+  document.querySelectorAll('.has-flip').forEach(function(scene){
+    var card    = scene.querySelector('.flip-card');
+    var timers  = [];
+    var ticker  = null;
+    var flipped = false;
+
+    function doFlip(){
+      flipped = !flipped;
+      card.classList.toggle('flipped', flipped);
+    }
+
+    function start(){
+      // Reset state cleanly
+      flipped = false;
+      card.classList.remove('flipped');
+
+      // Grace period before first flip
+      var t = setTimeout(function(){
+        doFlip(); // first flip: front → back
+        ticker = setInterval(doFlip, INTERVAL);
+      }, GRACE);
+      timers.push(t);
+    }
+
+    function stop(){
+      timers.forEach(clearTimeout); timers = [];
+      clearInterval(ticker); ticker = null;
+      // Remove peeking for touch
+      scene.classList.remove('peeking');
+      // Reset card face (after wrapper slides down)
+      setTimeout(function(){ card.classList.remove('flipped'); flipped = false; }, 420);
+    }
+
+    if (!isTouch){
+      // Mouse: CSS handles slide-up via :hover, JS handles flip timing
+      scene.addEventListener('mouseenter', start);
+      scene.addEventListener('mouseleave', stop);
+    } else {
+      // Touch: JS handles everything
+      scene.addEventListener('click', function(e){
+        e.stopPropagation();
+        if (scene.classList.contains('peeking')){
+          stop();
+        } else {
+          scene.classList.add('peeking');
+          start();
+        }
+      });
+    }
+  });
+
+})();
+</script>
+</body>
+</html>
