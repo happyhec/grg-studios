@@ -18,39 +18,13 @@ export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: "GRG Studios | Premium Digital Architecture",
-  description: "Showcasing agentic workflows, complex infrastructure, and premium web architectures built by GRG Studios.",
+  description: "Ventura County's premier digital architecture and automation studio.",
   openGraph: {
-    title: "GRG Studios | Premium Digital Architecture",
-    description: "Ventura County's premier digital architecture and automation studio. We build systems that perform.",
-    url: "https://grgstudios.com",
-    siteName: "GRG Studios",
-    images: [
-      {
-        url: "/images/og-preview.png",
-        width: 1200,
-        height: 630,
-        alt: "GRG Studios Portfolio",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
     title: "GRG Studios | Premium Digital Architecture",
     description: "Ventura County's premier digital architecture and automation studio.",
     images: ["/images/og-preview.png"],
   },
 };
-
-import AgencyFooter from "@/components/AgencyFooter";
-import CustomCursor from "@/components/CustomCursor";
-import { LazyMotion } from "framer-motion";
-import dynamic from 'next/dynamic';
-import Script from "next/script";
-
-const AgencyNavbar = dynamic(() => import('@/components/AgencyNavbar'), { ssr: false });
-const loadFeatures = () => import("framer-motion").then(res => res.domAnimation);
 
 export default function RootLayout({
   children,
@@ -76,14 +50,13 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`${inter.variable} ${outfit.variable} font-inter antialiased md:cursor-none`} suppressHydrationWarning>
-        <LazyMotion features={loadFeatures} strict>
-          <CustomCursor />
+        <LayoutClient>
           <AgencyNavbar />
           <main className="relative z-10 flex min-h-screen flex-col">
             {children}
           </main>
           <AgencyFooter />
-        </LazyMotion>
+        </LayoutClient>
       </body>
     </html>
   );
