@@ -1,10 +1,10 @@
-import LayoutClient from "@/components/LayoutClient";
-import Script from "next/script";
-import AgencyNavbar from "@/components/AgencyNavbar";
-import AgencyFooter from "@/components/AgencyFooter";
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
+import AgencyNavbar from "@/components/AgencyNavbar";
+import AgencyFooter from "@/components/AgencyFooter";
+import Script from "next/script";
+import LayoutClient from "@/components/LayoutClient";
 
 const inter = Inter({
   variable: "--font-inter",
