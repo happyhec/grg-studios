@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     question: "How long does a typical project take?",
-    answer: "A standard 'System' build (multi-page site) usually takes 4-6 weeks from kickoff to launch. More complex 'Signature' projects with custom animations or deep integrations can take 8-12 weeks depending on the scope."
+    answer: "With our AI-augmented, not automated, workflows, a standard multi-page custom site typically launches in 5-7 days. Complex builds with custom animations, integrations, or agentic systems usually take 2-3 weeks. We move fast without cutting corners, because better tooling shouldn't mean longer waits for you."
   },
   {
     question: "What is your process for a custom build?",

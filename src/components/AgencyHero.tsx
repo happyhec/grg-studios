@@ -27,16 +27,18 @@ export default function AgencyHero() {
     offset: ["start start", "end end"]
   });
 
-  /**
-   * Z-OVERLAP ENGINE (Progress-based)
-   * Using 0-1 range ensures perfect parity across all screen heights.
-   */
-  
-  // SLIDE 1 (The Hook)
+  // Use motion values to drive CSS variables for Slide 1 (LCP Optimization)
   const slide1Opacity = useTransform(scrollYProgress, [0, 0.5, 0.7], [1, 1, 0]);
   const slide1Z = useTransform(scrollYProgress, [0, 0.8], [0, 4000]);
   const slide1Scale = useTransform(scrollYProgress, [0, 0.4], [1, 1.3]); 
-  
+
+  // Sync motion values to CSS variables on the container
+  const containerStyle = {
+    "--slide1-opacity": slide1Opacity,
+    "--slide1-z": slide1Z,
+    "--slide1-scale": isMobile ? 1 : slide1Scale,
+  } as any;
+
   // SLIDE 2 (The Social Proof)
   const slide2Opacity = useTransform(scrollYProgress, [0.1, 0.4, 0.95], [0, 1, 1]);
   const slide2Z = useTransform(scrollYProgress, [0, 1], [-400, 1200]); 
@@ -53,9 +55,10 @@ export default function AgencyHero() {
   };
 
   return (
-    <section 
+    <motion.section 
       id="hero" 
       ref={containerRef}
+      style={containerStyle}
       className="relative h-screen md:h-[400vh] bg-black text-[#f5f0e8] z-0"
     >
       <div className="sticky top-0 h-screen w-full flex items-center justify-center z-10 overflow-hidden bg-black">
@@ -110,13 +113,13 @@ export default function AgencyHero() {
           </button>
         </motion.div>
 
-        {/* SLIDE 1: INTRO (Z-Index 30) */}
-        <motion.div 
+        {/* SLIDE 1: INTRO (LCP Optimized - Native CSS Transforms) */}
+        <div 
           style={{ 
-            opacity: slide1Opacity,
-            scale: isMobile ? 1 : slide1Scale,
-            translateZ: isMobile ? 0 : slide1Z,
-            transformPerspective: 1200
+            opacity: "var(--slide1-opacity, 1)",
+            transform: isMobile 
+              ? "none" 
+              : "perspective(1200px) translateZ(var(--slide1-z, 0px)) scale(var(--slide1-scale, 1))",
           } as any}
           className={`absolute flex flex-col items-center justify-center text-center p-6 md:p-16 rounded-[2.5rem] border border-white/5 bg-black/40 ${isMobile ? '' : 'backdrop-blur-md'} w-[90vw] max-w-[1000px] z-[30] will-change-transform`}
         >
@@ -142,7 +145,7 @@ export default function AgencyHero() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* PERSISTENT FOOTER */}
         <div className="absolute bottom-8 left-6 md:bottom-12 md:left-[4rem] right-6 md:right-[4rem] flex justify-between items-end z-[40]">
@@ -168,6 +171,7 @@ export default function AgencyHero() {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 }
+
