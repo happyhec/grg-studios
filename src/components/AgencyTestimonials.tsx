@@ -16,16 +16,16 @@ const testimonials = [
     result: "Brand Launch + Event Booking Growth"
   },
   {
-    name: "Marcus V.",
-    company: "Third3ye Productions",
-    text: "The motion systems they integrated are insane. People spent twice as long on our site because of the interactive portal. Incredible technical work.",
-    result: "Interactive UX + High Engagement"
+    name: "Carl N.",
+    company: "Bard Boys Dispensary, Oxnard CA",
+    text: "Hector took the Bard Boys story and turned it into a visual masterpiece. From humble beginnings to breaking records on the field, and finally as Ventura County's leading up-and-coming dispensary.",
+    result: "Cinematic Brand Narrative"
   },
   {
-    name: "James D.",
-    company: "Local Auto Detailing",
-    text: "I was skeptical about AI, but the lead automation they set up for me is like having a person working for me 24/7 answering basic customer questions.",
-    result: "AI Integration + Time Savings"
+    name: "Mayra",
+    company: "Mayra's Helping Hands",
+    text: "Thank you from the bottom of my heart! It looks amazing, even better than expected. Thank you!",
+    result: "Premium Service Portfolio"
   }
 ];
 
