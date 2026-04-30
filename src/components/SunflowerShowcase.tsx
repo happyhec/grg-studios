@@ -1,7 +1,9 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence, useInView } from 'framer-motion';
+import Image from 'next/image';
+import { Play } from 'lucide-react';
 
 const FRAME_COUNT = 144;
 const IMAGE_PATH_TEMPLATE = (index: number) =>
@@ -10,11 +12,27 @@ const IMAGE_PATH_TEMPLATE = (index: number) =>
 export default function SunflowerShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  
   const [images, setImages] = useState<HTMLImageElement[]>([]);
   const [loadedCount, setLoadedCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Increased section height for enough "scrub" space
+  // Mobile Click-to-Play State
+  const [showMobileFallback, setShowMobileFallback] = useState(true);
+  const [mobileFrame, setMobileFrame] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const isInView = useInView(containerRef, { margin: "100% 0px 100% 0px", once: true });
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Scroll Progress (Desktop)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
@@ -26,42 +44,68 @@ export default function SunflowerShowcase() {
     restDelta: 0.001
   });
 
-  // Map the scroll range with a plateau at the end so it stays bloomed
   const frameIndex = useTransform(smoothProgress, [0, 0.7, 1], [0, FRAME_COUNT - 1, FRAME_COUNT - 1]);
 
+  // Unified Image Fetcher
+  const fetchImages = async () => {
+    setIsLoading(true);
+    const loaded: HTMLImageElement[] = [];
+    const promises = [];
+
+    for (let i = 0; i < FRAME_COUNT; i++) {
+      const promise = new Promise<void>((resolve) => {
+        const img = new (window as any).Image();
+        img.src = IMAGE_PATH_TEMPLATE(i);
+        img.onload = () => {
+          loaded[i] = img;
+          setLoadedCount((prev) => prev + 1);
+          resolve();
+        };
+        img.onerror = resolve; // Ignore errors to prevent hanging
+      });
+      promises.push(promise);
+    }
+
+    await Promise.all(promises);
+    setImages(loaded);
+    setIsLoading(false);
+    return loaded;
+  };
+
+  // Desktop Preload when in view
   useEffect(() => {
+    if (isMobile || !isInView) return;
     let isMounted = true;
-    const loadImages = async () => {
-      const loaded: HTMLImageElement[] = [];
-      const promises = [];
+    
+    fetchImages().then(() => {
+      if (isMounted) setIsLoading(false);
+    });
 
-      for (let i = 0; i < FRAME_COUNT; i++) {
-        const promise = new Promise<void>((resolve) => {
-          const img = new (window as any).Image();
-          img.src = IMAGE_PATH_TEMPLATE(i);
-          img.onload = () => {
-            if (isMounted) {
-              loaded[i] = img;
-              setLoadedCount((prev) => prev + 1);
-            }
-            resolve();
-          };
-          img.onerror = resolve;
-        });
-        promises.push(promise);
-      }
-
-      await Promise.all(promises);
-      if (isMounted) {
-        setImages(loaded);
-        setIsLoading(false);
-      }
-    };
-
-    loadImages();
     return () => { isMounted = false; };
-  }, []);
+  }, [isInView, isMobile]);
 
+  // Mobile Play Handler
+  const handlePlay = async () => {
+    setShowMobileFallback(false);
+    
+    if (images.length === 0) {
+      await fetchImages();
+    }
+    
+    setIsPlaying(true);
+    let frame = 0;
+    const interval = setInterval(() => {
+      if (frame >= FRAME_COUNT - 1) {
+        clearInterval(interval);
+        setIsPlaying(false);
+      } else {
+        frame++;
+        setMobileFrame(frame);
+      }
+    }, 1000 / 30); // ~30fps playback
+  };
+
+  // Canvas Render Engine
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || images.length === 0) return;
@@ -98,61 +142,115 @@ export default function SunflowerShowcase() {
       canvas.width = canvas.offsetWidth * dpr;
       canvas.height = canvas.offsetHeight * dpr;
       ctx.scale(dpr, dpr);
-      renderFrame(frameIndex.get());
+      renderFrame(isMobile ? mobileFrame : frameIndex.get());
     };
 
     window.addEventListener('resize', handleResize);
     handleResize();
 
-    const unsubscribe = frameIndex.on('change', (latest) => {
-      renderFrame(latest);
-    });
+    let unsubscribe: () => void;
+    
+    if (isMobile) {
+      renderFrame(mobileFrame);
+    } else {
+      unsubscribe = frameIndex.on('change', (latest) => {
+        renderFrame(latest);
+      });
+    }
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      unsubscribe();
+      if (unsubscribe) unsubscribe();
     };
-  }, [images, frameIndex]);
+  }, [images, frameIndex, isMobile, mobileFrame]);
+
+  const showDesktopLoader = !isMobile && isLoading;
 
   return (
-    <section id="sunflower-lab" ref={containerRef} className="relative h-[300vh] bg-black scroll-snap-section">
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+    <section 
+      id="sunflower-lab" 
+      ref={containerRef} 
+      className={`relative bg-black scroll-snap-section ${isMobile ? 'h-auto py-12 border-t border-white/5' : 'h-[300vh]'}`}
+    >
+      <div className={`w-full flex items-center justify-center overflow-hidden ${isMobile ? 'relative h-[80vh] rounded-3xl border border-white/10 mx-auto w-[90vw]' : 'sticky top-0 h-screen'}`}>
         
-        {/* Lab HUD Overlay */}
-        <div className="absolute inset-0 z-20 pointer-events-none p-12 flex flex-col justify-between">
-           <div className="flex justify-between items-start">
-              <div className="font-mono text-[10px] text-[#c9a84c] tracking-[0.4em] uppercase">
-                Flora Lab // heliotropic_study_04
-              </div>
-              <div className="text-white/20 font-mono text-[10px] uppercase">
-                Sequence: SF_BLOOM_ALPHA
-              </div>
-           </div>
-           
-           <div className="max-w-xs">
-              <h4 className="text-white font-serif italic text-2xl mb-2">The Sunflower Prototype</h4>
-              <p className="text-white/40 text-xs leading-relaxed">
-                Synchronizing scroll depth with biological heliotropism. 
-                Visualizing the structural expansion of the Ecuadorian Sunflower in high-frequency capture.
-              </p>
-           </div>
-        </div>
+        {/* Lab HUD Overlay (Desktop Only) */}
+        {!isMobile && (
+          <div className="absolute inset-0 z-20 pointer-events-none p-12 flex flex-col justify-between">
+             <div className="flex justify-between items-start">
+                <div className="font-mono text-[10px] text-[#c9a84c] tracking-[0.4em] uppercase">
+                  Flora Lab // heliotropic_study_04
+                </div>
+                <div className="text-white/20 font-mono text-[10px] uppercase">
+                  Sequence: SF_BLOOM_ALPHA
+                </div>
+             </div>
+             
+             <div className="max-w-xs">
+                <h4 className="text-white font-serif italic text-2xl mb-2">The Sunflower Prototype</h4>
+                <p className="text-white/40 text-xs leading-relaxed">
+                  Synchronizing scroll depth with biological heliotropism. 
+                  Visualizing the structural expansion of the Ecuadorian Sunflower in high-frequency capture.
+                </p>
+             </div>
+          </div>
+        )}
 
-        {/* The Sunflower Canvas */}
-        <canvas 
-          ref={canvasRef} 
-          className="w-full h-full object-contain grayscale brightness-50 contrast-125"
-          style={{ opacity: isLoading ? 0 : 0.6 }}
-        />
+        {/* Visual Layer */}
+        {!isMobile ? (
+          // DESKTOP: Canvas Scrub
+          <canvas 
+            ref={canvasRef} 
+            className="w-full h-full object-contain grayscale brightness-50 contrast-125 transition-opacity duration-1000"
+            style={{ opacity: isLoading ? 0 : 0.6 }}
+          />
+        ) : (
+          // MOBILE: Facade or Playback
+          <>
+            <canvas 
+              ref={canvasRef} 
+              className={`absolute inset-0 w-full h-full object-cover grayscale brightness-50 contrast-125 transition-opacity duration-500 ${showMobileFallback ? 'hidden' : 'block'}`}
+            />
+            
+            {showMobileFallback && (
+              <div className="absolute inset-0 w-full h-full">
+                <Image 
+                  src="/assets/projects/flora/sunflower/ezgif-frame-072.jpg" 
+                  alt="Sunflower Mobile" 
+                  fill 
+                  className="object-cover opacity-50 grayscale brightness-75"
+                />
+                <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
+                  <button 
+                    onClick={handlePlay}
+                    className="flex items-center gap-3 bg-[#c9a84c] text-black px-6 py-3 rounded-full font-bold text-[10px] tracking-widest uppercase hover:scale-105 transition-transform"
+                  >
+                    <Play className="w-4 h-4 fill-black" /> Play Prototype
+                  </button>
+                  <span className="mt-4 text-[9px] text-white/50 tracking-widest uppercase">144-Frame Expansion Sequence</span>
+                </div>
+              </div>
+            )}
+            
+            {/* Mobile Loading Overlay */}
+            {isLoading && isMobile && (
+              <div className="absolute inset-0 bg-black/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center">
+                <div className="w-8 h-8 border-2 border-[#c9a84c] border-t-transparent rounded-full animate-spin mb-4" />
+                <span className="text-[#c9a84c] text-[10px] tracking-widest uppercase animate-pulse">Fetching Frames...</span>
+              </div>
+            )}
+          </>
+        )}
 
+        {/* Loading Bar (Desktop Only) */}
         <AnimatePresence>
-          {isLoading && (
+          {showDesktopLoader && (
             <motion.div 
               exit={{ opacity: 0 }}
-              className="absolute inset-0 flex items-center justify-center bg-black/90 z-50 text-center"
+              className="absolute inset-0 flex items-center justify-center bg-black z-50 text-center"
             >
                <div className="flex flex-col items-center gap-6">
-                 <div className="text-white/20 text-[10px] font-mono tracking-[0.6em] uppercase">Syncing Helotropic Data</div>
+                 <div className="text-white/20 text-[10px] font-mono tracking-[0.6em] uppercase">Syncing Heliotropic Data</div>
                  <div className="w-48 h-[1px] bg-white/10 relative">
                    <motion.div 
                      className="absolute inset-y-0 left-0 bg-[#c9a84c]"
@@ -164,16 +262,30 @@ export default function SunflowerShowcase() {
           )}
         </AnimatePresence>
         
-        {/* Scroll Progress Indicator - Left side */}
-        <div className="absolute left-6 top-1/2 -translate-y-1/2 flex flex-col gap-2 h-32 w-[1px] bg-white/5 opacity-50 z-20">
-           <motion.div 
-             className="w-full bg-[#c9a84c]"
-             style={{ height: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]) }}
-           />
-        </div>
-
+        {/* Scroll Progress Indicator - Desktop Only */}
+        {!isMobile && (
+          <div className="absolute left-6 top-1/2 -translate-y-1/2 flex flex-col gap-2 h-32 w-[1px] bg-white/5 opacity-50 z-20">
+             <motion.div 
+               className="w-full bg-[#c9a84c]"
+               style={{ height: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]) }}
+             />
+          </div>
+        )}
       </div>
+
+      {/* Mobile Tech Breakdown (Below Video) */}
+      {isMobile && (
+        <div className="px-6 mt-8 max-w-sm mx-auto text-center">
+          <div className="font-mono text-[10px] text-[#c9a84c] tracking-[0.4em] uppercase mb-4">
+            Flora Lab // Prototype_04
+          </div>
+          <h4 className="text-white font-serif italic text-2xl mb-4">The Sunflower</h4>
+          <p className="text-white/60 text-sm leading-relaxed">
+            Synchronizing user interaction with biological heliotropism. 
+            Visualizing the structural expansion of the Ecuadorian Sunflower in high-frequency capture.
+          </p>
+        </div>
+      )}
     </section>
   );
 }
-

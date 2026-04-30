@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 type Category = 'all' | 'realestate' | 'commerce' | 'retail' | 'restaurant' | 'brand';
 
@@ -338,11 +339,12 @@ function FlipScene({ project }: { project: Project }) {
             <div className={`flipCard ${flipped ? 'flipped' : ''}`}>
               <div className="flipFace">
                 {project.frontImage ? (
-                  <img
+                  <Image
                     src={project.frontImage}
                     alt={`${project.title} homepage`}
-                    loading="lazy"
-                    decoding="async"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover object-top"
                     onError={(event) => {
                       event.currentTarget.style.display = 'none';
                     }}
@@ -352,11 +354,12 @@ function FlipScene({ project }: { project: Project }) {
               </div>
               <div className="flipFace flipBack">
                 {project.backImage ? (
-                  <img
+                  <Image
                     src={project.backImage}
                     alt={`${project.title} dashboard`}
-                    loading="lazy"
-                    decoding="async"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover object-top"
                     onError={(event) => {
                       event.currentTarget.style.display = 'none';
                     }}

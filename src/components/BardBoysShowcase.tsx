@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence, useInView } from 'framer-motion';
 import Image from 'next/image';
-import { ShieldAlert, Film, Zap } from 'lucide-react';
+import { ShieldAlert, Film, Zap, Play } from 'lucide-react';
 
 const FRAME_COUNT = 120;
 const IMAGE_PATH_TEMPLATE = (index: number) =>
@@ -12,11 +12,18 @@ const IMAGE_PATH_TEMPLATE = (index: number) =>
 export default function BardBoysShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  
   const [images, setImages] = useState<HTMLImageElement[]>([]);
-  const [loadedCount, setLoadedCount] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const isInView = useInView(containerRef, { margin: "200% 0px 200% 0px", once: true });
+  
+  // Mobile Click-to-Play State
+  const [showMobileFallback, setShowMobileFallback] = useState(true);
+  const [mobileFrame, setMobileFrame] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // Trigger when element scrolls into view
+  const isInView = useInView(containerRef, { margin: "100% 0px 100% 0px", once: true });
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -25,13 +32,12 @@ export default function BardBoysShowcase() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Scroll Progress (Sticky-relative for perfect timing)
+  // Scroll Progress for Desktop
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
   });
 
-  // Smooth scroll scrub
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -40,54 +46,65 @@ export default function BardBoysShowcase() {
 
   const frameIndex = useTransform(smoothProgress, [0.1, 0.9], [0, FRAME_COUNT - 1]);
 
-  // Preload
+  // Unified Image Fetcher
+  const fetchImages = async () => {
+    setIsLoading(true);
+    const loaded: HTMLImageElement[] = [];
+    const promises = [];
+
+    for (let i = 0; i < FRAME_COUNT; i++) {
+      const promise = new Promise<void>((resolve) => {
+        const img = new (window as any).Image();
+        img.src = IMAGE_PATH_TEMPLATE(i);
+        img.onload = () => {
+          loaded[i] = img;
+          resolve();
+        };
+        img.onerror = resolve; // Ignore errors to prevent hanging
+      });
+      promises.push(promise);
+    }
+
+    await Promise.all(promises);
+    setImages(loaded);
+    setIsLoading(false);
+    return loaded;
+  };
+
+  // Desktop Preload when in view
   useEffect(() => {
-    if (!isInView || isMobile) return;
-
+    if (isMobile || !isInView) return;
     let isMounted = true;
-    const loadImages = async () => {
-      const loaded: HTMLImageElement[] = [];
-      const promises = [];
+    
+    fetchImages().then(() => {
+      if (isMounted) setIsLoading(false);
+    });
 
-      for (let i = 0; i < FRAME_COUNT; i++) {
-        const promise = new Promise<void>((resolve) => {
-          const img = new (window as any).Image();
-          img.src = IMAGE_PATH_TEMPLATE(i);
-          img.onload = () => {
-            if (isMounted) {
-              loaded[i] = img;
-              setLoadedCount((prev) => prev + 1);
-            }
-            resolve();
-          };
-          img.onerror = resolve; // Continue on error
-        });
-        promises.push(promise);
+    return () => { isMounted = false; };
+  }, [isInView, isMobile]);
+
+  // Mobile Play Handler
+  const handlePlay = async () => {
+    setShowMobileFallback(false);
+    
+    if (images.length === 0) {
+      await fetchImages();
+    }
+    
+    setIsPlaying(true);
+    let frame = 0;
+    const interval = setInterval(() => {
+      if (frame >= FRAME_COUNT - 1) {
+        clearInterval(interval);
+        setIsPlaying(false);
+      } else {
+        frame++;
+        setMobileFrame(frame);
       }
+    }, 1000 / 30); // ~30fps playback
+  };
 
-      await Promise.all(promises);
-      if (isMounted) {
-        setImages(loaded);
-        setIsLoading(false);
-      }
-    };
-
-    loadImages();
-
-    // Safety timeout to ensure loading screen clears even if some images fail
-    const safetyTimeout = setTimeout(() => {
-      if (isMounted) {
-        setIsLoading(false);
-      }
-    }, 5000);
-
-    return () => { 
-      isMounted = false; 
-      clearTimeout(safetyTimeout);
-    };
-  }, [isInView]);
-
-  // Canvas Render
+  // Canvas Render Engine
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || images.length === 0) return;
@@ -124,46 +141,87 @@ export default function BardBoysShowcase() {
       canvas.width = canvas.offsetWidth * dpr;
       canvas.height = canvas.offsetHeight * dpr;
       ctx.scale(dpr, dpr);
-      renderFrame(frameIndex.get());
+      renderFrame(isMobile ? mobileFrame : frameIndex.get());
     };
 
     window.addEventListener('resize', handleResize);
     handleResize();
 
-    const unsubscribe = frameIndex.on('change', (latest) => {
-      renderFrame(latest);
-    });
+    let unsubscribe: () => void;
+    
+    if (isMobile) {
+      renderFrame(mobileFrame);
+    } else {
+      unsubscribe = frameIndex.on('change', (latest) => {
+        renderFrame(latest);
+      });
+    }
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      unsubscribe();
+      if (unsubscribe) unsubscribe();
     };
-  }, [images, frameIndex]);
+  }, [images, frameIndex, isMobile, mobileFrame]);
+
+  // Initial loading state overlay for desktop to cover empty canvas
+  const showDesktopLoader = !isMobile && isLoading;
 
   return (
-    <section id="bard-boys" ref={containerRef} className="relative h-[250vh] bg-black scroll-snap-section">
-      <div className="sticky top-0 h-screen w-full flex flex-col overflow-hidden">
+    <section 
+      id="bard-boys" 
+      ref={containerRef} 
+      className={`relative bg-black scroll-snap-section ${isMobile ? 'h-auto py-12' : 'h-[250vh]'}`}
+    >
+      <div className={`w-full flex flex-col overflow-hidden ${isMobile ? 'relative h-[80vh] rounded-3xl border border-white/10 mx-auto w-[90vw]' : 'sticky top-0 h-screen'}`}>
         
-        {/* Background Canvas Scrub (Desktop Only) */}
+        {/* Visual Layer */}
         {!isMobile ? (
+          // DESKTOP: Canvas Scrub
           <canvas 
             ref={canvasRef} 
             className="absolute inset-0 w-full h-full object-cover opacity-60 grayscale brightness-75 transition-opacity duration-1000"
             style={{ opacity: isLoading ? 0 : 0.6 }}
           />
         ) : (
-          <div className="absolute inset-0 w-full h-full">
-            <Image 
-              src="/assets/projects/bard-boys/hero-sequence/ezgif-frame-061.jpg" 
-              alt="Bard Boys Mobile" 
-              fill 
-              className="object-cover opacity-40 grayscale"
+          // MOBILE: Facade or Playback
+          <>
+            <canvas 
+              ref={canvasRef} 
+              className={`absolute inset-0 w-full h-full object-cover opacity-60 transition-opacity duration-500 ${showMobileFallback ? 'hidden' : 'block'}`}
             />
-          </div>
+            
+            {showMobileFallback && (
+              <div className="absolute inset-0 w-full h-full">
+                <Image 
+                  src="/assets/projects/bard-boys/hero-sequence/ezgif-frame-061.jpg" 
+                  alt="Bard Boys Mobile" 
+                  fill 
+                  className="object-cover opacity-50 grayscale"
+                />
+                <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
+                  <button 
+                    onClick={handlePlay}
+                    className="flex items-center gap-3 bg-[#c9a84c] text-black px-6 py-3 rounded-full font-bold text-[10px] tracking-widest uppercase hover:scale-105 transition-transform"
+                  >
+                    <Play className="w-4 h-4 fill-black" /> Play Sequence
+                  </button>
+                  <span className="mt-4 text-[9px] text-white/50 tracking-widest uppercase">120-Frame WebGL Render</span>
+                </div>
+              </div>
+            )}
+            
+            {/* Mobile Loading Overlay */}
+            {isLoading && isMobile && (
+              <div className="absolute inset-0 bg-black/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center">
+                <div className="w-8 h-8 border-2 border-[#c9a84c] border-t-transparent rounded-full animate-spin mb-4" />
+                <span className="text-[#c9a84c] text-[10px] tracking-widest uppercase animate-pulse">Fetching Assets...</span>
+              </div>
+            )}
+          </>
         )}
 
         {/* Content Overlay */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full px-6">
+        <div className={`relative z-10 flex flex-col items-center justify-center h-full px-6 pointer-events-none ${isMobile && !showMobileFallback ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}>
           
           {/* Diagnostic HUD Overlay */}
           <div className="absolute top-24 left-6 space-y-4 max-w-sm hidden lg:block">
@@ -180,39 +238,20 @@ export default function BardBoysShowcase() {
           </div>
 
           <motion.div
-            style={{ opacity: useTransform(scrollYProgress, [0, 0.2], [0, 1]) }}
+            style={{ opacity: isMobile ? 1 : useTransform(scrollYProgress, [0, 0.2], [0, 1]) }}
             className="text-center"
           >
-            <span className="text-[#c9a84c] font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Case Study A // Authority Integration</span>
-            <h2 className="text-7xl md:text-9xl font-bebas text-white leading-none">BARD BOYS</h2>
-            <p className="text-white/40 font-outfit max-w-xl mx-auto mt-6 text-lg leading-relaxed">
+            <span className="text-[#c9a84c] font-bold tracking-[0.4em] uppercase text-xs mb-4 block drop-shadow-md">Case Study A</span>
+            <h2 className="text-6xl md:text-9xl font-bebas text-white leading-none drop-shadow-lg">BARD BOYS</h2>
+            <p className="text-white/80 font-outfit max-w-xl mx-auto mt-4 text-sm md:text-lg leading-relaxed drop-shadow-md hidden md:block">
               Architected Ventura County's premier genetics boutique with proprietary age-verification gates and real-time inventory synchronization. 
-              A collision of high-end technical architecture and cinematic boutique retail.
             </p>
           </motion.div>
-
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
-            <FeatureCard 
-              icon={<ShieldAlert className="w-8 h-8 text-[#c9a84c]" strokeWidth={1} />}
-              title="Security Infrastructure"
-              desc="Proprietary Remote Killswitch logic paired with industry-grade age verification gates."
-            />
-            <FeatureCard 
-              icon={<Film className="w-8 h-8 text-[#c9a84c]" strokeWidth={1} />}
-              title="Cinematic Narrative"
-              desc="120-frame scroll-scrub sequence delivering a filmic product introduction."
-            />
-            <FeatureCard 
-              icon={<Zap className="w-8 h-8 text-[#c9a84c]" strokeWidth={1} />}
-              title="Fast Commerce"
-              desc="Optimized menu indexing with sub-100ms response times for seamless ordering."
-            />
-          </div>
         </div>
 
-        {/* Loading Sequence (Desktop Only) */}
+        {/* Desktop Loading Overlay */}
         <AnimatePresence>
-          {isLoading && !isMobile && (
+          {showDesktopLoader && (
             <motion.div 
               exit={{ opacity: 0 }}
               className="absolute inset-0 bg-black flex items-center justify-center z-[100]"
@@ -227,12 +266,33 @@ export default function BardBoysShowcase() {
                     className="absolute inset-0 bg-[#c9a84c]"
                   />
                 </div>
-                <div className="text-white/20 text-[8px] font-mono uppercase">Deciphering Genetic Arrays</div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
+
       </div>
+      
+      {/* Mobile Tech Breakdown (Below Video) */}
+      {isMobile && (
+        <div className="px-6 mt-8 max-w-sm mx-auto">
+          <p className="text-white/60 text-sm leading-relaxed mb-6 text-center">
+            Architected Ventura County's premier genetics boutique with proprietary age-verification gates. A collision of high-end technical architecture and cinematic retail.
+          </p>
+          <div className="space-y-4">
+            <FeatureCard 
+              icon={<ShieldAlert className="w-5 h-5 text-[#c9a84c]" strokeWidth={1} />}
+              title="Security Infrastructure"
+              desc="Remote Killswitch logic paired with industry-grade age verification gates."
+            />
+            <FeatureCard 
+              icon={<Film className="w-5 h-5 text-[#c9a84c]" strokeWidth={1} />}
+              title="Cinematic Narrative"
+              desc="120-frame WebGL scroll-scrub sequence delivering a filmic product introduction."
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
@@ -251,13 +311,10 @@ function DiagnosticPanel({ title, status, details }: { title: string; status: st
 
 function FeatureCard({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
   return (
-    <motion.div 
-      whileHover={{ y: -5 }}
-      className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl"
-    >
-      <div className="mb-4">{icon}</div>
-      <h3 className="text-white font-bold mb-2 uppercase tracking-wider">{title}</h3>
-      <p className="text-white/40 text-sm leading-relaxed">{desc}</p>
-    </motion.div>
+    <div className="bg-white/5 border border-white/10 p-5 rounded-xl">
+      <div className="mb-3">{icon}</div>
+      <h3 className="text-white text-xs font-bold mb-2 uppercase tracking-wider">{title}</h3>
+      <p className="text-white/40 text-[11px] leading-relaxed">{desc}</p>
+    </div>
   );
 }

@@ -1,20 +1,20 @@
 import AgencyHero from "@/components/AgencyHero";
 import ElevatorNav from "@/components/ElevatorNav";
 import QuickCTA from "@/components/QuickCTA";
-import PortfolioSection from "@/components/PortfolioSection";
-import MotionLabBanner from "@/components/MotionLabBanner";
-
-// Shared Section Components
-import AgencyProcess from "@/components/AgencyProcess";
-import AgencyTestimonials from "@/components/AgencyTestimonials";
-import AgencyPricing from "@/components/AgencyPricing";
-import AgencyAbout from "@/components/AgencyAbout";
-import FAQ from "@/components/FAQ";
-import AgencyContact from "@/components/AgencyContact";
+import FloatingCTA from "@/components/FloatingCTA";
 import Marquee from "@/components/Marquee";
 import ServicesGrid from "@/components/ServicesGrid";
 import QuickInquiry from "@/components/QuickInquiry";
-import FloatingCTA from "@/components/FloatingCTA";
+import dynamic from 'next/dynamic';
+
+const PortfolioSection = dynamic(() => import('@/components/PortfolioSection'));
+const MotionLabBanner = dynamic(() => import('@/components/MotionLabBanner'));
+const AgencyProcess = dynamic(() => import('@/components/AgencyProcess'));
+const AgencyTestimonials = dynamic(() => import('@/components/AgencyTestimonials'));
+const AgencyPricing = dynamic(() => import('@/components/AgencyPricing'));
+const AgencyAbout = dynamic(() => import('@/components/AgencyAbout'));
+const FAQ = dynamic(() => import('@/components/FAQ'));
+const AgencyContact = dynamic(() => import('@/components/AgencyContact'));
 
 export default function Home() {
   return (
