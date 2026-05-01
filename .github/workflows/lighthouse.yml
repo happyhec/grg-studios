@@ -1,43 +1,41 @@
-name: Daily Lighthouse Score
+- name: Commit scores
+  if: success()
+  run: |
+    ...
+name: Fetch PageSpeed Insights scores
+  run: |
+    RESPONSE=$(curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://grginnovations.com&strategy=mobile&key=${{ secrets.PSI_API_KEY }}")
+    
+    echo "$RESPONSE" | node -e "
+      const data = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
+      
+      // Log any API error clearly
+      if (data.error) {
+        console.error('PSI API Error:', JSON.stringify(data.error, null, 2));
+        process.exit(1);
+      }
+      
+      if (!data.lighthouseResult || !data.lighthouseResult.categories) {
+        console.error('Unexpected response structure:', JSON.stringify(Object.keys(data), null, 2));
+        process.exit(1);
+      }
+      
+      const cats = data.lighthouseResult.categories;
+      const scores = {
+        performance: Math.round(cats.performance.score * 100),
+        accessibility: Math.round(cats.accessibility.score * 100),
+        bestPractices: Math.round(cats['best-practices'].score * 100),
+        seo: Math.round(cats.seo.score * 100),
+        date: new Date().toISOString().split('T')[0]
+      };
+      console.log('Scores:', JSON.stringify(scores));
+      require('fs').writeFileSync('public/lighthouse-scores.json', JSON.stringify(scores));
+    "
 
-on:
-  schedule:
-    - cron: '0 6 * * *'  # 6am UTC every day
-  workflow_dispatch:       # Manual trigger
-
-jobs:
-  lighthouse:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Fetch PageSpeed Insights scores
-        run: |
-          curl "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://grginnovations.com&strategy=desktop&key=${{ secrets.PSI_API_KEY }}" \
-          | node -e "
-            const fs = require('fs');
-            try {
-              const input = fs.readFileSync(0, 'utf8');
-              const data = JSON.parse(input);
-              const cats = data.lighthouseResult.categories;
-              const scores = {
-                performance: Math.round(cats.performance.score * 100),
-                accessibility: Math.round(cats.accessibility.score * 100),
-                bestPractices: Math.round(cats['best-practices'].score * 100),
-                seo: Math.round(cats.seo.score * 100),
-                date: new Date().toISOString().split('T')[0]
-              };
-              fs.writeFileSync('public/lighthouse-scores.json', JSON.stringify(scores, null, 2));
-              console.log('Successfully updated lighthouse scores');
-            } catch (e) {
-              console.error('Error processing Lighthouse data:', e);
-              process.exit(1);
-            }
-          "
-
-      - name: Commit scores
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add public/lighthouse-scores.json
-          git diff --staged --quiet || (git commit -m "chore: update lighthouse scores" && git push)
+- name: Commit scores
+  run: |
+    git config user.name "github-actions"
+    git config user.email "actions@github.com"
+    git add public/lighthouse-scores.json
+    git diff --staged --quiet || git commit -m "chore: update lighthouse scores"
+    git push
