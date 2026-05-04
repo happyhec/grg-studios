@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useRef, useState, useEffect } from 'react';
-import { m, useScroll, useTransform } from 'framer-motion';
+import { m, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 
 /**
  * AGENCY HERO v13 — Instant First Paint
@@ -36,10 +36,21 @@ export default function AgencyHero() {
   const slide1Z = useTransform(scrollYProgress, [0, 0.8], [0, 4000]);
   const slide1Scale = useTransform(scrollYProgress, [0, 0.4], [1, 1.3]);
 
+  // Manually update DOM CSS variables because plain <section> 
+  // does not auto-subscribe to MotionValues.
+  useMotionValueEvent(scrollYProgress, "change", () => {
+    if (containerRef.current) {
+      containerRef.current.style.setProperty("--slide1-opacity", slide1Opacity.get().toString());
+      containerRef.current.style.setProperty("--slide1-z", `${slide1Z.get()}px`);
+      containerRef.current.style.setProperty("--slide1-scale", isMobile ? "1" : slide1Scale.get().toString());
+    }
+  });
+
+  // Initial style payload
   const containerStyle = {
-    "--slide1-opacity": slide1Opacity,
-    "--slide1-z": slide1Z,
-    "--slide1-scale": isMobile ? 1 : slide1Scale,
+    "--slide1-opacity": slide1Opacity.get(),
+    "--slide1-z": `${slide1Z.get()}px`,
+    "--slide1-scale": isMobile ? 1 : slide1Scale.get(),
   } as any;
 
   const slide2Opacity = useTransform(scrollYProgress, [0.1, 0.4, 0.95], [0, 1, 1]);
