@@ -18,7 +18,7 @@ jobs:
 
       - name: Fetch PageSpeed Insights scores
         run: |
-          RESPONSE=$(curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://grginnovations.com&strategy=mobile&key=${{ secrets.PSI_API_KEY }}")
+          RESPONSE=$(curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://grginnovations.com&strategy=mobile&category=performance&category=accessibility&category=best-practices&category=seo&key=${{ secrets.PSI_API_KEY }}")
 
           echo "$RESPONSE" | node -e "
             const data = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
