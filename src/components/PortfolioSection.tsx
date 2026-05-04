@@ -526,6 +526,7 @@ const portfolioStyles = `
 .portfolioCard, .nextCard {
   border:1px solid var(--p-border); border-radius:1rem; background:var(--p-surface); overflow:hidden;
   box-shadow:0 4px 20px rgba(0,0,0,.5); transition:transform .62s cubic-bezier(.16,1,.3,1), box-shadow .62s cubic-bezier(.16,1,.3,1), border-color .62s;
+  display: flex; flex-direction: column;
 }
 .portfolioCard:hover, .nextCard:hover { transform:translateY(-4px); border-color:var(--p-border-2); box-shadow:0 16px 48px rgba(0,0,0,.7); }
 .portfolioCard.featured { margin-bottom:clamp(1rem,2vw,1.5rem); }
@@ -549,8 +550,8 @@ const portfolioStyles = `
 .faceLabel span, .cat span { width:6px; height:6px; border-radius:999px; background:currentColor; box-shadow:0 0 8px currentColor; }
 .hintIdle { color:rgba(245,240,232,.55); border-color:rgba(245,240,232,.1); text-transform:none; letter-spacing:.04em; transition:opacity .18s; }
 .hasFlip:hover .hintIdle, .hasFlip.peeking .hintIdle { opacity:0; }
-.hiTouch { display:none; } @media (hover:none) { .hiMouse { display:none; } .hiTouch { display:inline; } }
-.cardContent { padding:1.5rem; display:flex; flex-direction:column; min-height:100%; }
+.hiTouch { display:none; } @media (hover:none), (max-width:768px) { .hiMouse { display:none; } .hiTouch { display:inline; } }
+.cardContent { padding:1.5rem; display:flex; flex-direction:column; min-height:100%; flex-grow:1; }
 .cat { margin-bottom:.75rem; }
 .catGold { color:var(--p-gold-light); } .catSage { color:#a3b18a; } .catAccent { color:var(--p-gold); } .catCream { color:var(--p-text); }
 .securityBadge {
