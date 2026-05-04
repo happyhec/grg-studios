@@ -87,13 +87,13 @@ export default function InsightsPage() {
         {/* Bottom CTA */}
         <div className="mt-20 pt-12 border-t border-white/5 text-center">
           <p className="text-[#a3a39c] text-sm mb-6">
-            Want a free audit of your current website? I&apos;ll show you exactly what&apos;s costing you customers.
+            Want a free Quick Performance Scan of your current website? I&apos;ll show you exactly what&apos;s costing you customers — speed, SEO, and conversion gaps.
           </p>
           <Link
             href="/#contact"
             className="inline-flex items-center gap-2 px-8 py-3 bg-[#c9a84c] text-black font-bold text-sm tracking-wider uppercase rounded-md hover:bg-[#d4b85c] transition-colors"
           >
-            Request Free Audit
+            Get My Free Scan
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

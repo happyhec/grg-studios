@@ -410,8 +410,8 @@ function ProjectCard({ project, delay = '' }: { project: Project; delay?: string
               <span key={metric}><i className={index % 2 ? 'gold' : 'sage'} />{metric}</span>
             ))}
           </div>
-          <a href={project.href} target="_blank" rel="noopener noreferrer" className="viewLink" aria-label={`View ${project.title}`}>
-            View
+          <a href={project.href} target="_blank" rel="noopener noreferrer" className="viewLink" aria-label={`Visit ${project.title} live site`}>
+            Visit Site
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </a>
         </div>

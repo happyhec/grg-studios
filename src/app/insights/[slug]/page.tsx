@@ -117,16 +117,16 @@ export default async function InsightArticle({ params }: PageProps) {
         <div className="mt-16 pt-10 border-t border-white/5">
           <div className="bg-[#111111] border border-white/5 rounded-2xl p-8 md:p-12 text-center">
             <h3 className="font-rajdhani text-2xl md:text-3xl text-[#f5f0e8] font-bold mb-4">
-              Want a free security & performance audit?
+              Want a free Quick Performance Scan?
             </h3>
             <p className="text-[#a3a39c] text-sm md:text-base mb-8 max-w-lg mx-auto">
-              I&apos;ll review your current site and send you a detailed report with specific, actionable fixes — whether you hire me or not.
+              I&apos;ll review your current site and send you a quick breakdown of speed issues, SEO gaps, and conversion problems — no strings attached.
             </p>
             <Link
               href="/#contact"
               className="inline-flex items-center gap-2 px-8 py-3 bg-[#c9a84c] text-black font-bold text-sm tracking-wider uppercase rounded-md hover:bg-[#d4b85c] transition-colors"
             >
-              Request Free Audit
+              Get My Free Scan
             </Link>
           </div>
         </div>
