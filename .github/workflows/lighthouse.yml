@@ -1,37 +1,55 @@
-- name: Fetch PageSpeed Insights scores
-  run: |
-    RESPONSE=$(curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://grginnovations.com&strategy=mobile&key=${{ secrets.PSI_API_KEY }}")
+name: Update Lighthouse Scores
 
-    echo "$RESPONSE" | node -e "
-      const data = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
 
-      if (data.error) {
-        console.error('PSI API Error:', JSON.stringify(data.error, null, 2));
-        process.exit(1);
-      }
+permissions:
+  contents: write
 
-      if (!data.lighthouseResult || !data.lighthouseResult.categories) {
-        console.error('Unexpected response structure:', JSON.stringify(Object.keys(data), null, 2));
-        process.exit(1);
-      }
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
 
-      const cats = data.lighthouseResult.categories;
-      const scores = {
-        performance: Math.round(cats.performance.score * 100),
-        accessibility: Math.round(cats.accessibility.score * 100),
-        bestPractices: Math.round(cats['best-practices'].score * 100),
-        seo: Math.round(cats.seo.score * 100),
-        date: new Date().toISOString().split('T')[0]
-      };
-      console.log('Scores:', JSON.stringify(scores));
-      require('fs').writeFileSync('public/lighthouse-scores.json', JSON.stringify(scores));
-    "
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-- name: Commit scores
-  if: success()
-  run: |
-    git config user.name "github-actions"
-    git config user.email "actions@github.com"
-    git add public/lighthouse-scores.json
-    git diff --staged --quiet || git commit -m "chore: update lighthouse scores"
-    git push
+      - name: Fetch PageSpeed Insights scores
+        run: |
+          RESPONSE=$(curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://grginnovations.com&strategy=mobile&key=${{ secrets.PSI_API_KEY }}")
+
+          echo "$RESPONSE" | node -e "
+            const data = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
+
+            if (data.error) {
+              console.error('PSI API Error:', JSON.stringify(data.error, null, 2));
+              process.exit(1);
+            }
+
+            if (!data.lighthouseResult || !data.lighthouseResult.categories) {
+              console.error('Unexpected response structure:', JSON.stringify(Object.keys(data), null, 2));
+              process.exit(1);
+            }
+
+            const cats = data.lighthouseResult.categories;
+            const scores = {
+              performance: Math.round(cats.performance.score * 100),
+              accessibility: Math.round(cats.accessibility.score * 100),
+              bestPractices: Math.round(cats['best-practices'].score * 100),
+              seo: Math.round(cats.seo.score * 100),
+              date: new Date().toISOString().split('T')[0]
+            };
+            console.log('Scores:', JSON.stringify(scores));
+            require('fs').writeFileSync('public/lighthouse-scores.json', JSON.stringify(scores));
+          "
+
+      - name: Commit scores
+        if: success()
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add public/lighthouse-scores.json
+          git diff --staged --quiet || git commit -m "chore: update lighthouse scores"
+          git push
