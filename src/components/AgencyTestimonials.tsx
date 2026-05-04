@@ -4,20 +4,20 @@ import { m } from 'framer-motion';
 
 const testimonials = [
   {
-    name: "Caleb J.",
+    name: "Christopher G.",
     company: "ASR Entertainment",
-    text: "GRG Studios delivered exactly what they promised. Our brand feels solid now, and the intake system they built has already saved my assistant 10+ hours a month.",
+    text: "They built us an amazing site, always kept to their deadlines, and exceeded our expectations. I would definitely do work with GRG Studios again.",
     result: "Automated Intake + 40% Increase in Leads"
   },
   {
-    name: "Samantha L.",
+    name: "Billy B.",
     company: "The Candied Cow",
-    text: "Our new identity and site have put us on the map for weddings and large events. The attention to detail is something you just don't see at typical agencies.",
+    text: "The logo Hector made for us, really visualized the exact idea I had in mind. He was incredibly quick and professional, and delivered results not excuses.",
     result: "Brand Launch + Event Booking Growth"
   },
   {
     name: "Carl N.",
-    company: "Bard Boys Dispensary, Oxnard CA",
+    company: "Bard Boys Dispensary",
     text: "Hector took the Bard Boys story and turned it into a visual masterpiece. From humble beginnings to breaking records on the field, and finally as Ventura County's leading up-and-coming dispensary.",
     result: "Cinematic Brand Narrative"
   },
