@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from 'framer-motion';
 
 export default function XRayToggle() {
   const [view, setView] = useState<"product" | "xray">("product");
@@ -33,7 +33,7 @@ export default function XRayToggle() {
           Agent X-Ray
         </button>
         
-        <motion.div
+        <m.div
           className="absolute inset-y-1 w-32 rounded-full bg-white shadow-lg"
           animate={{ x: view === "product" ? 0 : 128 }}
           transition={{ type: "spring", stiffness: 400, damping: 30 }}
@@ -44,7 +44,7 @@ export default function XRayToggle() {
       <div className="relative h-[600px] w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-[#111] shadow-2xl">
         <AnimatePresence mode="wait">
           {view === "product" ? (
-            <motion.div
+            <m.div
               key="product"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -65,9 +65,9 @@ export default function XRayToggle() {
                     <div className="w-24 h-auto aspect-square bg-rose-900/20 rounded-full blur-md" />
                  </div>
               </div>
-            </motion.div>
+            </m.div>
           ) : (
-            <motion.div
+            <m.div
               key="xray"
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -99,7 +99,7 @@ export default function XRayToggle() {
 }`}
                  </pre>
                </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

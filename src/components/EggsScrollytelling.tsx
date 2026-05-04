@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring, type MotionValue } from 'framer-motion';
+import { m, useScroll, useTransform, useSpring, type MotionValue } from 'framer-motion';
 
 const stages = [
   {
@@ -109,7 +109,7 @@ export default function EggsScrollytelling() {
 
         {/* Scroll Progress Indicator (Vertical Line) */}
         <div className="absolute right-10 top-1/2 -translate-y-1/2 h-32 w-[1px] bg-white/10 hidden lg:block">
-          <motion.div 
+          <m.div 
             className="w-full bg-[#c9a84c] origin-top"
             style={{ scaleY: smoothProgress }}
           />
@@ -148,7 +148,7 @@ function ProjectScreenshot({ idx, stage, progress }: { idx: number; stage: any; 
   const revealX = useTransform(progress, [start, start + 0.15], ["100%", "0%"]);
 
   return (
-    <motion.div 
+    <m.div 
       style={{ opacity, scale, translateZ: 0 } as any} 
       className="absolute inset-0 overflow-hidden rounded-[1.2rem] lg:rounded-[2.2rem] bg-[#111] shadow-2xl border border-white/10 will-change-transform"
     >
@@ -156,26 +156,26 @@ function ProjectScreenshot({ idx, stage, progress }: { idx: number; stage: any; 
          <div className="relative w-full h-full">
             {/* Legacy (Background) */}
             <div className="absolute inset-0 grayscale opacity-40">
-               <motion.div style={{ y: imgY, translateZ: 0 } as any} className="w-full h-full will-change-transform">
+               <m.div style={{ y: imgY, translateZ: 0 } as any} className="w-full h-full will-change-transform">
                   <img src={stage.legacyImage} alt="Legacy" className="w-full min-h-full object-cover object-top" />
-               </motion.div>
+               </m.div>
             </div>
             
             {/* New (Reveal Overlay) */}
-            <motion.div 
+            <m.div 
                style={{ clipPath: `inset(0 0 0 ${revealX})`, translateZ: 0 } as any} 
                className="absolute inset-0 z-10 bg-[#050505] will-change-[clip-path]"
             >
-               <motion.div style={{ y: imgY, translateZ: 0 } as any} className="w-full h-full will-change-transform">
+               <m.div style={{ y: imgY, translateZ: 0 } as any} className="w-full h-full will-change-transform">
                   <img src={stage.image} alt="Modern" className="w-full min-h-full object-cover object-top" />
-               </motion.div>
+               </m.div>
                
                {/* Divider Line */}
-               <motion.div 
+               <m.div 
                  style={{ left: revealX, translateZ: 0 } as any}
                  className="absolute top-0 bottom-0 w-[2px] bg-[#c9a84c] shadow-[0_0_20px_rgba(201,168,76,0.5)] z-20 will-change-[left]"
                />
-            </motion.div>
+            </m.div>
 
             <div className="absolute bottom-6 right-6 z-30 bg-black/80 backdrop-blur-md px-4 py-2 rounded-full border border-[#c9a84c]/30">
                <span className="text-[10px] text-[#c9a84c] font-bold uppercase tracking-[0.2em]">Legacy → Full Reconstruction</span>
@@ -185,9 +185,9 @@ function ProjectScreenshot({ idx, stage, progress }: { idx: number; stage: any; 
 
       {stage.type === 'single' && (
         <div className="relative h-full w-full overflow-hidden">
-          <motion.div style={{ y: imgY, translateZ: 0 } as any} className="w-full h-full will-change-transform">
+          <m.div style={{ y: imgY, translateZ: 0 } as any} className="w-full h-full will-change-transform">
             <img src={stage.image} alt={stage.title} className="w-full min-h-full object-cover object-top" />
-          </motion.div>
+          </m.div>
           <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/80 via-transparent to-transparent" />
         </div>
       )}
@@ -195,20 +195,20 @@ function ProjectScreenshot({ idx, stage, progress }: { idx: number; stage: any; 
        {stage.type === 'dual' && (
         <div className="absolute inset-0 flex flex-col">
           <div className="relative flex-1 w-full overflow-hidden border-b border-white/10 bg-[#050505]">
-            <motion.div style={{ y: imgY, translateZ: 0 } as any} className="w-full h-full will-change-transform">
+            <m.div style={{ y: imgY, translateZ: 0 } as any} className="w-full h-full will-change-transform">
               <img src={stage.image} alt="Staff Portal" className="w-full min-h-full object-cover object-top" />
-            </motion.div>
+            </m.div>
             <div className="absolute top-4 left-4 px-3 py-1 bg-black/80 backdrop-blur-md rounded border border-white/10 text-[9px] text-[#c9a84c] uppercase font-bold tracking-widest">Administrative Hub</div>
           </div>
           <div className="relative flex-1 w-full overflow-hidden bg-[#050505]">
-            <motion.div style={{ y: imgY, translateZ: 0 } as any} className="w-full h-full will-change-transform">
+            <m.div style={{ y: imgY, translateZ: 0 } as any} className="w-full h-full will-change-transform">
               <img src={stage.secondaryImage} alt="Live Menu" className="w-full min-h-full object-cover object-top" />
-            </motion.div>
+            </m.div>
             <div className="absolute top-4 left-4 px-3 py-1 bg-black/80 backdrop-blur-md rounded border border-white/10 text-[9px] text-[#c9a84c] uppercase font-bold tracking-widest">Public Menu Sync</div>
           </div>
         </div>
       )}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -220,7 +220,7 @@ function ContentStage({ idx, stage, progress }: { idx: number; stage: any; progr
   const y = useTransform(progress, [start, start + 0.1, end - 0.1, end], [30, 0, 0, -30]);
 
   return (
-    <motion.div
+    <m.div
       style={{ opacity, y, position: 'absolute' }}
       className="w-full px-4 lg:px-0 lg:pr-12"
     >
@@ -249,6 +249,6 @@ function ContentStage({ idx, stage, progress }: { idx: number; stage: any; progr
           </div>
         ))}
       </div>
-    </motion.div>
+    </m.div>
   );
 }

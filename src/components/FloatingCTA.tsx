@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { m, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function FloatingCTA() {
@@ -21,7 +21,7 @@ export default function FloatingCTA() {
   return (
     <AnimatePresence>
       {visible && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -36,7 +36,7 @@ export default function FloatingCTA() {
             <span>Start My Build</span>
             <span className="text-sm">→</span>
           </a>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

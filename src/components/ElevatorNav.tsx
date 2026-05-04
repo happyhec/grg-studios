@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 const sections = [
   { id: 'hero', name: '01_START', label: 'Agency Intro' },
@@ -57,7 +57,7 @@ export default function ElevatorNav() {
           {/* Label Hover */}
           <AnimatePresence>
             {hoveredSection === section.id && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, x: 10, filter: 'blur(10px)' }}
                 animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                 exit={{ opacity: 0, x: 10, filter: 'blur(10px)' }}
@@ -69,13 +69,13 @@ export default function ElevatorNav() {
                 <span className="text-[9px] font-mono text-white/40 tracking-[0.1em] lowercase whitespace-nowrap">
                   {section.label}
                 </span>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
 
           {/* Nav Indicator */}
           <div className="relative flex items-center justify-center w-6 h-6">
-             <motion.div 
+             <m.div 
                animate={{ 
                  scale: activeSection === section.id ? 1 : 0.4,
                  opacity: activeSection === section.id ? 1 : 0.2
@@ -83,7 +83,7 @@ export default function ElevatorNav() {
                className={`w-1.5 h-1.5 rounded-full bg-white transition-all duration-300 ${activeSection === section.id ? 'shadow-[0_0_10px_rgba(255,255,255,0.8)]' : ''}`}
              />
              {activeSection === section.id && (
-               <motion.div 
+               <m.div 
                  layoutId="elevator-ring"
                  className="absolute inset-0 border border-white/20 rounded-full"
                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}

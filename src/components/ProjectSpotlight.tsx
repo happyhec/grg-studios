@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import ComparisonSlider from './ComparisonSlider';
 
@@ -132,7 +132,7 @@ export default function ProjectSpotlight() {
           {/* Tour Content Layer (The "After" images during tour) */}
           <AnimatePresence mode="wait">
             {currentStep !== null && (
-              <motion.div 
+              <m.div 
                 key={currentStep}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -147,21 +147,21 @@ export default function ProjectSpotlight() {
                   priority
                 />
                 <div className="absolute inset-0 bg-black/40" />
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
 
           {/* Sync HUD Layer */}
           <AnimatePresence>
             {currentStep !== null && (
-              <motion.div 
+              <m.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="absolute inset-0 z-30 pointer-events-none flex items-center justify-center md:justify-end p-4 md:p-6"
               >
                 {/* Tour Card */}
-                <motion.div 
+                <m.div 
                   initial={{ y: 30, opacity: 0, scale: 0.95 }}
                   animate={{ y: 0, opacity: 1, scale: 1 }}
                   key={currentStep}
@@ -196,8 +196,8 @@ export default function ProjectSpotlight() {
                          </button>
                       </div>
                    </div>
-                </motion.div>
-              </motion.div>
+                </m.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>

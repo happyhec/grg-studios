@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 export default function EngineeringContextMenu() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -46,7 +46,7 @@ export default function EngineeringContextMenu() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.95, y: -10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.15 } }}
@@ -87,7 +87,7 @@ export default function EngineeringContextMenu() {
               </button>
             </li>
           </ul>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

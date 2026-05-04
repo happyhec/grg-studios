@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
+import { m, useMotionTemplate, useMotionValue } from 'framer-motion';
 import { MouseEvent } from 'react';
 
 const tiers = [
@@ -91,7 +91,7 @@ function PricingCard({ tier, index }: { tier: typeof tiers[0], index: number }) 
   }
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -102,7 +102,7 @@ function PricingCard({ tier, index }: { tier: typeof tiers[0], index: number }) 
       }`}
     >
       {/* Tactical Optics Spotlight */}
-      <motion.div
+      <m.div
         className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`
@@ -167,7 +167,7 @@ function PricingCard({ tier, index }: { tier: typeof tiers[0], index: number }) 
           {tier.name === "The System" ? "Start Your Project" : "Let's Talk"}
         </a>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const testimonials = [
   {
@@ -49,7 +49,7 @@ export default function AgencyTestimonials() {
         <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#080808] to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#080808] to-transparent z-10 pointer-events-none" />
 
-        <motion.div 
+        <m.div 
           className="flex gap-8 w-max px-6 md:px-16"
           animate={{ x: ["0%", "-33.33%"] }}
           transition={{
@@ -83,7 +83,7 @@ export default function AgencyTestimonials() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

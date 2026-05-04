@@ -1,9 +1,9 @@
-import * as motion from "framer-motion/client";
+import { m } from "framer-motion";
 
 export default function Hero() {
   return (
     <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden px-6 text-center">
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
@@ -29,7 +29,7 @@ export default function Hero() {
             View Case Studies
           </button>
         </div>
-      </motion.div>
+      </m.div>
 
       {/* Decorative Glow */}
       <div className="absolute left-1/2 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#c9a84c]/5 blur-[120px]" />

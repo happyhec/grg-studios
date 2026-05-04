@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 const projects = [
   { id: 'bard-boys', short: 'BB', name: 'Bard Boys' },
@@ -60,7 +60,7 @@ export default function WorkNavigator() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.nav
+        <m.nav
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
@@ -82,7 +82,7 @@ export default function WorkNavigator() {
                 <span>{p.short}</span>
                 
                 {activeProject === p.id && (
-                  <motion.div
+                  <m.div
                     layoutId="active-pill"
                     className="absolute inset-0 border border-white/20 rounded-full"
                     transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
@@ -91,7 +91,7 @@ export default function WorkNavigator() {
               </button>
             ))}
           </div>
-        </motion.nav>
+        </m.nav>
       )}
     </AnimatePresence>
   );

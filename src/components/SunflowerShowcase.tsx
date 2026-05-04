@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence, useInView } from 'framer-motion';
+import { m, useScroll, useTransform, useSpring, AnimatePresence, useInView } from 'framer-motion';
 import Image from 'next/image';
 import { Play } from 'lucide-react';
 
@@ -212,27 +212,27 @@ export default function SunflowerShowcase() {
         {/* Loading Bar (Desktop Only) */}
         <AnimatePresence>
           {showDesktopLoader && (
-            <motion.div 
+            <m.div 
               exit={{ opacity: 0 }}
               className="absolute inset-0 flex items-center justify-center bg-black z-50 text-center"
             >
                <div className="flex flex-col items-center gap-6">
                  <div className="text-white/20 text-[10px] font-mono tracking-[0.6em] uppercase">Syncing Heliotropic Data</div>
                  <div className="w-48 h-[1px] bg-white/10 relative">
-                   <motion.div 
+                   <m.div 
                      className="absolute inset-y-0 left-0 bg-[#c9a84c]"
                      style={{ width: `${(loadedCount / FRAME_COUNT) * 100}%` }}
                    />
                  </div>
                </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
         
         {/* Scroll Progress Indicator - Desktop Only */}
         {!isMobile && (
           <div className="absolute left-6 top-1/2 -translate-y-1/2 flex flex-col gap-2 h-32 w-[1px] bg-white/5 opacity-50 z-20">
-             <motion.div 
+             <m.div 
                className="w-full bg-[#c9a84c]"
                style={{ height: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]) }}
              />

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 import { Activity, Binary, Cpu, Rocket } from 'lucide-react';
 
@@ -58,7 +58,7 @@ export default function AgencyProcess() {
           <div className="hidden lg:block absolute top-12 left-0 right-0 h-px bg-white/5 z-0" />
           
           {steps.map((step, i) => (
-            <motion.div 
+            <m.div 
               key={step.num}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +74,7 @@ export default function AgencyProcess() {
               <p className="text-sm text-[#a3a39c] leading-relaxed max-w-[280px] font-outfit">
                 {step.desc}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 

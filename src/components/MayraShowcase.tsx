@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import { Calendar, Users, ClipboardCheck, Smartphone } from 'lucide-react';
 
@@ -12,7 +12,7 @@ export default function MayraShowcase() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           
           {/* Visual Side */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -29,7 +29,7 @@ export default function MayraShowcase() {
             </div>
 
             {/* Floating UI Elements */}
-            <motion.div 
+            <m.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -bottom-10 -right-6 md:-right-10 bg-[#111] border border-[#c9a84c]/30 p-6 rounded-2xl shadow-2xl hidden md:block max-w-[280px]"
@@ -45,7 +45,7 @@ export default function MayraShowcase() {
               </div>
               <div className="space-y-2">
                 <div className="h-1 bg-white/5 rounded-full overflow-hidden">
-                  <motion.div 
+                  <m.div 
                     initial={{ width: 0 }}
                     whileInView={{ width: '70%' }}
                     className="h-full bg-[#c9a84c]"
@@ -53,8 +53,8 @@ export default function MayraShowcase() {
                 </div>
                 <div className="text-[9px] text-[#c9a84c] font-mono tracking-tighter uppercase">Automated Triage: [ACTIVE]</div>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
 
           {/* Content Side */}
           <div className="flex flex-col">

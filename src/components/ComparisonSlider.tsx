@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { m, useMotionValue, useSpring } from 'framer-motion';
 import Image from 'next/image';
 
 interface ComparisonSliderProps {
@@ -54,7 +54,7 @@ export default function ComparisonSlider({
       </div>
 
       {/* Before Image (The Legacy Site) */}
-      <motion.div 
+      <m.div 
         className="absolute inset-y-0 left-0 overflow-hidden z-10"
         style={{ width: `${sliderPos}%` }}
       >
@@ -74,10 +74,10 @@ export default function ComparisonSlider({
             {beforeLabel}
           </span>
         </div>
-      </motion.div>
+      </m.div>
 
       {/* Slider Handle */}
-      <motion.div 
+      <m.div 
         className="absolute inset-y-0 z-30 w-1 bg-[#c9a84c] shadow-[0_0_20px_rgba(201,168,76,0.8)]"
         style={{ left: `${sliderPos}%` }}
       >
@@ -89,12 +89,12 @@ export default function ComparisonSlider({
         </div>
         
         {/* Animated Scan Line */}
-        <motion.div 
+        <m.div 
           animate={{ opacity: [0.2, 0.5, 0.2] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="absolute inset-y-0 -left-20 w-40 bg-gradient-to-r from-transparent via-[#c9a84c]/10 to-transparent pointer-events-none"
         />
-      </motion.div>
+      </m.div>
     </div>
   );
 }

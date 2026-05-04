@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 export default function QuickCTA() {
@@ -26,7 +26,7 @@ export default function QuickCTA() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
+        <m.div
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
@@ -46,7 +46,7 @@ export default function QuickCTA() {
             {/* Pulsing Ring */}
             <div className="absolute -inset-1 border border-white/20 rounded-full animate-pulse pointer-events-none" />
           </button>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

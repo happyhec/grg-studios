@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Sparkles, Code2, MonitorPlay } from 'lucide-react';
 import { useState, useEffect } from 'react';
 

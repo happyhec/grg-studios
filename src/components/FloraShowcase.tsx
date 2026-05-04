@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence, useInView } from 'framer-motion';
+import { m, useScroll, useTransform, useSpring, AnimatePresence, useInView } from 'framer-motion';
 import Image from 'next/image';
 import { Play } from 'lucide-react';
 
@@ -189,7 +189,7 @@ export default function FloraShowcase() {
 
         {/* Text Content */}
         <div className={`relative z-10 container mx-auto px-6 flex flex-col items-center text-center pointer-events-none ${isMobile && !showMobileFallback ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}>
-          <motion.div
+          <m.div
             style={{ 
               opacity: isMobile ? 1 : useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]),
               y: isMobile ? 0 : useTransform(scrollYProgress, [0, 0.1], [50, 0])
@@ -200,26 +200,26 @@ export default function FloraShowcase() {
             <p className="text-white/80 font-outfit max-w-xl mx-auto mt-6 text-sm md:text-lg leading-relaxed drop-shadow-md hidden md:block">
               Custom e-commerce platform and brand identity system. Elevating the floral delivery experience through biological immersion.
             </p>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Loading Bar (Desktop Only) */}
         <AnimatePresence>
           {showDesktopLoader && (
-            <motion.div 
+            <m.div 
               exit={{ opacity: 0 }}
               className="absolute inset-0 bg-black flex items-center justify-center z-50"
             >
               <div className="flex flex-col items-center gap-4">
                 <div className="text-white/20 text-xs tracking-[0.5em] uppercase italic">Preparing The Bloom</div>
                 <div className="w-64 h-[1px] bg-white/10 relative">
-                  <motion.div 
+                  <m.div 
                     className="absolute inset-y-0 left-0 bg-[#c9a84c]"
                     style={{ width: `${(loadedCount / FRAME_COUNT) * 100}%` }}
                   />
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

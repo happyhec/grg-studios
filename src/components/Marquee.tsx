@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 export default function Marquee({ items, speed = 25, isPill = false }: { items: string[], speed?: number, isPill?: boolean }) {
   // We duplicate the items a few times to ensure infinite seamless scrolling
@@ -8,7 +8,7 @@ export default function Marquee({ items, speed = 25, isPill = false }: { items: 
 
   return (
     <div className="w-full border-y border-[rgba(255,255,255,0.05)] bg-[#111111] overflow-hidden py-4 flex items-center">
-      <motion.div 
+      <m.div 
         className="flex shrink-0 w-max"
         animate={{ x: ["0%", "-33.33%"] }}
         transition={{
@@ -26,7 +26,7 @@ export default function Marquee({ items, speed = 25, isPill = false }: { items: 
             {item}
           </div>
         ))}
-      </motion.div>
+      </m.div>
     </div>
   );
 }

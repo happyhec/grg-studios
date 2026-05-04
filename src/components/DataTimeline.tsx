@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from 'framer-motion';
 
 const TIMELINE_STEPS = [
   {
@@ -40,7 +40,7 @@ export default function DataTimeline() {
             const isEven = index % 2 === 0;
 
             return (
-              <motion.div
+              <m.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ export default function DataTimeline() {
                     </p>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

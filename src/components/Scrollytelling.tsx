@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from 'framer-motion';
 
 const BARD_BOYS_PROMPTS = [
   `// PHASE 1: GENERATE CINEMATIC HERO
@@ -69,15 +69,15 @@ export default function Scrollytelling() {
           </div>
           
           <div className="relative h-[200px] w-full font-mono text-sm leading-relaxed text-emerald-400/80 md:text-base">
-            <motion.pre style={{ opacity: stage1Opacity }} className="absolute inset-0 whitespace-pre-wrap">
+            <m.pre style={{ opacity: stage1Opacity }} className="absolute inset-0 whitespace-pre-wrap">
               {BARD_BOYS_PROMPTS[0]}
-            </motion.pre>
-            <motion.pre style={{ opacity: stage2Opacity }} className="absolute inset-0 whitespace-pre-wrap">
+            </m.pre>
+            <m.pre style={{ opacity: stage2Opacity }} className="absolute inset-0 whitespace-pre-wrap">
               {BARD_BOYS_PROMPTS[1]}
-            </motion.pre>
-            <motion.pre style={{ opacity: stage3Opacity }} className="absolute inset-0 whitespace-pre-wrap">
+            </m.pre>
+            <m.pre style={{ opacity: stage3Opacity }} className="absolute inset-0 whitespace-pre-wrap">
               {BARD_BOYS_PROMPTS[2]}
-            </motion.pre>
+            </m.pre>
           </div>
         </div>
 
@@ -85,7 +85,7 @@ export default function Scrollytelling() {
         <div className="relative flex h-1/2 w-full items-center justify-center overflow-hidden bg-[#111] p-4 md:h-full md:w-[60%] md:p-12">
           
           {/* Stage 1: Hero Video (Simulated) */}
-          <motion.div 
+          <m.div 
             style={{ opacity: stage1Opacity }} 
             className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
           >
@@ -94,10 +94,10 @@ export default function Scrollytelling() {
                 <h2 className="font-serif text-5xl tracking-widest text-white">BARD BOYS</h2>
                 <div className="mt-4 h-[1px] w-24 mx-auto bg-white/30" />
              </div>
-          </motion.div>
+          </m.div>
 
           {/* Stage 2: Age Gate */}
-          <motion.div 
+          <m.div 
             style={{ opacity: stage2Opacity }} 
             className="absolute inset-0 flex items-center justify-center bg-black/90 p-8"
           >
@@ -109,10 +109,10 @@ export default function Scrollytelling() {
                   <button className="flex-1 rounded bg-white py-3 font-bold text-black border border-white transition hover:bg-white/90">I am 21+</button>
                 </div>
              </div>
-          </motion.div>
+          </m.div>
 
           {/* Stage 3: Ghost Typography */}
-          <motion.div 
+          <m.div 
             style={{ opacity: stage3Opacity }} 
             className="absolute inset-0 flex flex-col items-center justify-center gap-8 bg-[#0d0d0d] p-8"
           >
@@ -128,7 +128,7 @@ export default function Scrollytelling() {
                  style={{ color: "transparent", WebkitTextStroke: "1px rgba(255,255,255,0.15)" }}>
                Edibles
              </h2>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 
 /**
@@ -16,7 +16,7 @@ export default function AgencyAbout() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-20 items-start">
           
           {/* Left Column: Headshot + Name Card */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -51,10 +51,10 @@ export default function AgencyAbout() {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right Column: First-Person Story */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -98,7 +98,7 @@ export default function AgencyAbout() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

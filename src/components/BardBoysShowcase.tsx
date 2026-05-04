@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence, useInView } from 'framer-motion';
+import { m, useScroll, useTransform, useSpring, AnimatePresence, useInView } from 'framer-motion';
 import Image from 'next/image';
 import { ShieldAlert, Film, Zap, Play } from 'lucide-react';
 
@@ -204,7 +204,7 @@ export default function BardBoysShowcase() {
             />
           </div>
 
-          <motion.div
+          <m.div
             style={{ opacity: isMobile ? 1 : useTransform(scrollYProgress, [0, 0.2], [0, 1]) }}
             className="text-center"
           >
@@ -213,20 +213,20 @@ export default function BardBoysShowcase() {
             <p className="text-white/80 font-outfit max-w-xl mx-auto mt-4 text-sm md:text-lg leading-relaxed drop-shadow-md hidden md:block">
               Architecting cinematic scroll sequences requires hundreds of hours of 3D rendering, frame-by-frame compiling, and WebGL optimization. We don't use templates—we build bespoke, high-end visual systems that command authority and justify premium pricing.
             </p>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Desktop Loading Overlay */}
         <AnimatePresence>
           {showDesktopLoader && (
-            <motion.div 
+            <m.div 
               exit={{ opacity: 0 }}
               className="absolute inset-0 bg-black flex items-center justify-center z-[100]"
             >
               <div className="flex flex-col items-center gap-6">
                 <div className="text-[#c9a84c] animate-pulse text-[10px] tracking-[0.6em] uppercase font-mono">Initializing Sequence</div>
                 <div className="w-64 h-px bg-white/10 relative overflow-hidden">
-                  <motion.div 
+                  <m.div 
                     initial={{ x: '-100%' }}
                     animate={{ x: '100%' }}
                     transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
@@ -234,7 +234,7 @@ export default function BardBoysShowcase() {
                   />
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useMotionTemplate, useMotionValue } from 'framer-motion';
+import { m, useMotionTemplate, useMotionValue } from 'framer-motion';
 import { MouseEvent } from 'react';
 
 const services = [
@@ -65,7 +65,7 @@ function ServiceCard({ service, index }: { service: typeof services[0], index: n
   }
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -74,7 +74,7 @@ function ServiceCard({ service, index }: { service: typeof services[0], index: n
       className="group relative bg-[#111111] p-10 border border-[rgba(201,168,76,0.18)] overflow-hidden"
     >
       {/* Tactical Optics Spotlight */}
-      <motion.div
+      <m.div
         className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`
@@ -120,7 +120,7 @@ function ServiceCard({ service, index }: { service: typeof services[0], index: n
 
       {/* Bottom Border Accent */}
       <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-[#c9a84c] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-    </motion.div>
+    </m.div>
   );
 }
 

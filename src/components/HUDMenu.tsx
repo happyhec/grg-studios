@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 const cases = [
   { id: 'case-bardboys', num: '01', title: 'BARD BOYS', color: '#c9a84c' },
@@ -50,7 +50,7 @@ export default function HUDMenu() {
   return (
     <AnimatePresence>
       {isScrolledIntoWork && activeId && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 50 }}
@@ -79,13 +79,13 @@ export default function HUDMenu() {
           
           {/* Vertical Track */}
           <div className="h-[100px] w-[1px] bg-white/20 relative overflow-hidden">
-            <motion.div 
+            <m.div 
               animate={{ y: ["-100%", "200%"] }} 
               transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
               className="absolute inset-0 bg-[#c9a84c] opacity-50"
             />
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

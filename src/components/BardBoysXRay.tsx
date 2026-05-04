@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from 'framer-motion';
 import { ShieldAlert, Video, Lock } from "lucide-react";
 
 export default function BardBoysXRay() {
@@ -38,7 +38,7 @@ export default function BardBoysXRay() {
         
         <AnimatePresence mode="wait">
           {!isDiagnostic ? (
-            <motion.div
+            <m.div
               key="render"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -50,9 +50,9 @@ export default function BardBoysXRay() {
                   <span className="text-[10px] tracking-[0.8em] uppercase text-white/40 mb-4 block">Final Rendered UI</span>
                   <h3 className="text-5xl md:text-8xl font-black text-white/80 tracking-tighter uppercase italic">HOUSE BRAND.</h3>
                </div>
-            </motion.div>
+            </m.div>
           ) : (
-             <motion.div
+             <m.div
               key="xray"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -60,7 +60,7 @@ export default function BardBoysXRay() {
               className="absolute inset-0 flex flex-col font-mono bg-[#080808]"
             >
                {/* Grid line scanning */}
-               <motion.div 
+               <m.div 
                  animate={{ top: ["0%", "100%"] }}
                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                  className="absolute left-0 right-0 h-[2px] bg-red-600 shadow-[0_0_20px_red] z-30"
@@ -103,7 +103,7 @@ export default function BardBoysXRay() {
                            <span>98.4%</span>
                         </div>
                         <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
-                           <motion.div animate={{ width: ["0%", "100%"] }} transition={{ duration: 8, repeat: Infinity }} className="h-full bg-[#c9a84c]" />
+                           <m.div animate={{ width: ["0%", "100%"] }} transition={{ duration: 8, repeat: Infinity }} className="h-full bg-[#c9a84c]" />
                         </div>
                      </div>
                   </div>
@@ -142,7 +142,7 @@ export default function BardBoysXRay() {
                   </div>
 
                </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

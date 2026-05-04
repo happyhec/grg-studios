@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from 'framer-motion';
 import { Cpu, Globe, Share2, Sparkles } from "lucide-react";
 
 /**
@@ -73,15 +73,15 @@ export default function FloraScrollytelling() {
           </div>
           
           <div className="relative h-[200px] w-full font-mono text-sm leading-relaxed text-[#c9a84c]/80 md:text-base bg-black/40 p-6 rounded-lg border border-white/5">
-            <motion.pre style={{ opacity: stage1Opacity }} className="absolute inset-0 p-6 whitespace-pre-wrap">
+            <m.pre style={{ opacity: stage1Opacity }} className="absolute inset-0 p-6 whitespace-pre-wrap">
               {FLORA_PROMPTS[0]}
-            </motion.pre>
-            <motion.pre style={{ opacity: stage2Opacity }} className="absolute inset-0 p-6 whitespace-pre-wrap">
+            </m.pre>
+            <m.pre style={{ opacity: stage2Opacity }} className="absolute inset-0 p-6 whitespace-pre-wrap">
               {FLORA_PROMPTS[1]}
-            </motion.pre>
-            <motion.pre style={{ opacity: stage3Opacity }} className="absolute inset-0 p-6 whitespace-pre-wrap">
+            </m.pre>
+            <m.pre style={{ opacity: stage3Opacity }} className="absolute inset-0 p-6 whitespace-pre-wrap">
               {FLORA_PROMPTS[2]}
-            </motion.pre>
+            </m.pre>
           </div>
         </div>
 
@@ -89,7 +89,7 @@ export default function FloraScrollytelling() {
         <div className="relative flex h-1/2 w-full items-center justify-center overflow-hidden bg-[#080808] p-4 md:h-full md:w-[60%] md:p-12">
           
           {/* Stage 1: AI Inventory Mapping */}
-          <motion.div 
+          <m.div 
             style={{ opacity: stage1Opacity }} 
             className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
           >
@@ -99,10 +99,10 @@ export default function FloraScrollytelling() {
                 <h3 className="font-rajdhani text-3xl tracking-widest text-white uppercase">Networked Availability</h3>
                 <p className="mt-4 text-[#c9a84c]/60 text-xs uppercase tracking-widest">Real-time Node: Oxnard_Central</p>
              </div>
-          </motion.div>
+          </m.div>
 
           {/* Stage 2: SEO Synth */}
-          <motion.div 
+          <m.div 
             style={{ opacity: stage2Opacity }} 
             className="absolute inset-0 flex items-center justify-center bg-[#0d0d0d] p-8"
           >
@@ -120,10 +120,10 @@ export default function FloraScrollytelling() {
                    ))}
                 </div>
              </div>
-          </motion.div>
+          </m.div>
 
           {/* Stage 3: Luxury UI Transition */}
-          <motion.div 
+          <m.div 
             style={{ opacity: stage3Opacity }} 
             className="absolute inset-0 flex flex-col items-center justify-center bg-[#050505] p-8"
           >
@@ -134,7 +134,7 @@ export default function FloraScrollytelling() {
                    <span className="text-[10px] tracking-[0.5em] uppercase text-[#c9a84c]">Premium Auth Secure</span>
                 </div>
              </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

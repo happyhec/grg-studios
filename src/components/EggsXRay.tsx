@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from 'framer-motion';
 import { Layers, BoxSelect, Database, Zap, Cpu } from "lucide-react";
 
 export default function EggsXRay() {
@@ -41,7 +41,7 @@ export default function EggsXRay() {
         
         <AnimatePresence mode="wait">
           {!isDiagnostic ? (
-            <motion.div
+            <m.div
               key="visual"
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -57,9 +57,9 @@ export default function EggsXRay() {
                      {[1,2,3].map(i => <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#c9a84c]/40" />)}
                   </div>
                </div>
-            </motion.div>
+            </m.div>
           ) : (
-             <motion.div
+             <m.div
               key="xray"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -120,7 +120,7 @@ export default function EggsXRay() {
                            <span>99.98%</span>
                         </div>
                         <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
-                           <motion.div 
+                           <m.div 
                              animate={{ x: ["-100%", "100%"] }} 
                              transition={{ duration: 4, repeat: Infinity, ease: "linear" }} 
                              className="w-1/3 h-full bg-gradient-to-r from-transparent via-[#c9a84c] to-transparent" 
@@ -170,12 +170,12 @@ export default function EggsXRay() {
                </div>
 
                {/* Vertical Scanning line */}
-               <motion.div 
+               <m.div 
                  animate={{ left: ["0%", "100%"] }}
                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                  className="absolute top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-[#c9a84c] to-transparent shadow-[0_0_30px_#c9a84c]"
                />
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from 'framer-motion';
 import { Flower, Cpu, Globe } from "lucide-react";
 
 export default function FloraXRay() {
@@ -45,7 +45,7 @@ export default function FloraXRay() {
           System X-Ray
         </button>
         
-        <motion.div
+        <m.div
           className="absolute inset-y-1 w-36 rounded-full bg-[#c9a84c] shadow-[0_0_20px_rgba(201,168,76,0.4)]"
           animate={{ x: view === "visual" ? 0 : 144 }}
           transition={{ type: "spring", stiffness: 400, damping: 30 }}
@@ -57,7 +57,7 @@ export default function FloraXRay() {
         
         <AnimatePresence mode="wait">
           {view === "visual" ? (
-            <motion.div
+            <m.div
               key="visual"
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -75,9 +75,9 @@ export default function FloraXRay() {
                     <span className="text-[10px] tracking-[0.5em] uppercase text-[#c9a84c] border-b border-[#c9a84c] pb-2 transition-all group-hover:tracking-[0.7em]">Shop the Collection</span>
                   </div>
                </div>
-            </motion.div>
+            </m.div>
           ) : (
-            <motion.div
+            <m.div
               key="system"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -158,7 +158,7 @@ export default function FloraXRay() {
                           <span>Active</span>
                        </div>
                        <div className="w-full h-[2px] bg-white/5 overflow-hidden rounded-full">
-                          <motion.div 
+                          <m.div 
                             initial={{ x: "-100%" }}
                             animate={{ x: "100%" }}
                             transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
@@ -170,12 +170,12 @@ export default function FloraXRay() {
                </div>
 
                {/* Tracking Line */}
-               <motion.div 
+               <m.div 
                  animate={{ left: ["0%", "100%"] }}
                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                  className="absolute top-0 bottom-0 w-[1px] bg-[#c9a84c]/40 shadow-[0_0_25px_#c9a84c] z-30"
                />
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
       </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import { ShieldCheck, Layout, Zap, Database } from 'lucide-react';
 
@@ -52,7 +52,7 @@ export default function MBAVenturaShowcase() {
           </div>
 
           {/* Visual Side */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -80,7 +80,7 @@ export default function MBAVenturaShowcase() {
                 <div className="text-[10px] font-mono text-white/40">SSL_ENCRYPTION_ACTIVE</div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
         </div>
 

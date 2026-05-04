@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 const faqs = [
   {
@@ -77,7 +77,7 @@ export default function FAQ() {
               
               <AnimatePresence>
                 {openIndex === i && (
-                  <motion.div
+                  <m.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
@@ -86,7 +86,7 @@ export default function FAQ() {
                     <div className="px-6 md:px-8 pb-8 text-sm text-[#a3a39c] leading-relaxed border-t border-white/5 pt-6">
                       {faq.answer}
                     </div>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
