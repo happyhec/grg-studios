@@ -1,25 +1,20 @@
-- name: Commit scores
-  if: success()
-  run: |
-    ...
-name: Fetch PageSpeed Insights scores
+- name: Fetch PageSpeed Insights scores
   run: |
     RESPONSE=$(curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://grginnovations.com&strategy=mobile&key=${{ secrets.PSI_API_KEY }}")
-    
+
     echo "$RESPONSE" | node -e "
       const data = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
-      
-      // Log any API error clearly
+
       if (data.error) {
         console.error('PSI API Error:', JSON.stringify(data.error, null, 2));
         process.exit(1);
       }
-      
+
       if (!data.lighthouseResult || !data.lighthouseResult.categories) {
         console.error('Unexpected response structure:', JSON.stringify(Object.keys(data), null, 2));
         process.exit(1);
       }
-      
+
       const cats = data.lighthouseResult.categories;
       const scores = {
         performance: Math.round(cats.performance.score * 100),
@@ -33,6 +28,7 @@ name: Fetch PageSpeed Insights scores
     "
 
 - name: Commit scores
+  if: success()
   run: |
     git config user.name "github-actions"
     git config user.email "actions@github.com"
