@@ -151,15 +151,16 @@ export default function AgencyHero() {
             Custom websites, automation, and operational tools for businesses that are done with templates and ready for real growth.
           </p>
 
-          <div className="mt-10 md:mt-14 flex flex-wrap items-center justify-center gap-6 md:gap-10">
+          <div className="mt-10 md:mt-14 flex flex-col items-center gap-3 w-full max-w-xl">
             {[
-              { value: "12+", label: "Projects Shipped" },
-              { value: "5", label: "Active Systems" },
-              { value: "100%", label: "Custom Code" },
-            ].map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center gap-1">
-                <span className="font-rajdhani text-2xl md:text-3xl font-bold text-[#c9a84c]">{stat.value}</span>
-                <span className="text-[10px] tracking-[0.2em] uppercase text-white/30 font-medium">{stat.label}</span>
+              "Sub-1.5s Load Times — Every Build",
+              "100% Core Web Vitals Pass Rate",
+              "100% Custom Code — Zero Templates",
+              "Ventura County's Only Security-First Studio",
+            ].map((badge) => (
+              <div key={badge} className="w-full flex items-center gap-3 px-5 py-3 rounded-lg border border-white/5 bg-white/[0.03]">
+                <span className="text-[#c9a84c] text-base leading-none flex-shrink-0">✦</span>
+                <span className="text-[11px] md:text-[12px] tracking-[0.12em] uppercase text-white/60 font-medium">{badge}</span>
               </div>
             ))}
           </div>
