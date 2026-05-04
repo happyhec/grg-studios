@@ -26,7 +26,7 @@ const services = [
     title: "Strategic Branding",
     desc: "A visual story that commands attention. From high-fidelity logo systems to sensory-driven brand guidelines, we build identities that resonate with premium markets.",
     tags: ["Logo System", "HSL Palettes", "Typography"],
-    from: "From $1,200"
+    from: "From $1,800"
   },
   {
     num: "04",
@@ -42,7 +42,7 @@ const services = [
     title: "SEO & Authority",
     desc: "Get found by the right people. We implement on-page optimization, technical SEO, and local search strategies built for sustainable dominance in your market.",
     tags: ["Technical SEO", "Local Authority", "Speed Prep"],
-    from: "From $500/mo"
+    from: "From $750/mo"
   },
   {
     num: "06",

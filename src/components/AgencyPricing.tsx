@@ -5,6 +5,22 @@ import { MouseEvent } from 'react';
 
 const tiers = [
   {
+    name: "Launch Page",
+    price: "$799",
+    tagline: "A single high-performance, custom-coded page that converts. Fast to ship, built to impress, and a real foundation to grow from.",
+    features: [
+      "Custom-coded single-page site",
+      "Mobile-first responsive design",
+      "On-page technical SEO",
+      "Contact form or click-to-call CTA",
+      "Cloudflare-hosted for speed",
+      "1 round of revisions"
+    ],
+    bestFor: "New businesses, side projects, and anyone ready to test the market fast.",
+    featured: false,
+    entry: true
+  },
+  {
     name: "The System",
     price: "$2,999",
     tagline: "A custom multi-page website built to give your business more clarity, stronger structure, and lead-gen logic.",
@@ -54,9 +70,9 @@ const tiers = [
 
 const addons = [
   { 
-    name: "Architectural Asset Audit", 
+    name: "Digital Infrastructure Review", 
     price: "From $1,200",
-    detail: "Comprehensive diagnostic of existing digital assets, brand tokens, and infrastructure bottlenecks."
+    detail: "A paid consulting deliverable: full written audit, competitive analysis, and a custom technical roadmap for your digital ecosystem. Not a scan — a strategy."
   },
   { 
     name: "Logo & Brand Systems", 
@@ -98,7 +114,9 @@ function PricingCard({ tier, index }: { tier: typeof tiers[0], index: number }) 
       transition={{ duration: 0.5, delay: index * 0.1 }}
       onMouseMove={handleMouseMove}
       className={`group relative p-10 border flex flex-col h-full bg-[#111111] ${
-        tier.signature ? 'border-[rgba(201,168,76,0.5)] bg-gradient-to-br from-[rgba(201,168,76,0.05)] to-[#0a0a0a]' : 'border-[rgba(201,168,76,0.18)]'
+        tier.signature ? 'border-[rgba(201,168,76,0.5)] bg-gradient-to-br from-[rgba(201,168,76,0.05)] to-[#0a0a0a]' 
+        : (tier as any).entry ? 'border-dashed border-[rgba(201,168,76,0.25)]'
+        : 'border-[rgba(201,168,76,0.18)]'
       }`}
     >
       {/* Tactical Optics Spotlight */}
@@ -164,7 +182,7 @@ function PricingCard({ tier, index }: { tier: typeof tiers[0], index: number }) 
             : 'border border-[#c9a84c] text-[#c9a84c] hover:bg-[#c9a84c]/10'
           }`}
         >
-          {tier.name === "The System" ? "Start Your Project" : "Let's Talk"}
+          {tier.name === "The System" ? "Start Your Project" : tier.name === "Launch Page" ? "Get Started" : "Let's Talk"}
         </a>
       </div>
     </m.div>
@@ -188,7 +206,7 @@ export default function AgencyPricing() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-20">
           {tiers.map((tier, i) => (
             <PricingCard key={tier.name} tier={tier} index={i} />
           ))}
