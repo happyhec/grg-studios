@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter, Outfit, Rajdhani } from "next/font/google";
 import "./globals.css";
 import AgencyNavbar from "@/components/AgencyNavbar";
 import AgencyFooter from "@/components/AgencyFooter";
@@ -15,6 +15,13 @@ const inter = Inter({
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
+  display: 'swap',
+});
+
+const rajdhani = Rajdhani({
+  variable: "--font-rajdhani",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   display: 'swap',
 });
 
@@ -53,7 +60,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={`${inter.variable} ${outfit.variable} font-inter antialiased md:cursor-none`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${outfit.variable} ${rajdhani.variable} font-inter antialiased md:cursor-none`} suppressHydrationWarning>
         <LayoutClient>
           <AgencyNavbar />
           <main className="relative z-10 flex min-h-screen flex-col">
