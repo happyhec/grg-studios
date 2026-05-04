@@ -1,38 +1,29 @@
 name: Update Lighthouse Scores
-
 on:
   schedule:
     - cron: '0 6 * * 1'
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
   lighthouse:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Fetch PageSpeed Insights scores
         run: |
           RESPONSE=$(curl -s "https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=https://grginnovations.com&strategy=mobile&category=performance&category=accessibility&category=best-practices&category=seo&key=${{ secrets.PSI_API_KEY }}")
-
           echo "$RESPONSE" | node -e "
             const data = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
-
             if (data.error) {
               console.error('PSI API Error:', JSON.stringify(data.error, null, 2));
               process.exit(1);
             }
-
             if (!data.lighthouseResult || !data.lighthouseResult.categories) {
               console.error('Unexpected response structure:', JSON.stringify(Object.keys(data), null, 2));
               process.exit(1);
             }
-
             const cats = data.lighthouseResult.categories;
             const scores = {
               performance: Math.round(cats.performance.score * 100),
@@ -44,7 +35,6 @@ jobs:
             console.log('Scores:', JSON.stringify(scores));
             require('fs').writeFileSync('public/lighthouse-scores.json', JSON.stringify(scores));
           "
-
       - name: Commit scores
         if: success()
         run: |
@@ -53,3 +43,6 @@ jobs:
           git add public/lighthouse-scores.json
           git diff --staged --quiet || git commit -m "chore: update lighthouse scores"
           git push
+      - name: Trigger Cloudflare deploy
+        if: success()
+        run: curl -X POST "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/7088298c-c55f-4f5a-a483-77c2e6103ad7"
