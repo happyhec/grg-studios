@@ -70,7 +70,7 @@ export default function ProjectSpotlight() {
               <div className="w-8 h-[0.5px] bg-[#c9a84c]" />
               <span className="text-[10px] tracking-[0.3em] uppercase text-[#c9a84c] font-semibold">The Built Truth // Interactive Tour</span>
             </div>
-            <h2 className="font-bebas text-5xl md:text-8xl font-light text-white mb-6 leading-[0.85] uppercase tracking-tighter">
+            <h2 className="font-rajdhani text-5xl md:text-8xl font-light text-white mb-6 leading-[0.85] uppercase tracking-tighter">
               Eggs 'N' Things: <br /> <em className="italic text-[#c9a84c] not-italic">Refactored.</em>
             </h2>
             <p className="text-[#a3a39c] font-outfit font-light leading-relaxed max-w-lg">
@@ -95,7 +95,7 @@ export default function ProjectSpotlight() {
             )}
 
             <a 
-              href="https://eggsandthings.com" 
+              href="https://eggsnthings.grginnovations.com/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-[#c9a84c] text-[10px] font-bold tracking-[0.2em] uppercase hover:text-white transition-colors border-b border-[#c9a84c]/30 hover:border-white pb-1"
@@ -114,7 +114,7 @@ export default function ProjectSpotlight() {
             { value: "Leads", label: "Catering Engine" }
           ].map(stat => (
             <div key={stat.label} className="flex items-center gap-2">
-              <span className="font-bebas text-2xl text-[#c9a84c] tracking-widest leading-none">{stat.value}</span>
+              <span className="font-rajdhani text-2xl text-[#c9a84c] tracking-widest leading-none">{stat.value}</span>
               <span className="text-[10px] tracking-[0.2em] uppercase text-white/40 leading-none">{stat.label}</span>
             </div>
           ))}
@@ -173,7 +173,7 @@ export default function ProjectSpotlight() {
                          <div className="font-mono text-[9px] text-[#c9a84c] tracking-[0.5em] uppercase">SYNC_NODE_0{currentStep + 1}</div>
                       </div>
                       
-                      <h3 className="text-white text-2xl md:text-3xl font-bebas tracking-widest uppercase mb-3 md:mb-4">
+                      <h3 className="text-white text-2xl md:text-3xl font-rajdhani tracking-widest uppercase mb-3 md:mb-4">
                         {currentTourStep?.title}
                       </h3>
                       

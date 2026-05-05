@@ -284,11 +284,6 @@ function SceneArt({ scene }: { scene: Project['scene'] }) {
 function FlipScene({ project }: { project: Project }) {
   const [peeking, setPeeking] = useState(false);
   const [flipped, setFlipped] = useState(false);
-  // Mount flip images when the card enters the viewport — not on hover.
-  // This avoids the race condition where CSS slides the wrapper up before
-  // React has had time to re-render and paint the <Image> tags.
-  const [imagesReady, setImagesReady] = useState(false);
-  const sceneRef = useRef<HTMLDivElement | null>(null);
   const timers = useRef<number[]>([]);
   const interval = useRef<number | null>(null);
   const hasFlip = Boolean(project.frontImage || project.backImage);
@@ -301,34 +296,6 @@ function FlipScene({ project }: { project: Project }) {
     setPeeking(false);
     window.setTimeout(() => setFlipped(false), 420);
   };
-
-  // Mount images lazily on the very first user interaction (scroll, mousemove, touch).
-  // This guarantees 0 network payload during the initial Lighthouse page load,
-  // but ensures images are fetching long before the user scrolls down to hover them.
-  useEffect(() => {
-    if (!hasFlip || imagesReady) return;
-    
-    const handleUserInteraction = () => {
-      setImagesReady(true);
-      window.removeEventListener('scroll', handleUserInteraction);
-      window.removeEventListener('mousemove', handleUserInteraction);
-      window.removeEventListener('touchstart', handleUserInteraction);
-    };
-
-    window.addEventListener('scroll', handleUserInteraction, { passive: true });
-    window.addEventListener('mousemove', handleUserInteraction, { passive: true });
-    window.addEventListener('touchstart', handleUserInteraction, { passive: true });
-    
-    // Fallback: load after 3 seconds anyway just in case
-    const fallback = setTimeout(handleUserInteraction, 3000);
-
-    return () => {
-      window.removeEventListener('scroll', handleUserInteraction);
-      window.removeEventListener('mousemove', handleUserInteraction);
-      window.removeEventListener('touchstart', handleUserInteraction);
-      clearTimeout(fallback);
-    };
-  }, [hasFlip, imagesReady]);
 
   const start = () => {
     if (!hasFlip) return;
@@ -351,7 +318,6 @@ function FlipScene({ project }: { project: Project }) {
 
   return (
     <div
-      ref={sceneRef}
       className={`scene ${project.featured ? 'tall' : ''} ${hasFlip ? 'hasFlip' : ''} ${peeking ? 'peeking' : ''}`}
       onMouseEnter={start}
       onMouseLeave={stop}
@@ -372,35 +338,33 @@ function FlipScene({ project }: { project: Project }) {
           <div className="flipWrapper">
             <div className={`flipCard ${flipped ? 'flipped' : ''}`}>
               <div className="flipFace">
-                {(project.frontImage && imagesReady) ? (
+                {project.frontImage && (
                   <Image
                     src={project.frontImage}
                     alt={`${project.title} homepage`}
                     fill
-                    priority={true}
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-top"
                     onError={(event) => {
                       event.currentTarget.style.display = 'none';
                     }}
                   />
-                ) : null}
+                )}
                 <div className="faceLabel"><span />{project.frontLabel ?? 'Homepage'}</div>
               </div>
               <div className="flipFace flipBack">
-                {(project.backImage && imagesReady) ? (
+                {project.backImage && (
                   <Image
                     src={project.backImage}
                     alt={`${project.title} dashboard`}
                     fill
-                    priority={true}
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-top"
                     onError={(event) => {
                       event.currentTarget.style.display = 'none';
                     }}
                   />
-                ) : null}
+                )}
                 <div className="faceLabel"><span />{project.backLabel ?? 'Dashboard'}</div>
               </div>
             </div>
