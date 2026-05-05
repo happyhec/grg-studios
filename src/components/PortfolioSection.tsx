@@ -284,7 +284,11 @@ function SceneArt({ scene }: { scene: Project['scene'] }) {
 function FlipScene({ project }: { project: Project }) {
   const [peeking, setPeeking] = useState(false);
   const [flipped, setFlipped] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
+  // Mount flip images when the card enters the viewport — not on hover.
+  // This avoids the race condition where CSS slides the wrapper up before
+  // React has had time to re-render and paint the <Image> tags.
+  const [imagesReady, setImagesReady] = useState(false);
+  const sceneRef = useRef<HTMLDivElement | null>(null);
   const timers = useRef<number[]>([]);
   const interval = useRef<number | null>(null);
   const hasFlip = Boolean(project.frontImage || project.backImage);
@@ -298,9 +302,26 @@ function FlipScene({ project }: { project: Project }) {
     window.setTimeout(() => setFlipped(false), 420);
   };
 
+  // Mount images lazily once card is near the viewport.
+  useEffect(() => {
+    if (!hasFlip || imagesReady) return;
+    const el = sceneRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setImagesReady(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasFlip, imagesReady]);
+
   const start = () => {
     if (!hasFlip) return;
-    setHasInteracted(true);
     timers.current.forEach(clearTimeout);
     timers.current = [];
     if (interval.current) clearInterval(interval.current);
@@ -320,6 +341,7 @@ function FlipScene({ project }: { project: Project }) {
 
   return (
     <div
+      ref={sceneRef}
       className={`scene ${project.featured ? 'tall' : ''} ${hasFlip ? 'hasFlip' : ''} ${peeking ? 'peeking' : ''}`}
       onMouseEnter={start}
       onMouseLeave={stop}
@@ -340,7 +362,7 @@ function FlipScene({ project }: { project: Project }) {
           <div className="flipWrapper">
             <div className={`flipCard ${flipped ? 'flipped' : ''}`}>
               <div className="flipFace">
-                {(project.frontImage && hasInteracted) ? (
+                {(project.frontImage && imagesReady) ? (
                   <Image
                     src={project.frontImage}
                     alt={`${project.title} homepage`}
@@ -355,7 +377,7 @@ function FlipScene({ project }: { project: Project }) {
                 <div className="faceLabel"><span />{project.frontLabel ?? 'Homepage'}</div>
               </div>
               <div className="flipFace flipBack">
-                {(project.backImage && hasInteracted) ? (
+                {(project.backImage && imagesReady) ? (
                   <Image
                     src={project.backImage}
                     alt={`${project.title} dashboard`}
