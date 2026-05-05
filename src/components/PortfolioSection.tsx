@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 
 type Category = 'all' | 'realestate' | 'commerce' | 'retail' | 'restaurant' | 'brand';
 
@@ -64,6 +63,30 @@ const projects: Project[] = [
     backImage: '/screenshots/audrey-dashboard.webp',
     frontLabel: 'Homepage',
     backLabel: 'Dashboard',
+  },
+  {
+    id: 'eggs',
+    category: 'restaurant',
+    categoryLabel: 'Restaurant Operations Platform',
+    categoryClass: 'catCream',
+    title: 'Eggs N Things',
+    description:
+      'Full-stack restaurant ecosystem spanning 5 locations. From legacy GoDaddy to a custom React architecture with staff portals, real-time menu sync, and automated waitlist management.',
+    features: [
+      'Staff Portal with sub-1s data persistence and live 86\'d menu sync across all locations',
+      'Admin dashboard with holiday overrides, QR generation, and role-based access management',
+      'Catering lead engine and digital waitlist automation for high-volume service',
+    ],
+    tags: ['Next.js', 'React', 'Tailwind CSS', 'Cloudflare', 'Staff Portal'],
+    href: 'https://eggsnthings.grginnovations.com/',
+    scene: 'eggs',
+    featured: true,
+    badge: 'Multi-Location Operations — 5 Nodes Live',
+    metrics: ['Live', '5 Locations', 'Staff Portal Active'],
+    frontImage: '/assets/projects/eggs/full_homepage.png',
+    backImage: '/assets/projects/eggs/staff_portal.png',
+    frontLabel: 'Homepage',
+    backLabel: 'Staff Portal',
   },
   {
     id: 'mba',
@@ -130,23 +153,6 @@ const projects: Project[] = [
     backImage: '/screenshots/mayra-dashboard.webp',
     frontLabel: 'Mobile View',
     backLabel: 'Dashboard',
-  },
-  {
-    id: 'eggs',
-    category: 'restaurant',
-    categoryLabel: 'Restaurant',
-    categoryClass: 'catCream',
-    title: 'Eggs N Things',
-    description:
-      'Appetite-first restaurant brand experience. Warm, fast, and built for local discovery with an immediate sense of food and atmosphere.',
-    features: [
-      'Menu-forward layout designed around food photography',
-      'Location, hours, and contact details are instantly findable on mobile',
-    ],
-    tags: ['Next.js', 'Tailwind CSS', 'Cloudflare'],
-    href: 'https://eggsnthings.grginnovations.com/',
-    scene: 'eggs',
-    metrics: ['Live'],
   },
 ];
 
@@ -339,12 +345,12 @@ function FlipScene({ project }: { project: Project }) {
             <div className={`flipCard ${flipped ? 'flipped' : ''}`}>
               <div className="flipFace">
                 {project.frontImage && (
-                  <Image
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
                     src={project.frontImage}
                     alt={`${project.title} homepage`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
                     onError={(event) => {
                       event.currentTarget.style.display = 'none';
                     }}
@@ -354,12 +360,12 @@ function FlipScene({ project }: { project: Project }) {
               </div>
               <div className="flipFace flipBack">
                 {project.backImage && (
-                  <Image
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
                     src={project.backImage}
                     alt={`${project.title} dashboard`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
                     onError={(event) => {
                       event.currentTarget.style.display = 'none';
                     }}
@@ -423,7 +429,7 @@ function ProjectCard({ project, delay = '' }: { project: Project; delay?: string
 export default function PortfolioSection() {
   const [activeFilter, setActiveFilter] = useState<Category>('all');
   const visibleProjects = activeFilter === 'all' ? projects : projects.filter((project) => project.category === activeFilter);
-  const featured = visibleProjects.find((project) => project.featured);
+  const featuredProjects = visibleProjects.filter((project) => project.featured);
   const remaining = visibleProjects.filter((project) => !project.featured);
 
   return (
@@ -434,7 +440,7 @@ export default function PortfolioSection() {
         <Reveal className="sectionHeader">
           <p>Selected Work</p>
           <h2 id="portfolio-heading">Systems that <em>earn</em><br />their place</h2>
-          <span>Hover the first cards to move from brand surface into the operational layer behind it.</span>
+          <span>Hover the featured cards to move from brand surface into the operational layer behind it.</span>
         </Reveal>
 
         <Reveal className="filters" delay="d1">
@@ -450,7 +456,9 @@ export default function PortfolioSection() {
           ))}
         </Reveal>
 
-        {featured ? <ProjectCard project={featured} /> : null}
+        {featuredProjects.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
 
         <div className="portfolioGrid two">
           {remaining.slice(0, 2).map((project, index) => (

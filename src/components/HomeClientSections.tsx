@@ -5,7 +5,6 @@ import LazySection from './LazySection';
 
 const ServicesGrid = dynamic(() => import('@/components/ServicesGrid'), { ssr: false });
 const PortfolioSection = dynamic(() => import('@/components/PortfolioSection'), { ssr: false });
-const ProjectSpotlight = dynamic(() => import('@/components/ProjectSpotlight'), { ssr: false });
 const MotionLabBanner = dynamic(() => import('@/components/MotionLabBanner'), { ssr: false });
 const AgencyProcess = dynamic(() => import('@/components/AgencyProcess'), { ssr: false });
 const AgencyTestimonials = dynamic(() => import('@/components/AgencyTestimonials'), { ssr: false });
@@ -23,12 +22,6 @@ export default function HomeClientSections() {
 
       <LazySection height="800px">
         <PortfolioSection />
-      </LazySection>
-
-      <LazySection height="800px">
-        <div id="case-eggs" className="bg-[#080808] border-b border-white/5 py-12">
-          <ProjectSpotlight />
-        </div>
       </LazySection>
 
       <LazySection height="400px">
