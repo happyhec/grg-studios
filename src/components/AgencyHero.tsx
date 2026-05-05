@@ -103,7 +103,7 @@ export default function AgencyHero() {
         >
           <div className="relative group p-8 md:p-12">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="GRG Studios Logo"
               width={500}
               height={200}
@@ -139,7 +139,7 @@ export default function AgencyHero() {
               ? "none"
               : "perspective(1200px) translateZ(var(--slide1-z, 0px)) scale(var(--slide1-scale, 1))",
           } as any}
-          className={`absolute flex flex-col items-center justify-center text-center p-6 md:p-16 rounded-[2.5rem] border border-white/5 bg-black/40 ${isMobile ? '' : 'backdrop-blur-md'} w-[90vw] max-w-[1000px] z-[30] will-change-transform`}
+          className={`absolute flex flex-col items-center justify-center text-center p-6 md:p-16 rounded-[2.5rem] border border-white/5 bg-black/40 md:backdrop-blur-md w-[90vw] max-w-[1000px] z-[30] will-change-transform`}
         >
           <p className="tracking-[0.4em] text-[10px] md:text-[11px] text-[#c9a84c] mb-6 md:mb-8 uppercase font-bold">
             Ventura County's Digital Studio
