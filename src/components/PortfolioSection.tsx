@@ -284,6 +284,7 @@ function SceneArt({ scene }: { scene: Project['scene'] }) {
 function FlipScene({ project }: { project: Project }) {
   const [peeking, setPeeking] = useState(false);
   const [flipped, setFlipped] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const timers = useRef<number[]>([]);
   const interval = useRef<number | null>(null);
   const hasFlip = Boolean(project.frontImage || project.backImage);
@@ -299,6 +300,7 @@ function FlipScene({ project }: { project: Project }) {
 
   const start = () => {
     if (!hasFlip) return;
+    setHasInteracted(true);
     timers.current.forEach(clearTimeout);
     timers.current = [];
     if (interval.current) clearInterval(interval.current);
@@ -338,7 +340,7 @@ function FlipScene({ project }: { project: Project }) {
           <div className="flipWrapper">
             <div className={`flipCard ${flipped ? 'flipped' : ''}`}>
               <div className="flipFace">
-                {project.frontImage ? (
+                {(project.frontImage && hasInteracted) ? (
                   <Image
                     src={project.frontImage}
                     alt={`${project.title} homepage`}
@@ -353,7 +355,7 @@ function FlipScene({ project }: { project: Project }) {
                 <div className="faceLabel"><span />{project.frontLabel ?? 'Homepage'}</div>
               </div>
               <div className="flipFace flipBack">
-                {project.backImage ? (
+                {(project.backImage && hasInteracted) ? (
                   <Image
                     src={project.backImage}
                     alt={`${project.title} dashboard`}
