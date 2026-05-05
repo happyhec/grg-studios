@@ -548,7 +548,7 @@ const portfolioStyles = `
 .flipCard.flipped { transform:rotateY(180deg); }
 .flipFace { position:absolute; inset:0; backface-visibility:hidden; background:var(--p-surface-3); overflow:hidden; }
 .flipBack { transform:rotateY(180deg); }
-.flipFace img { width:100%; height:100%; object-fit:cover; object-position:top center; }
+.flipFace img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top center; }
 .flipFace::after { content:''; position:absolute; left:0; right:0; bottom:0; height:64px; background:linear-gradient(to bottom,transparent,var(--p-surface)); }
 .faceLabel, .hintIdle {
   position:absolute; left:50%; bottom:.75rem; transform:translateX(-50%); z-index:5; display:inline-flex; align-items:center; gap:.45rem;
