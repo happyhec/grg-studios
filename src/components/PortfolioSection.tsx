@@ -538,7 +538,7 @@ const portfolioStyles = `
 }
 .portfolioCard:hover, .nextCard:hover { transform:translateY(-4px); border-color:var(--p-border-2); box-shadow:0 16px 48px rgba(0,0,0,.7); }
 .portfolioCard.featured { margin-bottom:clamp(1rem,2vw,1.5rem); }
-.scene { position:relative; height:260px; overflow:hidden; background:var(--p-surface-2); }
+.scene { position:relative; height:260px; overflow:hidden; background:var(--p-surface-2); flex-shrink:0; }
 .scene.tall { height:340px; }
 .sceneArt { position:absolute; inset:0; transition:opacity .42s cubic-bezier(.16,1,.3,1); }
 .hasFlip:hover .sceneArt, .hasFlip.peeking .sceneArt { opacity:0; }
