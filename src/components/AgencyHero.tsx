@@ -110,10 +110,10 @@ export default function AgencyHero() {
               priority
               className="filter invert contrast-125 brightness-150 drop-shadow-[0_0_50px_rgba(201,168,76,0.3)] w-[200px] md:w-[400px]"
             />
-            {/* CSS-only pulse — no JS animation loop */}
+            {/* Compositor-only opacity pulse — no blur, no layout cost */}
             <div
-              className="absolute inset-0 bg-[#c9a84c]/20 blur-[80px] md:blur-[100px] rounded-full scale-110 -z-10 will-change-transform"
-              style={{ animation: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}
+              className="absolute inset-0 bg-[#c9a84c]/25 rounded-full scale-150 -z-10"
+              style={{ animation: 'heroPulse 2s ease-in-out infinite' }}
             />
           </div>
           <p className="mt-4 md:mt-6 font-rajdhani text-lg md:text-xl font-light text-white/30 tracking-[0.5em] uppercase px-4 text-center">
