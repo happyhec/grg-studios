@@ -377,6 +377,7 @@ function FlipScene({ project }: { project: Project }) {
                     src={project.frontImage}
                     alt={`${project.title} homepage`}
                     fill
+                    priority={true}
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-top"
                     onError={(event) => {
@@ -392,6 +393,7 @@ function FlipScene({ project }: { project: Project }) {
                     src={project.backImage}
                     alt={`${project.title} dashboard`}
                     fill
+                    priority={true}
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-top"
                     onError={(event) => {
