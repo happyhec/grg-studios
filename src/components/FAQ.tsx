@@ -20,10 +20,6 @@ const faqs = [
     question: "Do you offer ongoing support after launch?",
     answer: "Yes. Every project includes 30 days of post-launch support. Beyond that, whether you need maintenance, SEO updates, or new features, we offer flexible Monthly Growth partnerships to keep your site ahead."
   },
-  {
-    question: "Are your prices negotiable?",
-    answer: "Our pricing reflects the depth of expertise and custom work required. While we don't 'haggle', we are happy to phase projects for smaller budgets—starting with a high-impact foundation and building out over time."
-  }
 ];
 
 export default function FAQ() {

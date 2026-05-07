@@ -13,7 +13,6 @@ export default function PageMiddleSections() {
           "Cinematic Commerce - Bard Boys",
           "Interactive Experiences - Flora Syndicate",
           "Live Waitlist System - Eggs 'N' Things",
-          "Full-Stack Development - Ventura County",
           "Custom Framer Motion & WebGL",
         ]}
         speed={35}

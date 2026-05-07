@@ -1,6 +1,6 @@
 'use client';
 
-import { m } from 'framer-motion';
+import { useRef, useState, useCallback } from 'react';
 
 const testimonials = [
   {
@@ -31,6 +31,20 @@ const testimonials = [
 
 export default function AgencyTestimonials() {
   const duplicated = [...testimonials, ...testimonials, ...testimonials];
+  const [isPaused, setIsPaused] = useState(false);
+  const touchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const pause = useCallback(() => setIsPaused(true), []);
+  const resume = useCallback(() => setIsPaused(false), []);
+
+  // Mobile: pause after a short hold (150ms), resume on lift
+  const handleTouchStart = useCallback(() => {
+    touchTimer.current = setTimeout(() => setIsPaused(true), 150);
+  }, []);
+  const handleTouchEnd = useCallback(() => {
+    if (touchTimer.current) clearTimeout(touchTimer.current);
+    setIsPaused(false);
+  }, []);
 
   return (
     <section className="bg-[#080808] py-28 overflow-hidden">
@@ -42,6 +56,9 @@ export default function AgencyTestimonials() {
         <h2 className="font-rajdhani text-5xl md:text-6xl font-light text-[#f5f0e8]">
           Trusted by <em className="italic text-[#c9a84c] not-italic">local leaders</em>.
         </h2>
+        <p className="text-[#555] text-xs mt-4 tracking-wide">
+          Hover, click, or press &amp; hold to pause and read.
+        </p>
       </div>
 
       <div className="relative">
@@ -49,30 +66,33 @@ export default function AgencyTestimonials() {
         <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#080808] to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#080808] to-transparent z-10 pointer-events-none" />
 
-        <m.div 
-          className="flex gap-8 w-max px-6 md:px-16"
-          animate={{ x: ["0%", "-33.33%"] }}
-          transition={{
-            repeat: Infinity,
-            ease: "linear",
-            duration: 40
+        <div
+          className="flex gap-8 w-max px-6 md:px-16 cursor-pointer select-none"
+          style={{
+            animation: 'testimonialsScroll 40s linear infinite',
+            animationPlayState: isPaused ? 'paused' : 'running',
           }}
-          whileHover={{ animationPlayState: 'paused' }}
+          onMouseEnter={pause}
+          onMouseLeave={resume}
+          onMouseDown={pause}
+          onMouseUp={resume}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
         >
           {duplicated.map((t, i) => (
-            <div 
+            <div
               key={i}
               className="w-[350px] md:w-[450px] flex-shrink-0 bg-[#111111] border border-white/5 p-10 rounded-xl hover:border-[rgba(201,168,76,0.3)] transition-all flex flex-col justify-between"
             >
               <div>
-                <div className="text-[#c9a84c] text-3xl mb-8 font-serif">“</div>
+                <div className="text-[#c9a84c] text-3xl mb-8 font-serif">"</div>
                 <p className="text-sm md:text-base text-[#f5f0e8] leading-relaxed mb-10 italic">
                   {t.text}
                 </p>
               </div>
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
-                  {/* TODO: Add actual client logos or headshots here */}
                   <span className="text-[#c9a84c] font-serif text-lg">{t.name.charAt(0)}</span>
                 </div>
                 <div>
@@ -83,8 +103,15 @@ export default function AgencyTestimonials() {
               </div>
             </div>
           ))}
-        </m.div>
+        </div>
       </div>
+
+      <style>{`
+        @keyframes testimonialsScroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-33.3333%); }
+        }
+      `}</style>
     </section>
   );
 }

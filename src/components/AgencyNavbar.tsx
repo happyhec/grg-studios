@@ -3,17 +3,18 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
 const MobileDrawer = dynamic(() => import('./MobileDrawer'), { ssr: false });
 
 const navLinks = [
   { name: 'Services', href: '#services' },
-  { name: 'Work', href: '#work' },
-  { name: 'Pricing', href: '#pricing' },
-  { name: 'Process', href: '#process' },
+  { name: 'Work',     href: '#work' },
+  { name: 'Pricing',  href: '#pricing' },
+  { name: 'Process',  href: '#process' },
   { name: 'Insights', href: '/insights' },
-  { name: 'About', href: '#about' },
+  { name: 'About',    href: '#about' },
 ];
 
 /**
@@ -41,13 +42,45 @@ function scrollToSection(id: string) {
 
 export default function AgencyNavbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen]     = useState(false);
+  const pathname = usePathname();
+  const isHome   = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  /**
+   * Renders the correct element for a nav link depending on context:
+   * - Full-path links (/insights)  → always a Next.js <Link>
+   * - Hash links on homepage       → <button> that smooth-scrolls
+   * - Hash links on other pages    → <Link href="/#section"> for cross-page nav
+   */
+  function NavLink({ link, className }: { link: typeof navLinks[0]; className: string }) {
+    const inner = (
+      <>
+        {link.name}
+        <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-[#c9a84c] transition-all duration-300 group-hover:w-full" />
+      </>
+    );
+
+    if (link.href.startsWith('/')) {
+      return <Link href={link.href} className={className}>{inner}</Link>;
+    }
+
+    if (isHome) {
+      return (
+        <button onClick={() => scrollToSection(link.href.replace('#', ''))} className={className}>
+          {inner}
+        </button>
+      );
+    }
+
+    // On any other page, navigate to homepage + hash so the browser scrolls there
+    return <Link href={`/${link.href}`} className={className}>{inner}</Link>;
+  }
 
   return (
     <>
@@ -70,32 +103,28 @@ export default function AgencyNavbar() {
         <ul className="hidden lg:flex items-center gap-8 list-none">
           {navLinks.map((link) => (
             <li key={link.name}>
-              {link.href.startsWith('/') ? (
-                <Link
-                  href={link.href}
-                  className="text-[10px] tracking-[0.18em] uppercase font-medium text-[#a3a39c] hover:text-[#c9a84c] transition-colors relative group"
-                >
-                  {link.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-[#c9a84c] transition-all duration-300 group-hover:w-full" />
-                </Link>
-              ) : (
-                <button
-                  onClick={() => scrollToSection(link.href.replace('#', ''))}
-                  className="text-[10px] tracking-[0.18em] uppercase font-medium text-[#a3a39c] hover:text-[#c9a84c] transition-colors relative group"
-                >
-                  {link.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-[0.5px] bg-[#c9a84c] transition-all duration-300 group-hover:w-full" />
-                </button>
-              )}
+              <NavLink
+                link={link}
+                className="text-[10px] tracking-[0.18em] uppercase font-medium text-[#a3a39c] hover:text-[#c9a84c] transition-colors relative group"
+              />
             </li>
           ))}
           <li>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="text-[10px] tracking-[0.18em] uppercase font-semibold text-[#080808] bg-[#c9a84c] px-5 py-2 rounded-sm hover:bg-[#e8d5a3] transition-all"
-            >
-              Let's Talk
-            </button>
+            {isHome ? (
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="text-[10px] tracking-[0.18em] uppercase font-semibold text-[#080808] bg-[#c9a84c] px-5 py-2 rounded-sm hover:bg-[#e8d5a3] transition-all"
+              >
+                Let's Talk
+              </button>
+            ) : (
+              <Link
+                href="/#contact"
+                className="text-[10px] tracking-[0.18em] uppercase font-semibold text-[#080808] bg-[#c9a84c] px-5 py-2 rounded-sm hover:bg-[#e8d5a3] transition-all"
+              >
+                Let's Talk
+              </Link>
+            )}
           </li>
         </ul>
 
@@ -111,7 +140,6 @@ export default function AgencyNavbar() {
         </button>
       </nav>
 
-      {/* Lazy-loaded Mobile Drawer */}
       {isOpen && <MobileDrawer isOpen={isOpen} setIsOpen={setIsOpen} navLinks={navLinks} />}
     </>
   );
