@@ -176,10 +176,6 @@ export default function AgencyContact() {
         {/* Contact Info Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-[#a3a39c] text-sm">
-            <a href="mailto:info@grg-studios.com" className="flex items-center gap-3 hover:text-[#c9a84c] transition-colors">
-              <span className="text-[#c9a84c]">✉</span> info@grg-studios.com
-            </a>
-            <div className="hidden md:block w-px h-4 bg-white/10" />
             <a href="tel:8059106096" className="flex items-center gap-3 hover:text-[#c9a84c] transition-colors">
               <span className="text-[#c9a84c]">✆</span> (805) 910-6096
             </a>
@@ -191,7 +187,7 @@ export default function AgencyContact() {
           
           {/* Teardown CTA — Separate action, not self-referencing */}
           <a 
-            href="mailto:info@grg-studios.com?subject=Free%20Website%20Teardown%20Request&body=Hi%20GRG%2C%0A%0AI'd%20like%20to%20request%20a%20free%205-minute%20teardown%20of%20my%20website%3A%0A%0AMy%20website%3A%20%0AMy%20name%3A%20%0A%0AThanks!" 
+            href="#contact" 
             className="text-[#c9a84c] text-xs font-medium border border-[#c9a84c]/30 px-6 py-3 rounded-full hover:bg-[#c9a84c]/10 transition-all whitespace-nowrap"
           >
             Request Free Website Teardown →

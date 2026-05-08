@@ -108,9 +108,7 @@ export default function MobileDrawer({ isOpen, setIsOpen, navLinks }: MobileDraw
           <a href="tel:8059106096" className="flex items-center gap-4 py-2 text-[14px] text-[#a3a39c] active:text-[#c9a84c] transition-colors">
             <span className="text-[#c9a84c] text-lg">✆</span> (805) 910-6096
           </a>
-          <a href="mailto:info@grg-studios.com" className="flex items-center gap-4 py-2 text-[14px] text-[#a3a39c] active:text-[#c9a84c] transition-colors">
-            <span className="text-[#c9a84c] text-lg">✉</span> info@grg-studios.com
-          </a>
+
           <a href="https://instagram.com/grg_studios" target="_blank" rel="noopener" className="flex items-center gap-4 py-2 text-[14px] text-[#a3a39c] active:text-[#c9a84c] transition-colors">
             <span className="text-[#c9a84c] text-lg">◈</span> @grg_studios
           </a>

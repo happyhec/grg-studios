@@ -19,7 +19,7 @@ export default function AgencyFooter() {
 
           <div className="text-center md:text-left text-[11px] leading-relaxed text-[#a3a39c] tracking-wide">
             <strong className="text-[#c9a84c] font-bold">GRG STUDIOS</strong> is a specialized creative unit of GRG Innovations LLC &nbsp;·&nbsp; Est. 2021<br />
-            Camarillo • Ventura County • California &nbsp;·&nbsp; info@grg-studios.com
+            Camarillo • Ventura County • California
           </div>
 
           <ul className="flex items-center gap-6 list-none p-0 m-0">
