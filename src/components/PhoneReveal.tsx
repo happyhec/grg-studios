@@ -15,7 +15,7 @@
  *            DOM text-content extraction returns encoded strings, not digits.
  *
  * SETUP:
- *   1. Replace TURNSTILE_SITE_KEY below with your public site key from:
+ *   1. Set NEXT_PUBLIC_TURNSTILE_SITE_KEY to your public site key from:
  *      dash.cloudflare.com → Turnstile → your widget → Site Key
  *   2. Add env vars in Cloudflare Dashboard → Pages → Settings → Environment variables:
  *      TURNSTILE_SECRET_KEY  = (secret key from Turnstile widget)
@@ -27,13 +27,28 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 // ─── YOUR PUBLIC TURNSTILE SITE KEY ──────────────────────────────────────────
 // Get from: dash.cloudflare.com → Turnstile → Add widget → Site Key
 // Use "Managed" mode for best UX (invisible for good users, CAPTCHA for suspicious ones)
-const TURNSTILE_SITE_KEY = 'YOUR_TURNSTILE_SITE_KEY';
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
 
-// ─── Layer 6: encode each digit as its HTML entity ───────────────────────────
-// Returns an array of entity strings. React renders them as real chars visually,
-// but scrapers grabbing .textContent or innerHTML get &#X; strings.
-function encodePhone(digits: string): string[] {
-  return digits.split('').map(ch => `&#${ch.charCodeAt(0)};`);
+type TurnstileWidgetId = string | number;
+
+interface TurnstileRenderOptions {
+  sitekey: string;
+  theme: 'auto' | 'dark' | 'light';
+  size: 'normal' | 'compact' | 'invisible';
+  callback: (token: string) => void | Promise<void>;
+  'error-callback': () => void;
+  'expired-callback': () => void;
+}
+
+interface TurnstileApi {
+  render: (container: HTMLElement, options: TurnstileRenderOptions) => TurnstileWidgetId;
+  remove: (widgetId: TurnstileWidgetId) => void;
+}
+
+declare global {
+  interface Window {
+    turnstile?: TurnstileApi;
+  }
 }
 
 // ─── Layer 1: split the number into chunks, interleave invisible spans ────────
@@ -101,19 +116,26 @@ export default function PhoneReveal({ variant = 'contact-bar' }: PhoneRevealProp
   const [phone,      setPhone]      = useState<string | null>(null);
   const [errorMsg,   setErrorMsg]   = useState('');
   const widgetRef                   = useRef<HTMLDivElement>(null);
-  const widgetIdRef                 = useRef<string | number | null>(null);
+  const widgetIdRef                 = useRef<TurnstileWidgetId | null>(null);
 
   // Clean up Turnstile widget on unmount
   useEffect(() => {
     return () => {
-      if (widgetIdRef.current !== null && (window as any).turnstile) {
-        (window as any).turnstile.remove(widgetIdRef.current);
+      if (widgetIdRef.current !== null && window.turnstile) {
+        window.turnstile.remove(widgetIdRef.current);
       }
     };
   }, []);
 
   const handleReveal = useCallback(async () => {
     if (state !== 'idle' && state !== 'error') return;
+
+    if (!TURNSTILE_SITE_KEY) {
+      setState('error');
+      setErrorMsg('Phone reveal is not configured yet.');
+      return;
+    }
+
     setState('loading-turnstile');
     setErrorMsg('');
 
@@ -123,14 +145,14 @@ export default function PhoneReveal({ variant = 'contact-bar' }: PhoneRevealProp
     let polls = 0;
     const waitForTurnstile = () => new Promise<void>((resolve) => {
       const check = () => {
-        if ((window as any).turnstile || polls++ > 40) { resolve(); return; }
+        if (window.turnstile || polls++ > 40) { resolve(); return; }
         setTimeout(check, 100);
       };
       check();
     });
     await waitForTurnstile();
 
-    if (!(window as any).turnstile) {
+    if (!window.turnstile) {
       setState('error');
       setErrorMsg('Challenge failed to load. Please refresh and try again.');
       return;
@@ -140,7 +162,7 @@ export default function PhoneReveal({ variant = 'contact-bar' }: PhoneRevealProp
 
     // Render Turnstile widget explicitly (invisible/managed widget)
     if (widgetRef.current) {
-      widgetIdRef.current = (window as any).turnstile.render(widgetRef.current, {
+      widgetIdRef.current = window.turnstile.render(widgetRef.current, {
         sitekey:  TURNSTILE_SITE_KEY,
         theme:    'dark',
         size:     'compact',
@@ -158,8 +180,8 @@ export default function PhoneReveal({ variant = 'contact-bar' }: PhoneRevealProp
               setPhone(data.phone);
               setState('revealed');
               // Clean up widget — no longer needed
-              if (widgetIdRef.current !== null) {
-                (window as any).turnstile.remove(widgetIdRef.current);
+              if (widgetIdRef.current !== null && window.turnstile) {
+                window.turnstile.remove(widgetIdRef.current);
                 widgetIdRef.current = null;
               }
             } else {
