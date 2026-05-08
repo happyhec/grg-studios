@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { m } from 'framer-motion';
+import PhoneReveal from '@/components/PhoneReveal';
+
 
 const projectTypes = [
   "Custom Website",
@@ -52,7 +53,7 @@ export default function AgencyContact() {
   }
 
   return (
-    <section id="contact" className="bg-[#080808] py-28 px-6 md:px-16">
+    <section className="bg-[#080808] py-28 px-6 md:px-16">
       <div className="max-w-5xl mx-auto">
         
         {/* Header — Left-aligned for authority */}
@@ -176,9 +177,7 @@ export default function AgencyContact() {
         {/* Contact Info Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 text-[#a3a39c] text-sm">
-            <a href="tel:8059106096" className="flex items-center gap-3 hover:text-[#c9a84c] transition-colors">
-              <span className="text-[#c9a84c]">✆</span> (805) 910-6096
-            </a>
+            <PhoneReveal variant="contact-bar" />
             <div className="hidden md:block w-px h-4 bg-white/10" />
             <a href="https://instagram.com/grg_studios" target="_blank" rel="noopener" className="flex items-center gap-3 hover:text-[#c9a84c] transition-colors">
               <span className="text-[#c9a84c]">◈</span> @grg_studios
@@ -187,7 +186,7 @@ export default function AgencyContact() {
           
           {/* Teardown CTA — Separate action, not self-referencing */}
           <a 
-            href="#contact" 
+            href="javascript:void(0)" onClick={(e: React.MouseEvent) => { e.preventDefault(); document.getElementById('contact-message')?.scrollIntoView({ behavior: 'smooth' }); document.getElementById('contact-message')?.focus(); }} 
             className="text-[#c9a84c] text-xs font-medium border border-[#c9a84c]/30 px-6 py-3 rounded-full hover:bg-[#c9a84c]/10 transition-all whitespace-nowrap"
           >
             Request Free Website Teardown →

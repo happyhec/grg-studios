@@ -9,7 +9,7 @@ import { m } from 'framer-motion';
  */
 export default function AgencyAbout() {
   return (
-    <section id="about" className="bg-[#0a0a0a] py-28 px-6 md:px-16 border-y border-white/5">
+    <section className="bg-[#0a0a0a] py-28 px-6 md:px-16 border-y border-white/5">
       <div className="max-w-6xl mx-auto">
 
         <m.div

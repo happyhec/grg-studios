@@ -126,7 +126,7 @@ function ServiceCard({ service, index }: { service: typeof services[0], index: n
 
 export default function ServicesGrid() {
   return (
-    <section id="services" className="bg-[#111111] py-28 px-6 md:px-16 overflow-hidden">
+    <section className="bg-[#111111] py-28 px-6 md:px-16 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-20">
           <div className="max-w-2xl">

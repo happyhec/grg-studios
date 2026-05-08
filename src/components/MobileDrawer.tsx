@@ -3,6 +3,7 @@
 import { m, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import PhoneReveal from '@/components/PhoneReveal';
 
 interface MobileDrawerProps {
   isOpen: boolean;
@@ -105,10 +106,7 @@ export default function MobileDrawer({ isOpen, setIsOpen, navLinks }: MobileDraw
         )}
 
         <div className="mt-12 pt-8 border-t border-[rgba(201,168,76,0.18)] flex flex-col gap-6">
-          <a href="tel:8059106096" className="flex items-center gap-4 py-2 text-[14px] text-[#a3a39c] active:text-[#c9a84c] transition-colors">
-            <span className="text-[#c9a84c] text-lg">✆</span> (805) 910-6096
-          </a>
-
+          <PhoneReveal variant="drawer" />
           <a href="https://instagram.com/grg_studios" target="_blank" rel="noopener" className="flex items-center gap-4 py-2 text-[14px] text-[#a3a39c] active:text-[#c9a84c] transition-colors">
             <span className="text-[#c9a84c] text-lg">◈</span> @grg_studios
           </a>

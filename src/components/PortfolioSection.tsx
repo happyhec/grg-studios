@@ -433,7 +433,7 @@ export default function PortfolioSection() {
   const remaining = visibleProjects.filter((project) => !project.featured);
 
   return (
-    <section id="work" className="portfolioSection" aria-labelledby="portfolio-heading">
+    <section className="portfolioSection" aria-labelledby="portfolio-heading">
       <style>{portfolioStyles}</style>
       <div id="portfolio" className="anchorAlias" aria-hidden="true" />
       <div className="portfolioWrap">
@@ -475,7 +475,7 @@ export default function PortfolioSection() {
               <span className="cat catAccent"><span />Next Build</span>
               <h3>Your project<br />lives here.</h3>
               <p>GRG builds branded systems, not templates. Fast, secure, and architected to grow with your business.</p>
-              <a href="mailto:hello@grginnovations.com" className="nextButton">Start a Project</a>
+              <a href="/#contact" className="nextButton">Start a Project</a>
             </Reveal>
           ) : null}
         </div>
