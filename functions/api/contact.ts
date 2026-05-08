@@ -225,8 +225,8 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const resendPayload = {
     // Change to your verified Resend sender once grg-studios.com is verified.
     // Until then use: 'GRG Studios <onboarding@resend.dev>'
-    from:     'GRG Studios <noreply@grg-studios.com>',
-    to:       ['inquiries@grg-studios.com'],
+    from:     'GRG Studios <leads@send.grg-studios.com>',
+    to:       ['info@grg-studios.com'],
     reply_to: email,
     subject:  `New Inquiry — ${projectType} · ${name}`,
     html:     emailHtml,
