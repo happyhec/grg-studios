@@ -142,7 +142,7 @@ export default function AgencyHero() {
           className={`absolute flex flex-col items-center justify-center text-center p-6 md:p-16 rounded-[2.5rem] border border-white/5 bg-black/40 md:backdrop-blur-md w-[90vw] max-w-[1000px] z-[30] will-change-transform`}
         >
           <p className="tracking-[0.4em] text-[10px] md:text-[11px] text-[#c9a84c] mb-6 md:mb-8 uppercase font-bold">
-            Ventura County Web Design & Business Systems
+            Ventura County Web Design &amp; Business Systems
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight uppercase font-rajdhani leading-[0.95] text-white max-w-[900px]">
             Websites and systems that help your business look better, <em className="text-[#c9a84c] not-italic">run smoother</em>, and grow faster.
@@ -153,7 +153,7 @@ export default function AgencyHero() {
 
           <div className="mt-10 flex flex-col items-center gap-6 w-full max-w-xl">
             <p className="text-[#c9a84c] text-xs tracking-widest uppercase font-bold text-center border border-[#c9a84c]/20 bg-[#c9a84c]/5 rounded-full px-6 py-3">
-              For businesses tired of outdated websites, manual busywork, and tools that don't work together.
+              For businesses tired of outdated websites, manual busywork, and tools that don&apos;t work together.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
               <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="px-8 py-4 bg-[#c9a84c] text-black text-xs font-black tracking-[0.2em] uppercase rounded-full hover:bg-[#e8d5a3] transition-all duration-300 w-full sm:w-auto">
