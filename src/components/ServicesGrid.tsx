@@ -7,49 +7,25 @@ const services = [
   {
     num: "01",
     icon: "✦",
-    title: "Systems-First Web",
-    desc: "We build websites that do the work for you. Every layout is hand-coded, conversion-optimized, and integrated with the tools you use to run your business.",
-    tags: ["Custom Dev", "UX/UI", "High Performance"],
+    title: "Websites",
+    desc: "We build custom websites that make your business look professional, load fast, and help turn visitors into real leads.",
+    tags: ["Fast front-end builds", "Responsive layouts", "SEO-ready structure"],
     from: "From $2,999"
   },
   {
     num: "02",
     icon: "⬢",
-    title: "Automation & AI",
-    desc: "Stop doing manual tasks. We integrate AI-assisted workflows and lead automation directly into your digital footprint to save you hours every week.",
-    tags: ["Lead Intake", "Workflow", "AI Tools"],
+    title: "Automation",
+    desc: "We automate repetitive tasks so you spend less time doing everything manually and more time focusing on the work that matters.",
+    tags: ["Forms", "Workflows", "Integrations", "Task setup"],
     from: "From $1,500"
   },
   {
     num: "03",
     icon: "◈",
-    title: "Strategic Branding",
-    desc: "A visual story that commands attention. From high-fidelity logo systems to sensory-driven brand guidelines, we build identities that resonate with premium markets.",
-    tags: ["Logo System", "HSL Palettes", "Typography"],
-    from: "From $1,800"
-  },
-  {
-    num: "04",
-    icon: "◇",
-    title: "E-Commerce Engines",
-    desc: "Scalable retail infrastructure designed for high-conversion cinematic shopping. We build proprietary checkout flows and inventory sync systems that handle the load.",
-    tags: ["Cinematic Retail", "Stripe API", "Inventory Sync"],
-    from: "From $3,500"
-  },
-  {
-    num: "05",
-    icon: "◉",
-    title: "SEO & Authority",
-    desc: "Get found by the right people. We implement on-page optimization, technical SEO, and local search strategies built for sustainable dominance in your market.",
-    tags: ["Technical SEO", "Local Authority", "Speed Prep"],
-    from: "From $750/mo"
-  },
-  {
-    num: "06",
-    icon: "⊕",
-    title: "Operational Dashboards",
-    desc: "Staff portals, digital waitlists, and internal admin tools. Custom-built operational systems that replace spreadsheets with high-performance data portals.",
-    tags: ["Staff Tools", "Admin Nodes", "Data Systems"],
+    title: "Business Systems",
+    desc: "We help set up the digital side of your business so your website, inquiries, follow-ups, and workflows feel more organized and easier to manage.",
+    tags: ["Organized tools", "Cleaner operations", "Digital handoff"],
     from: "Custom Quote"
   }
 ];
@@ -135,11 +111,11 @@ export default function ServicesGrid() {
               <span className="text-[10px] tracking-[0.3em] uppercase text-[#c9a84c] font-semibold">What We Offer</span>
             </div>
             <h2 className="font-rajdhani text-5xl md:text-7xl font-light leading-tight text-[#f5f0e8]">
-              Building the <em className="italic text-[#c9a84c] not-italic">systems</em> that drive your growth.
+              Tools that help you <em className="italic text-[#c9a84c] not-italic">grow</em> with less friction.
             </h2>
           </div>
           <p className="max-w-sm text-sm text-[#a3a39c] leading-relaxed text-left md:text-right">
-            We don't just design pages; we build cohesive digital systems. From brand identity to automated workflows, we handle the technical architecture so you can lead your industry.
+            We help businesses get better websites, save time with automation, and put the right systems in place to grow without the technical overwhelm.
           </p>
         </div>
 

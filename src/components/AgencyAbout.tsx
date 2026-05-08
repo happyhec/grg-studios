@@ -37,15 +37,13 @@ export default function AgencyAbout() {
             className="space-y-6 text-[#a3a39c] text-sm md:text-base leading-[1.8]"
           >
             <p>
-              GRG Studios was built because local businesses deserved better than visual shells — websites that look okay but are architecturally brittle and insecure. We don't build shells. We build{' '}
-              <strong className="text-[#f5f0e8] font-medium">hardened systems</strong>.
+              Most business owners do not need more complicated tools — they need the right setup. GRG Studios helps businesses create a stronger online presence and smoother internal workflows without making everything feel overwhelming or overly technical.
             </p>
             <p>
-              Our work sits at the intersection of{' '}
-              <strong className="text-[#f5f0e8] font-medium">Cybersecurity, Networking, and High-End Design</strong>. Every pixel we place is backed by a secure, high-performance architecture — because great design and resilient engineering aren't a tradeoff, they're a standard.
+              We combine design, development, and practical business thinking in one place. That means you get a website that not only looks good, but also supports how your business actually works day to day.
             </p>
             <p>
-              We work exclusively with businesses ready to graduate from templates to professional infrastructure. Whether it's custom CRM integrations, secure staff portals, or AI-automated workflows, you're getting a system architected for growth and built to withstand the modern web.
+              A better website should do more than sit online. It should help your business look credible, build trust faster, and create a smoother path for new customers to reach out.
             </p>
           </m.div>
 
