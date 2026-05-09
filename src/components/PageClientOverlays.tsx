@@ -1,9 +1,7 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-
-const ElevatorNav = dynamic(() => import('@/components/ElevatorNav'), { ssr: false });
-const FloatingCTA = dynamic(() => import('@/components/FloatingCTA'), { ssr: false });
+import ElevatorNav from '@/components/ElevatorNav';
+import FloatingCTA from '@/components/FloatingCTA';
 
 export default function PageClientOverlays() {
   return (

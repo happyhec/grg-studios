@@ -57,8 +57,8 @@ export default function AgencyAbout() {
             {/* Credibility Stats */}
             <div className="grid grid-cols-2 gap-x-8 gap-y-7 mb-12">
               {[
-                { value: "Sub-1.5s",  label: "Load Times — Every Build" },
-                { value: "100%",      label: "Core Web Vitals Pass Rate" },
+                { value: "Sub-1.5s",  label: "Page Load Time — Every Site" },
+                { value: "100%",      label: "Google Speed Score — Every Build" },
                 { value: "100%",      label: "Custom Code — Zero Templates" },
                 { value: "Only",      label: "Security-First Studio in Ventura County" },
               ].map(stat => (
@@ -75,9 +75,9 @@ export default function AgencyAbout() {
             {/* Core Pillars */}
             <div className="space-y-5">
               {[
-                { icon: '⬡', title: 'Security-First Architecture', desc: 'Every build is hardened from the ground up — not patched after the fact.' },
-                { icon: '⬡', title: 'Performance Without Compromise', desc: 'Lighthouse-validated scores. Fast by design, not by accident.' },
-                { icon: '⬡', title: 'Systems That Scale', desc: 'Custom CRMs, AI workflows, and automations built to grow with you.' },
+                { icon: '⬡', title: 'Built To Be Secure', desc: 'Your site is protected from day one — not as an afterthought when something goes wrong.' },
+                { icon: '⬡', title: 'Fast. Every Time.', desc: 'Every site we build is tested for speed. Slow websites lose customers — ours don\'t.' },
+                { icon: '⬡', title: 'Grows With Your Business', desc: 'Whether you need a simple contact form today or a full booking and management system down the road, we build with the future in mind.' },
               ].map(p => (
                 <div key={p.title} className="flex gap-4 items-start">
                   <span className="text-[#c9a84c] text-sm mt-0.5 shrink-0">{p.icon}</span>

@@ -1,7 +1,5 @@
 'use client';
 
-import { m } from 'framer-motion';
-
 export default function QuickInquiry() {
   return (
     <section className="bg-[#0a0a0a] py-20 px-6 md:px-16 border-y border-white/5 relative overflow-hidden">
@@ -12,13 +10,13 @@ export default function QuickInquiry() {
         <div className="flex-1 text-center md:text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c9a84c]/10 border border-[#c9a84c]/20 mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-[#c9a84c] animate-pulse" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#c9a84c]">Early Access Booking</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#c9a84c]">Now Taking New Clients</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-rajdhani font-light text-white leading-tight mb-6">
-            Ready to <em className="text-[#c9a84c] not-italic">digitize</em> your operations?
+            Ready to make your business <em className="text-[#c9a84c] not-italic">look and work better</em> online?
           </h2>
           <p className="text-[#a3a39c] text-sm md:text-base leading-relaxed max-w-lg mb-0 font-outfit">
-            Skip the scrolling. Let's discuss your custom infrastructure or business system audit today.
+            Skip the scrolling. Tell us what your business needs and we'll figure out the best way to help.
           </p>
         </div>
 

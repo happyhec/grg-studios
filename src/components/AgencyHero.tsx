@@ -142,27 +142,27 @@ export default function AgencyHero() {
           className={`absolute flex flex-col items-center justify-center text-center p-6 md:p-16 rounded-[2.5rem] border border-white/5 bg-black/40 md:backdrop-blur-md w-[90vw] max-w-[1000px] z-[30] will-change-transform`}
         >
           <p className="tracking-[0.4em] text-[10px] md:text-[11px] text-[#c9a84c] mb-6 md:mb-8 uppercase font-bold">
-            Ventura County Web Design &amp; Business Systems
+            Ventura County's Digital Studio
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight uppercase font-rajdhani leading-[0.95] text-white max-w-[900px]">
-            Websites and systems that help your business look better, <em className="text-[#c9a84c] not-italic">run smoother</em>, and grow faster.
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight uppercase font-rajdhani leading-[0.95] text-white max-w-[800px]">
+            We Build the Systems That <em className="text-[#c9a84c] not-italic">Run</em> Your Business
           </h1>
           <p className="mt-6 md:mt-8 text-sm md:text-base text-white/40 max-w-lg leading-relaxed font-outfit font-light px-4 md:px-0">
-            GRG Studios builds custom websites, automations, and digital tools that save time, improve your online presence, and make day-to-day business easier to manage.
+            Custom websites, automation, and operational tools for businesses that are done with templates and ready for real growth.
           </p>
 
-          <div className="mt-10 flex flex-col items-center gap-6 w-full max-w-xl">
-            <p className="text-[#c9a84c] text-xs tracking-widest uppercase font-bold text-center border border-[#c9a84c]/20 bg-[#c9a84c]/5 rounded-full px-6 py-3">
-              For businesses tired of outdated websites, manual busywork, and tools that don&apos;t work together.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
-              <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="px-8 py-4 bg-[#c9a84c] text-black text-xs font-black tracking-[0.2em] uppercase rounded-full hover:bg-[#e8d5a3] transition-all duration-300 w-full sm:w-auto">
-                Book a Strategy Call
-              </button>
-              <button onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="px-8 py-4 border border-white/20 text-white text-xs font-bold tracking-[0.2em] uppercase rounded-full hover:bg-white/5 transition-all duration-300 w-full sm:w-auto">
-                See Our Services
-              </button>
-            </div>
+          <div className="mt-10 md:mt-14 flex flex-col items-center gap-3 w-full max-w-xl">
+            {[
+              "Sub-1.5s Load Times — Every Build",
+              "100% Core Web Vitals Pass Rate",
+              "100% Custom Code — Zero Templates",
+              "Ventura County's Only Security-First Studio",
+            ].map((badge) => (
+              <div key={badge} className="w-full flex items-center gap-3 px-5 py-3 rounded-lg border border-white/5 bg-white/[0.03]">
+                <span className="text-[#c9a84c] text-base leading-none flex-shrink-0">✦</span>
+                <span className="text-[11px] md:text-[12px] tracking-[0.12em] uppercase text-white/60 font-medium">{badge}</span>
+              </div>
+            ))}
           </div>
         </div>
 

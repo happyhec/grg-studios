@@ -1,7 +1,7 @@
 'use client';
 
 import { m, useMotionTemplate, useMotionValue } from 'framer-motion';
-import { MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 
 const tiers = [
   {
@@ -11,9 +11,9 @@ const tiers = [
     features: [
       "Custom-coded single-page site",
       "Mobile-first responsive design",
-      "On-page technical SEO",
+      "SEO setup so Google can find you",
       "Contact form or click-to-call CTA",
-      "Cloudflare-hosted for speed",
+      "Fast, reliable hosting",
       "1 round of revisions"
     ],
     bestFor: "New businesses, side projects, and anyone ready to test the market fast.",
@@ -26,9 +26,9 @@ const tiers = [
     tagline: "A custom multi-page website built to give your business more clarity, stronger structure, and lead-gen logic.",
     features: [
       "Custom multi-page website",
-      "Lead generation & logic layers",
-      "Basic automation workflows",
-      "Comprehensive technical SEO",
+      "Smart layout that guides visitors to contact you",
+      "Time-saving automations",
+      "Full SEO foundation",
       "3 rounds of revisions",
       "30-day post-launch support"
     ],
@@ -72,27 +72,27 @@ const addons = [
   { 
     name: "Digital Infrastructure Review", 
     price: "From $1,200",
-    detail: "A paid consulting deliverable: full written audit, competitive analysis, and a custom technical roadmap for your digital ecosystem. Not a scan — a strategy."
+    detail: "A detailed written review of your website and online presence — what's working, what's holding you back, and a clear action plan for what to fix first. This is a real strategy document, not a quick automated scan."
   },
   { 
     name: "Logo & Brand Systems", 
     price: "From $1,800",
-    detail: "High-fidelity vector identities with custom HSL color protocols and typography frameworks."
+    detail: "A complete logo and visual identity — colors, fonts, and brand files — so your business looks consistent and professional across your website, social media, and printed materials."
   },
   { 
     name: "Automation & Lead Ops", 
     price: "From $2,500",
-    detail: "Proprietary lead intake logic, AI-assisted triage, and automated calendar synchronization."
+    detail: "Systems that capture new leads automatically, send follow-up messages, and keep your calendar organized — so you spend less time on admin and more time doing the actual work."
   },
   { 
     name: "Strategic SEO Sync", 
     price: "From $750/mo",
-    detail: "Authority-driven technical SEO, maps dominance, and high-frequency content distribution."
+    detail: "Ongoing work to help your business show up higher on Google, get found on Google Maps, and stay visible as search trends change. Updated monthly."
   },
   { 
     name: "Custom Admin Dashboards", 
     price: "Custom Quote",
-    detail: "Bespoke operational nodes for staff management, live inventory tracking, and data visualization."
+    detail: "A custom management page built for your team — track orders, staff schedules, inventory, or anything your business needs to keep tabs on, all in one place."
   }
 ];
 
@@ -239,7 +239,7 @@ export default function AgencyPricing() {
           <p className="text-xs text-[#a3a39c]">Not sure which option fits? <a href="#contact" className="text-[#c9a84c] hover:underline underline-offset-4">Reach out</a> and we'll scope it together.</p>
           <div className="hidden md:block w-1.5 h-1.5 bg-[#c9a84c] rounded-full" />
           <div className="bg-[#c9a84c] text-black text-[10px] font-black uppercase px-5 py-2 rounded-full tracking-widest">
-            Need custom automation or 3D? Deeper technical scopes quoted separately.
+            Need something more specific? We'll scope it together on a call.
           </div>
         </div>
       </div>

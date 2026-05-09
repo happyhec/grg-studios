@@ -1,7 +1,7 @@
 'use client';
 
 import { m, useMotionTemplate, useMotionValue } from 'framer-motion';
-import { MouseEvent } from 'react';
+import type { MouseEvent } from 'react';
 
 const services = [
   {

@@ -15,7 +15,7 @@
  *            DOM text-content extraction returns encoded strings, not digits.
  *
  * SETUP:
- *   1. Set NEXT_PUBLIC_TURNSTILE_SITE_KEY to your public site key from:
+ *   1. Replace TURNSTILE_SITE_KEY below with your public site key from:
  *      dash.cloudflare.com → Turnstile → your widget → Site Key
  *   2. Add env vars in Cloudflare Dashboard → Pages → Settings → Environment variables:
  *      TURNSTILE_SECRET_KEY  = (secret key from Turnstile widget)
@@ -27,28 +27,13 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 // ─── YOUR PUBLIC TURNSTILE SITE KEY ──────────────────────────────────────────
 // Get from: dash.cloudflare.com → Turnstile → Add widget → Site Key
 // Use "Managed" mode for best UX (invisible for good users, CAPTCHA for suspicious ones)
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
+const TURNSTILE_SITE_KEY = '0x4AAAAAADLaI79VlCAhD7wL';
 
-type TurnstileWidgetId = string | number;
-
-interface TurnstileRenderOptions {
-  sitekey: string;
-  theme: 'auto' | 'dark' | 'light';
-  size: 'normal' | 'compact' | 'invisible';
-  callback: (token: string) => void | Promise<void>;
-  'error-callback': () => void;
-  'expired-callback': () => void;
-}
-
-interface TurnstileApi {
-  render: (container: HTMLElement, options: TurnstileRenderOptions) => TurnstileWidgetId;
-  remove: (widgetId: TurnstileWidgetId) => void;
-}
-
-declare global {
-  interface Window {
-    turnstile?: TurnstileApi;
-  }
+// ─── Layer 6: encode each digit as its HTML entity ───────────────────────────
+// Returns an array of entity strings. React renders them as real chars visually,
+// but scrapers grabbing .textContent or innerHTML get &#X; strings.
+function encodePhone(digits: string): string[] {
+  return digits.split('').map(ch => `&#${ch.charCodeAt(0)};`);
 }
 
 // ─── Layer 1: split the number into chunks, interleave invisible spans ────────
@@ -56,7 +41,7 @@ declare global {
 // We use a simpler but effective approach: RTL override + CSS ltr on the container.
 function ObfuscatedNumber({ phone }: { phone: string }) {
   // Format: (805) 910-6096
-  const formatted = `(${phone.slice(0,3)}) ${phone.slice(3,6)}-${phone.slice(6)}`;
+  const formatted = `(${phone.slice(0, 3)}) ${phone.slice(3, 6)}-${phone.slice(6)}`;
   // Split into parts and inject zero-width joiners between digits
   const parts = formatted.split('');
 
@@ -95,9 +80,9 @@ function loadTurnstile(): Promise<void> {
   return new Promise((resolve) => {
     const existing = document.querySelector('script[src*="turnstile"]');
     if (existing) { turnstileLoaded = true; resolve(); return; }
-    const script  = document.createElement('script');
-    script.src    = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
-    script.async  = true;
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+    script.async = true;
     script.onload = () => { turnstileLoaded = true; resolve(); };
     document.head.appendChild(script);
   });
@@ -112,30 +97,23 @@ interface PhoneRevealProps {
 type RevealState = 'idle' | 'loading-turnstile' | 'awaiting-challenge' | 'verifying' | 'revealed' | 'error';
 
 export default function PhoneReveal({ variant = 'contact-bar' }: PhoneRevealProps) {
-  const [state,      setState]      = useState<RevealState>('idle');
-  const [phone,      setPhone]      = useState<string | null>(null);
-  const [errorMsg,   setErrorMsg]   = useState('');
-  const widgetRef                   = useRef<HTMLDivElement>(null);
-  const widgetIdRef                 = useRef<TurnstileWidgetId | null>(null);
+  const [state, setState] = useState<RevealState>('idle');
+  const [phone, setPhone] = useState<string | null>(null);
+  const [errorMsg, setErrorMsg] = useState('');
+  const widgetRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | number | null>(null);
 
   // Clean up Turnstile widget on unmount
   useEffect(() => {
     return () => {
-      if (widgetIdRef.current !== null && window.turnstile) {
-        window.turnstile.remove(widgetIdRef.current);
+      if (widgetIdRef.current !== null && (window as any).turnstile) {
+        (window as any).turnstile.remove(widgetIdRef.current);
       }
     };
   }, []);
 
   const handleReveal = useCallback(async () => {
     if (state !== 'idle' && state !== 'error') return;
-
-    if (!TURNSTILE_SITE_KEY) {
-      setState('error');
-      setErrorMsg('Phone reveal is not configured yet.');
-      return;
-    }
-
     setState('loading-turnstile');
     setErrorMsg('');
 
@@ -145,14 +123,14 @@ export default function PhoneReveal({ variant = 'contact-bar' }: PhoneRevealProp
     let polls = 0;
     const waitForTurnstile = () => new Promise<void>((resolve) => {
       const check = () => {
-        if (window.turnstile || polls++ > 40) { resolve(); return; }
+        if ((window as any).turnstile || polls++ > 40) { resolve(); return; }
         setTimeout(check, 100);
       };
       check();
     });
     await waitForTurnstile();
 
-    if (!window.turnstile) {
+    if (!(window as any).turnstile) {
       setState('error');
       setErrorMsg('Challenge failed to load. Please refresh and try again.');
       return;
@@ -162,26 +140,26 @@ export default function PhoneReveal({ variant = 'contact-bar' }: PhoneRevealProp
 
     // Render Turnstile widget explicitly (invisible/managed widget)
     if (widgetRef.current) {
-      widgetIdRef.current = window.turnstile.render(widgetRef.current, {
-        sitekey:  TURNSTILE_SITE_KEY,
-        theme:    'dark',
-        size:     'compact',
+      widgetIdRef.current = (window as any).turnstile.render(widgetRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        theme: 'dark',
+        size: 'compact',
         callback: async (token: string) => {
           // Challenge passed — call server
           setState('verifying');
           try {
-            const res  = await fetch('/api/reveal-phone', {
-              method:  'POST',
+            const res = await fetch('/api/reveal-phone', {
+              method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body:    JSON.stringify({ token }),
+              body: JSON.stringify({ token }),
             });
             const data = await res.json() as { phone?: string; error?: string };
             if (res.ok && data.phone) {
               setPhone(data.phone);
               setState('revealed');
               // Clean up widget — no longer needed
-              if (widgetIdRef.current !== null && window.turnstile) {
-                window.turnstile.remove(widgetIdRef.current);
+              if (widgetIdRef.current !== null) {
+                (window as any).turnstile.remove(widgetIdRef.current);
                 widgetIdRef.current = null;
               }
             } else {
@@ -251,8 +229,8 @@ export default function PhoneReveal({ variant = 'contact-bar' }: PhoneRevealProp
               <span>
                 {state === 'loading-turnstile' ? 'Loading...'
                   : state === 'awaiting-challenge' ? 'Complete the check below...'
-                  : state === 'verifying' ? 'Verifying...'
-                  : 'Tap to call'}
+                    : state === 'verifying' ? 'Verifying...'
+                      : 'Tap to call'}
               </span>
             </button>
 

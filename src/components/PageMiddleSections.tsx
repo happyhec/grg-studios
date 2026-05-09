@@ -1,9 +1,7 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-
-const Marquee = dynamic(() => import('@/components/Marquee'), { ssr: false });
-const QuickInquiry = dynamic(() => import('@/components/QuickInquiry'), { ssr: false });
+import Marquee from '@/components/Marquee';
+import QuickInquiry from '@/components/QuickInquiry';
 
 export default function PageMiddleSections() {
   return (

@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { m } from 'framer-motion';
 import { Sparkles, Code2, MonitorPlay } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
@@ -41,8 +40,7 @@ export default function MotionLabBanner() {
             </h2>
             
             <p className="text-[#a3a39c] text-base md:text-lg max-w-lg leading-relaxed mb-10">
-              We don't just build websites; we engineer cinematic digital experiences. 
-              Step into the lab to explore our custom WebGL environments, 120-frame scroll-scrub sequences, and advanced motion architecture.
+              We don't just build websites — we build experiences. Scroll animations, cinematic visuals, and interactive moments that make your brand impossible to forget. This is what separates a great website from every other one in your industry.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -75,7 +73,7 @@ export default function MotionLabBanner() {
               </div>
               <div className="flex items-center gap-2">
                 <Code2 className="w-4 h-4 text-[#c9a84c]" />
-                <span className="text-[10px] text-white/70 uppercase tracking-widest font-mono">Hardware Accelerated</span>
+                <span className="text-[10px] text-white/70 uppercase tracking-widest font-mono">Smooth On Every Device</span>
               </div>
             </div>
 

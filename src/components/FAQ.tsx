@@ -6,19 +6,19 @@ import { m, AnimatePresence } from 'framer-motion';
 const faqs = [
   {
     question: "Why choose GRG Studios over a standard freelancer?",
-    answer: "Most freelancers stop at 'making it look good.' We build high-performance digital systems. We focus on lead generation, automation, and tech architecture that actually grows your business, not just a static page you forget about."
+    answer: "Most freelancers focus on making your site look good and leave it at that. We go further — we think about how your site actually works for your business, how it brings in new customers, and how it can save you time. You get a site that looks great and actually does something, not one that sits there collecting dust."
   },
   {
     question: "How long does a typical project take?",
-    answer: "With our AI-augmented, not automated, workflows, a standard multi-page custom site typically launches in 5-7 days. Complex builds with custom animations, integrations, or agentic systems usually take 2-3 weeks. We move fast without cutting corners, because better tooling shouldn't mean longer waits for you."
+    answer: "A standard multi-page custom website typically launches in 5–7 business days. More complex builds — like sites with custom animations, booking systems, or third-party integrations — usually take 2–3 weeks. We move fast without cutting corners."
   },
   {
     question: "What is your process for a custom build?",
-    answer: "We follow a 4-step framework: Discovery (goals/research), Strategy (structure/messaging), Creation (design/development), and Launch (delivery/support). You're involved at every step via regular check-ins."
+    answer: "We follow four clear steps: Discovery (we learn your goals and your business), Strategy (we plan the structure and messaging), Build (we design and develop everything), and Launch (we go live and make sure everything works). You're involved and updated at every stage."
   },
   {
     question: "Do you offer ongoing support after launch?",
-    answer: "Yes. Every project includes 30 days of post-launch support. Beyond that, whether you need maintenance, SEO updates, or new features, we offer flexible Monthly Growth partnerships to keep your site ahead."
+    answer: "Yes. Every project includes 30 days of support after launch. After that, if you need updates, SEO work, new pages, or anything else, we offer flexible monthly plans to keep your site current and growing."
   },
 ];
 
@@ -49,7 +49,7 @@ export default function FAQ() {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="w-8 h-[0.5px] bg-[#c9a84c]" />
-            <span className="text-[10px] tracking-[0.3em] uppercase text-[#c9a84c] font-semibold">Common Inquiries</span>
+            <span className="text-[10px] tracking-[0.3em] uppercase text-[#c9a84c] font-semibold">Questions & Answers</span>
           </div>
           <h2 className="font-rajdhani text-5xl md:text-6xl font-light text-[#f5f0e8]">
             Frequently Asked <em className="italic text-[#c9a84c] not-italic">Questions</em>.
