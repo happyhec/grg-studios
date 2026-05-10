@@ -1,22 +1,20 @@
 'use client';
 
-import { m, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { m, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import { useState } from 'react';
 
 export default function FloatingCTA() {
   const { scrollY } = useScroll();
   const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    return scrollY.onChange((latest) => {
-      // Show after the hero tunnel is nearly complete (approx 1.2x innerHeight)
-      if (latest > window.innerHeight * 1.2) {
-        setVisible(true);
-      } else {
-        setVisible(false);
-      }
-    });
-  }, [scrollY]);
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    // Show after the hero tunnel is nearly complete (approx 1.2x innerHeight)
+    if (latest > window.innerHeight * 1.2) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+  });
 
   return (
     <AnimatePresence>

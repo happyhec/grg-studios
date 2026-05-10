@@ -8,8 +8,10 @@ const sections = [
   { id: 'services', name: '02_SYSTEMS', label: 'Services Grid' },
   { id: 'work', name: '03_PORTFOLIO', label: 'Selected Work' },
   { id: 'process', name: '04_PROTOCOL', label: 'Process' },
-  { id: 'pricing', name: '05_STRUCTURE', label: 'Investment' },
-  { id: 'contact', name: '06_ENVELOPE', label: 'Connect' },
+  { id: 'about', name: '05_ABOUT', label: 'About GRG' },
+  { id: 'pricing', name: '06_STRUCTURE', label: 'Investment' },
+  { id: 'faq', name: '07_FAQ', label: 'Questions' },
+  { id: 'contact', name: '08_ENVELOPE', label: 'Connect' },
 ];
 
 export default function ElevatorNav() {

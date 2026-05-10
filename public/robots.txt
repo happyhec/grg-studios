@@ -20,4 +20,4 @@ Disallow: /
 User-agent: Meta-ExternalAgent
 Disallow: /
 
-Sitemap: https://grginnovations.com/sitemap.xml
+Sitemap: https://grg-studios.com/sitemap.xml

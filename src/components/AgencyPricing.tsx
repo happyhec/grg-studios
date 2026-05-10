@@ -106,6 +106,17 @@ function PricingCard({ tier, index }: { tier: typeof tiers[0], index: number }) 
     mouseY.set(clientY - top);
   }
 
+  function scrollToContact(e: React.MouseEvent) {
+    e.preventDefault();
+    const el = document.getElementById('contact');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Fallback: navigate to homepage contact if on a different route
+      window.location.href = '/#contact';
+    }
+  }
+
   return (
     <m.div
       initial={{ opacity: 0, y: 20 }}
@@ -174,16 +185,16 @@ function PricingCard({ tier, index }: { tier: typeof tiers[0], index: number }) 
           <p className="text-xs text-[#a3a39c] leading-relaxed italic">{tier.bestFor}</p>
         </div>
 
-        <a 
-          href="#contact" 
-          className={`text-center py-4 text-xs tracking-widest uppercase font-bold rounded-sm transition-all ${
+        <button
+          onClick={scrollToContact}
+          className={`text-center py-4 text-xs tracking-widest uppercase font-bold rounded-sm transition-all w-full ${
             tier.featured 
             ? 'bg-[#c9a84c] text-black hover:bg-[#e8d5a3]' 
             : 'border border-[#c9a84c] text-[#c9a84c] hover:bg-[#c9a84c]/10'
           }`}
         >
           {tier.name === "The System" ? "Start Your Project" : tier.name === "Launch Page" ? "Get Started" : "Let's Talk"}
-        </a>
+        </button>
       </div>
     </m.div>
   );
@@ -236,7 +247,7 @@ export default function AgencyPricing() {
         </div>
 
         <div className="mt-16 flex flex-col md:flex-row items-center justify-center gap-6">
-          <p className="text-xs text-[#a3a39c]">Not sure which option fits? <a href="#contact" className="text-[#c9a84c] hover:underline underline-offset-4">Reach out</a> and we'll scope it together.</p>
+          <p className="text-xs text-[#a3a39c]">Not sure which option fits? <button onClick={(e) => { e.preventDefault(); const el = document.getElementById('contact'); if(el) el.scrollIntoView({behavior:'smooth'}); else window.location.href='/#contact'; }} className="text-[#c9a84c] hover:underline underline-offset-4">Reach out</button> and we'll scope it together.</p>
           <div className="hidden md:block w-1.5 h-1.5 bg-[#c9a84c] rounded-full" />
           <div className="bg-[#c9a84c] text-black text-[10px] font-black uppercase px-5 py-2 rounded-full tracking-widest">
             Need something more specific? We'll scope it together on a call.
