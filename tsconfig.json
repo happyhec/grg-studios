@@ -2,8 +2,14 @@
   "compilerOptions": {
     "target": "ES2020",
     "lib": [
-      "ES2020"
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "module": "ES2020",
     "moduleResolution": "bundler",
     "strict": true,
@@ -25,7 +31,9 @@
     ]
   },
   "include": [
+    "next-env.d.ts",
     "**/*.ts",
+    "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
