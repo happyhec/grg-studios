@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import scores from '../../public/lighthouse-scores.json';
+import scores from '@/data/lighthouse-scores.json';
 
 export default function AgencyFooter() {
   return (
