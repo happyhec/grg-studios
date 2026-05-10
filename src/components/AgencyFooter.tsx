@@ -27,6 +27,7 @@ export default function AgencyFooter() {
               { name: 'Services', href: '/#services' },
               { name: 'Work', href: '/#work' },
               { name: 'Pricing', href: '/#pricing' },
+              { name: 'Insights', href: '/insights' },
               { name: 'Contact', href: '/#contact' },
             ].map((link) => (
               <li key={link.name}>
@@ -74,4 +75,3 @@ export default function AgencyFooter() {
     </footer>
   );
 }
-
